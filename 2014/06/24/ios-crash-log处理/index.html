@@ -6,14 +6,33 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>ADu</title>
+  <title>iOS Crash Log处理 | ADu</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="ADu">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="iOS crash log 处理
+什么是崩溃日志，从哪里能得它?
+
+iOS设备上的应用闪退时，操作系统会生成一个崩溃报告，也叫崩溃日志，保存在设备上。
+1234Device LogsCrashReporter    ~/Library/Logs/CrashReporter/MobileDevice/iTunes Connect -&amp;gt; Crash Reports用户
+什么情况下会产生崩溃日志?">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS Crash Log处理">
+<meta property="og:url" content="http://yoursite.com/2014/06/24/ios-crash-log处理/index.html">
 <meta property="og:site_name" content="ADu">
+<meta property="og:description" content="iOS crash log 处理
+什么是崩溃日志，从哪里能得它?
+
+iOS设备上的应用闪退时，操作系统会生成一个崩溃报告，也叫崩溃日志，保存在设备上。
+1234Device LogsCrashReporter    ~/Library/Logs/CrashReporter/MobileDevice/iTunes Connect -&amp;gt; Crash Reports用户
+什么情况下会产生崩溃日志?">
+<meta property="og:updated_time" content="2016-12-21T09:07:08.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ADu">
+<meta name="twitter:title" content="iOS Crash Log处理">
+<meta name="twitter:description" content="iOS crash log 处理
+什么是崩溃日志，从哪里能得它?
+
+iOS设备上的应用闪退时，操作系统会生成一个崩溃报告，也叫崩溃日志，保存在设备上。
+1234Device LogsCrashReporter    ~/Library/Logs/CrashReporter/MobileDevice/iTunes Connect -&amp;gt; Crash Reports用户
+什么情况下会产生崩溃日志?">
   
     <link rel="alternative" href="/atom.xml" title="ADu" type="application/atom+xml">
   
@@ -133,208 +152,14 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-unit-testing" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-ios-crash-log处理" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/12/21/unit-testing/">Unit Testing</a>
-    </h1>
-  
-
-        <a href="/2016/12/21/unit-testing/" class="archive-article-date">
-  	<time datetime="2016-12-21T09:58:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-21</time>
-</a>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">1.Testing Framework Review</div><div class="line">2.High-level Overview</div><div class="line">3.Time to Testing</div><div class="line">4.What’s new?(Asynchronous Testing,     Performance Testing)</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Xcode’s testing frameworks </div><div class="line"></div><div class="line">Xcode5: OCUnit -&gt; XCTest</div><div class="line">Xcode5.1: OCUnit </div><div class="line">Xcode6: new XCTest API</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">test class name end with Tests.(e:ViewModelTests)</div><div class="line">test case methods must start with the word test so that the test runner can find them.(e:testInitialization)</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">XCTestCase</div><div class="line"></div><div class="line">The default XCTestCase class contains a setup() and a tearDown() method.</div><div class="line">For every test function, the test runner calls setup() and tearDown()</div><div class="line">Override these methods to perform any necessary configuration of your object before the test runs, and any cleanup after.</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">Assertions</div><div class="line"></div><div class="line">XCTFail(format…) 生成一个失败的测试； </div><div class="line">XCTAssertNil(a1, format...)为空判断，a1为空时通过，反之不通过； </div><div class="line">XCTAssertNotNil(a1, format…)不为空判断，a1不为空时通过，反之不通过；</div><div class="line">XCTAssert(expression, format...)当expression求值为TRUE时通过； </div><div class="line">XCTAssertTrue(expression, format...)当expression求值为TRUE时通过； </div><div class="line">XCTAssertFalse(expression, format...)当expression求值为False时通过； </div><div class="line">XCTAssertEqualObjects(a1, a2, format...)判断相等，[a1 isEqual:a2]值为TRUE时通过，其中一个不为空时，不通过；</div><div class="line">XCTAssertNotEqualObjects(a1, a2, format...)判断不等，[a1 isEqual:a2]值为False时通过；</div><div class="line">XCTAssertEqual(a1, a2, format...)判断相等（当a1和a2是 C语言标量、结构体或联合体时使用,实际测试发现NSString也可以）； </div><div class="line">XCTAssertNotEqual(a1, a2, format...)判断不等（当a1和a2是 C语言标量、结构体或联合体时使用）；</div><div class="line">XCTAssertEqualWithAccuracy(a1, a2, accuracy, format...)判断相等，（double或float类型）提供一个误差范围，当在误差范围（+/-accuracy）以内相等时通过测试； </div><div class="line">XCTAssertNotEqualWithAccuracy(a1, a2, accuracy, format...) 判断不等，（double或float类型）提供一个误差范围，当在误差范围以内不等时通过测试； </div><div class="line">XCTAssertThrows(expression, format...)异常测试，当expression发生异常时通过；反之不通过；（很变态） XCTAssertThrowsSpecific(expression, specificException, format...) 异常测试，当expression发生specificException异常时通过；反之发生其他异常或不发生异常均不通过； </div><div class="line">XCTAssertThrowsSpecificNamed(expression, specificException, exception_name, format...)异常测试，当expression发生具体异常、具体异常名称的异常时通过测试，反之不通过； </div><div class="line">XCTAssertNoThrow(expression, format…)异常测试，当expression没有发生异常时通过测试；</div><div class="line">XCTAssertNoThrowSpecific(expression, specificException, format...)异常测试，当expression没有发生具体异常、具体异常名称的异常时通过测试，反之不通过； </div><div class="line">XCTAssertNoThrowSpecificNamed(expression, specificException, exception_name, format...)异常测试，当expression没有发生具体异常、具体异常名称的异常时通过测试，反之不通过</div><div class="line"></div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Asynchronous Testing</div><div class="line"></div><div class="line">Performance Testing</div><div class="line"></div><div class="line">measureBlock: which takes a block of code and measures the execution time of the entire block.</div><div class="line">measureMetrics: is a more intimate version of measureBlock that offers fine grained control of what to measure,and when to measure it.</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">How Xcode decides to mark a performance test as success or failure, here’s the logic</div><div class="line"></div><div class="line">For convenience AVE means average,</div><div class="line">STDDEV means standard deviation:</div><div class="line">1. If the test has no baseline, the result is neither a success nor a failure.</div><div class="line">2. If the current run’s STDDEV minus the baseline STDDEV took less than 0.1 second, ignore it.</div><div class="line">3. If the current run&apos;s STDDEV minus the baseline STDDEV took more than 0.1 second and the difference is more than 10%, it’s a failure.</div><div class="line">4. If the current run’s AVE minus the baseline AVE took less than 0.1 second, ignore it.</div><div class="line">5. If the current run’s AVE minus the baseline AVE took more than 0.1 second and the difference is more than 10%, it’s a failure.</div><div class="line">6. Everything else is considered a success.</div></pre></td></tr></table></figure>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/12/21/unit-testing/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-产品-产品" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/12/20/产品-产品/">产品 产品</a>
-    </h1>
-  
-
-        <a href="/2016/12/20/产品-产品/" class="archive-article-date">
-  	<time datetime="2016-12-20T09:52:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-20</time>
-</a>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>产品的迭代需要有计划，有策略的进行。就像下象棋一样，承前启后，打出组合拳。才能达到目标。<br><img src="/2016/12/20/产品-产品/chanpin1.png" alt="This is an image" title="This is an image"></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list">
-			 
-        <li class="article-tag-list-item">
-        	<a href="javascript:void(0)" class="article-tag-list-link color3">迭代</a>
-        </li>
-      
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<i class="icon-book icon"></i>
-	<a class="article-category-link" href="/categories/产品/">产品</a>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/12/20/产品-产品/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-Cornerstone-ignore-UserInterfaceState.xcuserstate" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/11/21/Cornerstone-ignore-UserInterfaceState.xcuserstate/">Cornerstone ignore UserInterfaceState.xcuserstate</a>
-    </h1>
-  
-
-        <a href="/2014/11/21/Cornerstone-ignore-UserInterfaceState.xcuserstate/" class="archive-article-date">
-  	<time datetime="2014-11-21T09:18:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2014-11-21</time>
-</a>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>在控制台 <em>cd</em> 到项目目录下<br><em>svn -v status</em> 查看文件的状态(M):</p>
-<p>M   33769    33757 xxx         XXX.xcworkspace/xcuserdata/XXX.xcuserdatad/UserInterfaceState.xcuserstate</p>
-<pre><code>svn delete --keep-local --force xcuserdata/user.xcuserdatad/UserInterfaceState.xcuserstate
-</code></pre><p>此时，Cornerstone会显示它的状态为”？”,右键Ignore。解决了，世界清静了:]</p>
-<p><strong>PS:</strong><br>added <em>.xcuserstate to the Global Ignores<br>    (Cornerstone -&gt; Preferences -&gt; Subversion -&gt; turn off Use default global ignores -&gt; add “\</em>.xcuserstate”)</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list">
-			 
-        <li class="article-tag-list-item">
-        	<a href="javascript:void(0)" class="article-tag-list-link color1">xcode</a>
-        </li>
-       
-        <li class="article-tag-list-item">
-        	<a href="javascript:void(0)" class="article-tag-list-link color4">svn</a>
-        </li>
-       
-        <li class="article-tag-list-item">
-        	<a href="javascript:void(0)" class="article-tag-list-link color4">tutorial</a>
-        </li>
-      
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2014/11/21/Cornerstone-ignore-UserInterfaceState.xcuserstate/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-ios-crash-log处理" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/06/24/ios-crash-log处理/">iOS Crash Log处理</a>
+    <h1 class="article-title" itemprop="name">
+      iOS Crash Log处理
     </h1>
   
 
@@ -382,183 +207,110 @@
 
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2014/06/24/ios-crash-log处理/">展开全文 >></a>
-        </p>
-      
 
       
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-iOS-MDM流程记录" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/01/08/iOS-MDM流程记录/">iOS-MDM流程记录</a>
-    </h1>
-  
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
 
-        <a href="/2014/01/08/iOS-MDM流程记录/" class="archive-article-date">
-  	<time datetime="2014-01-08T01:56:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2014-01-08</time>
-</a>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="MDM开发流程"><a href="#MDM开发流程" class="headerlink" title="MDM开发流程"></a>MDM开发流程</h2><p>1.申请企业开发者账号，这一步比较麻烦的是申请邓白氏码，因为要通过华夏邓白氏那边的审核。拖了比较久。<br>2.有开发者账号就可以做MDM证书了，</p>
-<p>主要参考:<br><a href="http://www.mbaike.net/ios/2014.html" target="_blank" rel="external">mbaike</a><br><a href="http://www.softhinker.com/in-the-news/iosmdmvendorcsrsigning" target="_blank" rel="external">softhinker</a></p>
-<p>这里要注意的是<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">//Change to your <span class="built_in">alias</span> 是你证书的名字！</div><div class="line">String <span class="built_in">alias</span> = <span class="string">"MbaikeMDMCSR"</span>;</div></pre></td></tr></table></figure></p>
-<h3 id="mdm证书制作"><a href="#mdm证书制作" class="headerlink" title="mdm证书制作"></a>mdm证书制作</h3><p>1.用apple钥匙串访问工具生成CertificateSigningRequest.certSigningRequest<br>2.利用生成的公私钥中的私钥导出为vendor.p12<br>2.登陆299企业帐号创建并下载mdm.cer<br>4.下载<a href="https://developer.apple.com/certificationauthority/AppleWWDRCA.cer" target="_blank" rel="external">AppleWWDRCA</a> 证书<br>5.下载<a href="http://www.apple.com/appleca/AppleIncRootCertificate.cer" target="_blank" rel="external">AppleIncRootCertificate</a> 苹果根证书<br>6.利用以下命令将cer证书转成证pem书<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">openssl x509 -inform der -in mdm.cer -out mdm.pem</div><div class="line">openssl x509 -inform der -in AppleWWDRCA.cer -out intermediate.pem</div><div class="line">openssl x509 -inform der -in AppleIncRootCertificate.cer -out root.pem</div></pre></td></tr></table></figure></p>
-<p>7.生成客户端证书<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">openssl genrsa -des3 -out customerPrivateKey.pem 2048</div><div class="line">openssl req -new -key customerPrivateKey.pem -out customer.csr</div><div class="line">openssl req -inform pem -outform der -in customer.csr -out customer.der</div></pre></td></tr></table></figure></p>
-<p>8.利用MDMIOSGenerateEncodedPlist.java生成plist.xml和plist_encoded<br>9.打开 <a href="https://identity.apple.com/pushcert/" target="_blank" rel="external">https://identity.apple.com/pushcert/</a> 登陆任意appleid帐号，上传plist_encoded文件，申请通过后，下载apns-mdm.pem证书<br>10.将apns-mdm.pem与customerPrivateKey.pem合并为apns-mdm.p12<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">openssl pkcs12 -export -inkeycustomerPrivateKey.pem -in apns-mdm.pem -out apns-mdm.p12</div></pre></td></tr></table></figure></p>
-<p>此apns-mdm.p12就是mdm服务器和苹果anps服务器通讯用的p12也是mobileconf中绑定的p12(mobileconf最终安装在移动设备上)</p>
-<p>MDMplist</p>
-<p>3.<a href="http://www.mbaike.net/ios/1554.html" target="_blank" rel="external">申请服务器所需证书</a></p>
-<p>4.<a href="http://www.mbaike.net/ios/1556.html" target="_blank" rel="external">部署https(SSL)服务器环境</a></p>
-<p>最好做下域名映射！</p>
-<p>5.配置描述文件mobileconfig的生成</p>
-<h4 id="下载iPhone配置实用工具，配置通用和移动设备管理"><a href="#下载iPhone配置实用工具，配置通用和移动设备管理" class="headerlink" title="下载iPhone配置实用工具，配置通用和移动设备管理"></a>下载iPhone配置实用工具，配置通用和移动设备管理</h4><p>注意：<br><blockquote><p>a：Topic must be com.apple.mgmt.<yourdesignation></yourdesignation></p>
-<p>b：通用的安全性为总是</p>
-<p>c：移动设备管理中的使用开发APNS服务器不能勾选</p>
-</blockquote></p>
-<p>主要参考：(<a href="http://www.mbaike.net/ios/1560.html" target="_blank" rel="external">http://www.mbaike.net/ios/1560.html</a>)</p>
-<img src="/2014/01/08/iOS-MDM流程记录/1.png" alt="1 image" title="1 image">
-<img src="/2014/01/08/iOS-MDM流程记录/2.png" alt="2 image" title="2 image">
-<p>导出（选“无”）后签名</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">openssl smime -sign -in unsigned.mobileconfig -out signed.mobileconfig -signer mbaike.crt -inkey mbaike.key -certfile ca-bundle.pem -outform der -nodetach</div></pre></td></tr></table></figure>
-      
-
-      
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2014/06/24/ios-crash-log处理/" alt="微信分享二维码">
     </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list">
-			 
-        <li class="article-tag-list-item">
-        	<a href="javascript:void(0)" class="article-tag-list-link color3">iOS MDM</a>
-        </li>
-      
-		</ul>
-	</div>
+</div>
 
-      
-	<div class="article-category tagcloud">
-	<i class="icon-book icon"></i>
-	<a class="article-category-link" href="/categories/技术/">技术</a>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2014/01/08/iOS-MDM流程记录/">展开全文 >></a>
-        </p>
-      
-
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
 
-
-
-
-
-
-
-
   
-    <article id="post-Lua内存管理" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
+<nav id="article-nav">
+  
+    <a href="/2014/11/21/Cornerstone-ignore-UserInterfaceState.xcuserstate/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2011/07/04/Lua内存管理/">Lua内存管理</a>
-    </h1>
-  
-
-        <a href="/2011/07/04/Lua内存管理/" class="archive-article-date">
-  	<time datetime="2011-07-04T07:55:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2011-07-04</time>
-</a>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>本文主要介绍某项目脚本(lua)部分内存泄漏的查证与处理过程，希望对大家有点帮助。需要说明的是，lua本身并不存在<br>真正的内存泄漏，只是因为使用上面的原因导致无法gc，从而导致逻辑上的泄漏:)。</p>
-<p>参考GCObject的声明可以发现，lua中的复杂数据类型变量的传递都是基于引用的。当lua从根开始gc扫描的时候，只要<br>还有一个地方有对此变量的引用，那么这个变量就不会被collect。这种情况造成的危害取决于多大程度上依赖于引用，如<br>果有适当的间接层/弱引用来隔离这个问题，可能问题会有所缓解。</p>
-<h3 id="以下是一些常见的错误引用情景"><a href="#以下是一些常见的错误引用情景" class="headerlink" title="以下是一些常见的错误引用情景:"></a>以下是一些常见的错误引用情景:</h3><p>   1.本应该local 的变量进入global空间或者module空间了(忘记写local)，如果这是一个<br>table/function/udata等类型的变量的话，非常不幸的，这个变量将不会被正确gc了 —-除非你再显式的释放。这是<br>非常容易犯的错误，一直在想为什么lua变量不是默认local呢？ 当然这个话题会引发另外一场争论。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">local</span> <span class="keyword">function</span> test_user(id)</div><div class="line">	userobj = get_user_by_id(id) --这里总是会有一个玩家对象泄漏</div><div class="line">	<span class="built_in">print</span>(<span class="string">"only test"</span>, userobj:get_name())</div><div class="line">end</div></pre></td></tr></table></figure>
-<p>   2.c/c++部分调用的lua_ref是否有正常lua_unref释放？ 通过debug.getregistry()可以查到这些ref.</p>
-<p>   3.其他各种各样的实际bug造成的泄漏。</p>
-<p>当怀疑系统有泄漏以后，我们可以怎么查到这些泄漏呢？我强烈建议大家建立一个weak table, 把你所有创建过的能够称<br>之为资源的，包含但不限于“战斗对象，玩家，npc，物品，场景，邮件”等等对象全部扔到这个table里面。当你知道玩家<br>已经下线、战斗已经销毁了，但通过连续的强制full gc以后weak table里面还有这个变量，这就证明了这个变量的引用<br>没有被完全释放，于是问题就被发现了，我们又有事情干了@_@。</p>
-<p>知道有泄漏是比较容易的，能够完全揪出来就不是很容易了。是的，它究竟在哪儿呢? 一开始在此项目里面也是先发现比如<br>某npc泄漏了，然后就去查代码，看看究竟哪个地方写得不对。这种方式效率极低，基本上查不到什么问题。在迟一点的时<br>候才使用现在的方案：从_G深度遍历所有的table、metatable、funciton’supvalue、function’s env、<br>registentry(lua_ref)。 目前所知的所有引用必定存在于这几个空间， 遍历完成以后一定可以找到那个“迷失了的引<br>用”。 这种方式在脚本层就可以完成所有事情，甚至你可以在运营环境中在线查证，其遍历的速度是非常快的，但内存开销<br>非常大(:，可以考虑一边遍历一边gc，当然还要记得避免重复搜索。 在应用此方案以后，此项目解决了脚本中所有的泄漏<br>问题。</p>
-<p>   一点总结：1.如果系统性能还能够承受的话，建议不要直接引用对象，可以多做一层间接层。2.lua里面的弱引用是非<br>常有用的。3.比较大的物理内存是必要的，这可以为大家查证问题争取足够多的时间:) 4.可以把查找泄漏的部分写入到关<br>机逻辑里面，每次关机的时候自动查找泄漏，然后出具报告。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list">
-			 
-        <li class="article-tag-list-item">
-        	<a href="javascript:void(0)" class="article-tag-list-link color4">Lua</a>
-        </li>
-      
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<i class="icon-book icon"></i>
-	<a class="article-category-link" href="/categories/技术/">技术</a>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2011/07/04/Lua内存管理/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
+          Cornerstone ignore UserInterfaceState.xcuserstate
+        
+      </div>
+    </a>
   
   
+    <a href="/2014/01/08/iOS-MDM流程记录/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">iOS-MDM流程记录</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="ios-crash-log处理" data-title="iOS Crash Log处理" data-url="http://yoursite.com/2014/06/24/ios-crash-log处理/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"superchao8"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
 
 
           </div>
@@ -580,8 +332,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
