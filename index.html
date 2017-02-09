@@ -35,7 +35,7 @@
 <div class="intrude-less">
 	<header id="header" class="inner">
 		<a href="/" class="profilepic">
-			<img src="null" class="js-avatar">
+			<img src="/images/HomeIcon3.png" class="js-avatar">
 		</a>
 		<hgroup>
 		  <h1 class="header-author"><a href="/">ADu</a></h1>
@@ -71,8 +71,6 @@
 		        
 					<a class="twitter" target="_blank" href="https://twitter.com/yichao_du" title="twitter"><i class="icon-twitter"></i></a>
 		        
-					<a class="rss" target="_blank" href="/atom.xml" title="rss"><i class="icon-rss"></i></a>
-		        
 			</div>
 		</nav>
 	</header>		
@@ -88,7 +86,7 @@
 	<div class="intrude-less">
 		<header id="header" class="inner">
 			<div class="profilepic">
-				<img src="null" class="js-avatar">
+				<img src="/images/HomeIcon3.png" class="js-avatar">
 			</div>
 			<hgroup>
 			  <h1 class="header-author js-header-author">ADu</h1>
@@ -108,8 +106,6 @@
 						<a class="github" target="_blank" href="https://github.com/superchao8" title="github"><i class="icon-github"></i></a>
 			        
 						<a class="twitter" target="_blank" href="https://twitter.com/yichao_du" title="twitter"><i class="icon-twitter"></i></a>
-			        
-						<a class="rss" target="_blank" href="/atom.xml" title="rss"><i class="icon-rss"></i></a>
 			        
 				</div>
 			</nav>
@@ -255,6 +251,174 @@
 
 
   
+    <article id="post-Swift-Objective-C到底哪家强" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/08/22/Swift-Objective-C到底哪家强/">Swift-Objective-C到底哪家强</a>
+    </h1>
+  
+
+        <a href="/2016/08/22/Swift-Objective-C到底哪家强/" class="archive-article-date">
+  	<time datetime="2016-08-22T07:44:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-08-22</time>
+</a>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>swift出世后，人们茶余饭后就会讨论Swift和OC到底哪家强？Swift好用吗？下面主要从用法和性能方面来讨论。</p>
+<h3 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h3><p>  毫无疑问，从第一眼看到Swift。就看到了它的简洁，语法更清楚，更容易被理解。这要归结于Swift的设计，它借鉴了<br>很多语言（C、JavaScript、Python、Java）的优点，特别是动态语言。让你写起来更简单有趣。同时，Swift也提供了<br>面向对象编程。</p>
+<h3 id="性能"><a href="#性能" class="headerlink" title="性能"></a>性能</h3><p>  测试平台：MacMini 2.6 GHz Intel Core i5， Xcode8.2，Swift3.0</p>
+<h4 id="循环"><a href="#循环" class="headerlink" title="循环"></a>循环</h4><p>循环一百万次，里面什么事也不做</p>
+<p>swift</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">let</span> oneMillion = 1000000</div><div class="line"><span class="built_in">let</span> startTimes = NSDate().timeIntervalSince1970 * 1000</div><div class="line"></div><div class="line">func <span class="function"><span class="title">loop</span></span>() &#123;</div><div class="line">	<span class="keyword">for</span> _ <span class="keyword">in</span> 1...oneMillion &#123;</div><div class="line">	</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line">loop()</div><div class="line"></div><div class="line"><span class="built_in">let</span> endTimes = NSDate().timeIntervalSince1970 * 1000</div><div class="line"><span class="built_in">let</span> usedTimes = endTimes - startTimes</div><div class="line"><span class="built_in">print</span>(<span class="string">"loop a million times used \(usedTimes) ms"</span>)</div></pre></td></tr></table></figure>
+<p>OC</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">int oneMillion = 1000000;</div><div class="line">NSTimeInterval startTimes = [[NSDate date] timeIntervalSince1970] * 1000;</div><div class="line"></div><div class="line"><span class="keyword">for</span> (NSUInteger i = 0; i &lt; oneMillion; i++)&#123;</div><div class="line">&#125;</div><div class="line"></div><div class="line">NSTimeInterval endTimes = [[NSDate date] timeIntervalSince1970] * 1000;</div><div class="line">NSTimeInterval usedTimes = endTimes - startTimes;</div><div class="line"></div><div class="line"><span class="built_in">printf</span>(<span class="string">"used times %f ms"</span>, usedTimes);</div></pre></td></tr></table></figure>
+<p>用时（运行十次取平均值）<br>Swift： 3.62075195ms（3.333984375, 3.486083984375, 5.197998046875, 3.31982421875, 3.321044921875,<br>3.31982421875, 3.338134765625, 4.220947265625, 3.32177734375, 3.347900390625,）<br>Objective-C：2.4488037ms (2.345947, 2.363037, 2.292725, 2.596924, 2.352051,<br>2.587158, 2.348145, 2.649902, 2.412109, 2.540039,)</p>
+<h4 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h4><p>  快速排序就取10k个数，分为三种情况（正常，倒序，均值）</p>
+<h5 id="正常"><a href="#正常" class="headerlink" title="正常"></a>正常</h5><p>swift</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">let</span> count = 10000</div><div class="line"><span class="built_in">let</span> arr = Array(1...count)</div><div class="line"></div><div class="line"><span class="built_in">let</span> startTimes = NSDate().timeIntervalSince1970 * 1000</div><div class="line"></div><div class="line">// *** Simple but inefficient version of quicksort ***</div><div class="line"></div><div class="line">func quicksort&lt;T: Comparable&gt;(_ a: [T]) -&gt; [T] &#123;</div><div class="line">    guard a.count &gt; 1 <span class="keyword">else</span> &#123; <span class="built_in">return</span> a &#125;</div><div class="line">    </div><div class="line">    <span class="built_in">let</span> pivot = a[a.count/2]</div><div class="line">    <span class="built_in">let</span> less = a.filter &#123; <span class="variable">$0</span> &lt; pivot &#125;</div><div class="line">    <span class="built_in">let</span> equal = a.filter &#123; <span class="variable">$0</span> == pivot &#125;</div><div class="line">    <span class="built_in">let</span> greater = a.filter &#123; <span class="variable">$0</span> &gt; pivot &#125;</div><div class="line">    </div><div class="line">    // Uncomment this following line to see <span class="keyword">in</span> detail what the</div><div class="line">    // pivot is <span class="keyword">in</span> each step and how the subarrays are partitioned.</div><div class="line">    //<span class="built_in">print</span>(pivot, less, equal, greater)  <span class="built_in">return</span> quicksort(less) + equal + quicksort(greater)</div><div class="line">    </div><div class="line">    <span class="built_in">return</span> quicksort(less) + equal + quicksort(greater)</div><div class="line">&#125;</div><div class="line"></div><div class="line">quicksort(arr)</div><div class="line"></div><div class="line"><span class="built_in">let</span> endTimes = NSDate().timeIntervalSince1970 * 1000</div><div class="line"><span class="built_in">let</span> usedTimes = endTimes - startTimes</div><div class="line"><span class="built_in">print</span>(<span class="string">"times used \(usedTimes) ms"</span>)</div></pre></td></tr></table></figure>
+<p>OC</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">NSUInteger <span class="built_in">cap</span> = 10000;</div><div class="line">NSMutableArray *arr = [NSMutableArray arrayWithCapacity:<span class="built_in">cap</span>];</div><div class="line"></div><div class="line"><span class="keyword">for</span> (NSUInteger i = 0; i &lt; <span class="built_in">cap</span>; i++) &#123;</div><div class="line">    NSNumber *num = [NSNumber numberWithInteger:i];</div><div class="line">    arr[i] =num;</div><div class="line">&#125;</div><div class="line"></div><div class="line">NSTimeInterval startTimes = [[NSDate date] timeIntervalSince1970] * 1000;</div><div class="line"></div><div class="line">[self QuickSorkOC:arr Count:[arr count]];</div><div class="line"></div><div class="line">NSTimeInterval endTimes = [[NSDate date] timeIntervalSince1970] * 1000;</div><div class="line">NSTimeInterval usedTimes = endTimes - startTimes;</div><div class="line"></div><div class="line"><span class="built_in">printf</span>(<span class="string">"used times %f ms"</span>, usedTimes);</div></pre></td></tr></table></figure>
+<p>用时（运行十次取平均值）<br>Swift： 201.352221ms（226.079833984375, 180.364990234375, 182.054931640625, 195.965087890625, 197.198974609375,<br>193.84375, 268.726806640625, 191.621826171875, 188.782958984375, 188.883056640625,）<br>Objective-C：1551.05075ms (1497.709961, 1507.664062, 1505.760254, 1498.334961, 1578.202148,<br>1499.712158, 1531.479736, 1492.811035, 1684.247070, 1714.586182)</p>
+<h5 id="倒序"><a href="#倒序" class="headerlink" title="倒序"></a>倒序</h5><p>考虑最坏的情况，数据是从大到小的。只需要把数组倒序过来</p>
+<p>swift</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">var arr = Array(1...count)</div><div class="line">arr.sort(by: &gt;)</div></pre></td></tr></table></figure>
+<p>OC</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">arr = (NSMutableArray *)[[arr reverseObjectEnumerator] allObjects];</div></pre></td></tr></table></figure>
+<p>用时（运行十次取平均值）<br>Swift： 193.266601ms（184.419189453125, 255.409912109375, 189.22509765625, 198.416259765625, 190.2978515625,<br>181.308837890625, 187.583984375, 184.344970703125, 183.385009765625, 178.27490234375,）<br>Objective-C：1644.0257ms(1911.626709, 1546.142090, 1542.587158, 1929.552979, 1553.895020,<br>1576.763672, 1586.454102, 1558.053955, 1548.708252, 1686.473145,)</p>
+<h5 id="均值"><a href="#均值" class="headerlink" title="均值"></a>均值</h5><p>swift</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">let</span> count = 10000</div><div class="line">var arr = Array(repeating: 0, count: count)</div></pre></td></tr></table></figure>
+<p>OC</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> (NSUInteger i = 0; i &lt; <span class="built_in">cap</span>; i++) &#123;</div><div class="line">    NSNumber *num = [NSNumber numberWithInteger:0];</div><div class="line">    arr[i] = num;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>用时（运行十次取平均值）<br>Swift： 16.3355224ms（13.64892578125, 21.63916015625, 15.175048828125, 21.05322265625, 17.60595703125,<br>13.64111328125, 17.98193359375, 13.454833984375, 14.905029296875, 14.25, ）<br>Objective-C： 10.8430176ms (18.000977, 10.387207, 10.093994, 10.768066, 9.725098,<br>10.739014, 10.843018, 12.367188, 16.007812, 10.340820, )</p>
+<h3 id="内存管理"><a href="#内存管理" class="headerlink" title="内存管理"></a>内存管理</h3><p>  Swift也是采用了自动引用计数（ARC）来管理内存，这样可以是程序员专注于核心的应用逻辑以及新的功能特性上。把内存<br>管理交给编译器去做。但值得注意的是，要避免循环引用造成的内存泄漏。  </p>
+<h3 id="安全"><a href="#安全" class="headerlink" title="安全"></a>安全</h3><p>  用OC的时候，比较经常遇到的崩溃是空指针（nil、null）和数组越界。在OC中你对nil发送消息，是被允许的，它什么事情都<br>不会发生。而这就是得看起来并不会崩溃，但其实它隐藏着一个巨大的bug。这种bug是随机的，并且很能复现。这就造成在修复的时候<br>必须发大力气来寻找问题所在。<br>  在Swift中提供了可选类型使得一个nil可选值的可能性变得非常的明确，这样你就很明白了。如果你不小心写了不明确的代码时<br>编译器会报错。问题就在编写的时候就修复好了，这就大大节省了修复OC指针逻辑的bug时间。</p>
+<h3 id="维护"><a href="#维护" class="headerlink" title="维护"></a>维护</h3><p>  历史遗留下来的问题，使得OC不得不用两个文件。如果C没有改进的话，OC也就没办法跟着改变。在OC中，优化构建的时间以及创建App的<br>效率就比不上Swift了。OC的两份文件系统就多了额外的工作，特别是在维护的时候，不得不来回的切换，幸好有快捷键，但也会觉得繁琐。</p>
+<p>BTW：良好的编程规范是很重要的</p>
+<p>好不好用？用了才知道，语言它只是个表现手法，编程思想才是最重要的。适合团队的开发工具，能够高效的工作才是首选！</p>
+<pre><code class="bash">
+</code></pre>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list">
+			 
+        <li class="article-tag-list-item">
+        	<a href="javascript:void(0)" class="article-tag-list-link color2">swift,</a>
+        </li>
+      
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<i class="icon-book icon"></i>
+	<a class="article-category-link" href="/categories/技术/">技术</a>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2016/08/22/Swift-Objective-C到底哪家强/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="post-App-store转让App" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/08/22/App-store转让App/">App-store转让App</a>
+    </h1>
+  
+
+        <a href="/2015/08/22/App-store转让App/" class="archive-article-date">
+  	<time datetime="2015-08-22T07:44:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2015-08-22</time>
+</a>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>有时候需要转让App到别的账号下，需要注意的是只有符合条件的App才能转让。<br>由于App store里面应用名字的唯一性，当你新建了应用还没来得急上传，想把它过度到另外账号下只能等第一个版本审核<br>通过后才能操作。<br><img src="/2015/08/22/App-store转让App/1.png" alt="1.png" title=""></p>
+<h3 id="符合条件的才行"><a href="#符合条件的才行" class="headerlink" title="符合条件的才行"></a>符合条件的才行</h3><img src="/2015/08/22/App-store转让App/2.png" alt="2.png" title="">
+<h3 id="填写账号"><a href="#填写账号" class="headerlink" title="填写账号"></a>填写账号</h3><img src="/2015/08/22/App-store转让App/3.png" alt="3.png" title="">
+<h3 id="Team-ID在这"><a href="#Team-ID在这" class="headerlink" title="Team ID在这"></a>Team ID在这</h3><img src="/2015/08/22/App-store转让App/4.png" alt="4.png" title="">
+<h3 id="同意就行"><a href="#同意就行" class="headerlink" title="同意就行"></a>同意就行</h3><img src="/2015/08/22/App-store转让App/5.png" alt="5.png" title="">
+<h3 id="登录另一个账号"><a href="#登录另一个账号" class="headerlink" title="登录另一个账号"></a>登录另一个账号</h3><img src="/2015/08/22/App-store转让App/6.png" alt="6.png" title="">
+<p>填写信息，接收就可以了。应用马上就过来了，但App store上的信息还要等apple 服务器同步才行。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list">
+			 
+        <li class="article-tag-list-item">
+        	<a href="javascript:void(0)" class="article-tag-list-link color5">iTunesconnect,</a>
+        </li>
+      
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<i class="icon-book icon"></i>
+	<a class="article-category-link" href="/categories/app-store/">App store</a>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2015/08/22/App-store转让App/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
     <article id="post-Cornerstone-ignore-UserInterfaceState.xcuserstate" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -310,6 +474,79 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2014/11/21/Cornerstone-ignore-UserInterfaceState.xcuserstate/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="post-swift笔记" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/08/22/swift笔记/">Swift笔记</a>
+    </h1>
+  
+
+        <a href="/2014/08/22/swift笔记/" class="archive-article-date">
+  	<time datetime="2014-08-22T07:44:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2014-08-22</time>
+</a>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>swift出世时，断断续续看了一些。在PlayGround耍了耍还是挺好玩的:]<br>有OC作为基础，上手swift还是挺快的。但是有一些语法还是要留意下。这个就作为学习笔记吧，记录学习过程中的注意点。<br><a href="https://swift.org" target="_blank" rel="external">swift官网</a><br><a href="https://developer.apple.com/library/prerelease/content/documentation/Swift/Conceptual/Swift_Programming_Language/index.html#//apple_ref/doc/uid/TP40014097-CH3-ID0" target="_blank" rel="external">The Swift Programming Language</a></p>
+<h3 id="if-nil"><a href="#if-nil" class="headerlink" title="if nil"></a>if nil</h3><p>在OC中我们在判断一个值是不是nil时，一般就是<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">NSString *values = @<span class="string">""</span>;</div><div class="line"><span class="keyword">if</span>(values) &#123;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>但在swift中，是会报错的<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">var apple = <span class="string">"apple"</span></div><div class="line"><span class="keyword">if</span> apple &#123;</div><div class="line">    <span class="built_in">print</span>(apple)</div><div class="line">&#125;</div><div class="line">//<span class="string">'String'</span> is not convertible to <span class="string">'Bool'</span></div></pre></td></tr></table></figure></p>
+<p>Apple 在GuidedTour中写道：<br><blockquote><p>In an if statement, the conditional must be a Boolean expression—this means that code such as if score { … } is an error, not an implicit comparison to zero.</p>
+<p>You can use if and let together to work with values that might be missing. These values are represented as optionals. An optional value either contains a value or contains nil to indicate that a value is missing. Write a question mark (?) after the type of a value to mark the value as optional.</p>
+</blockquote></p>
+<p>正确的写法<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">var optionalString: String? = nil</div><div class="line"><span class="built_in">print</span>(optionalString == nil)</div><div class="line"></div><div class="line"><span class="keyword">if</span> <span class="built_in">let</span> str = optionalString &#123;</div><div class="line">    <span class="built_in">print</span>(str)</div><div class="line">&#125; <span class="keyword">else</span> &#123;</div><div class="line">    <span class="built_in">print</span>(<span class="string">"optionalString is nil"</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>这样写也可以<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">var optionalString: String? = <span class="string">"janes"</span></div><div class="line"><span class="built_in">print</span>(optionalString == nil)</div><div class="line"></div><div class="line"><span class="built_in">let</span> isBool = (optionalString == nil)</div><div class="line"><span class="keyword">if</span> isBool &#123;</div><div class="line">    <span class="built_in">print</span>(<span class="string">"optionalString is nil \(isBool)"</span>)</div><div class="line">&#125; <span class="keyword">else</span> &#123;</div><div class="line">    <span class="built_in">print</span>(<span class="string">"optionalString is not nil"</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>###<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">let</span> sortedNumbers = numbers.sort &#123; <span class="variable">$0</span> &gt; <span class="variable">$1</span> &#125;</div><div class="line"><span class="built_in">print</span>(sortedNumbers)</div></pre></td></tr></table></figure></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list">
+			 
+        <li class="article-tag-list-item">
+        	<a href="javascript:void(0)" class="article-tag-list-link color2">swift,</a>
+        </li>
+      
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<i class="icon-book icon"></i>
+	<a class="article-category-link" href="/categories/技术/">技术</a>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2014/08/22/swift笔记/">展开全文 >></a>
         </p>
       
 
@@ -697,6 +934,14 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="color3">iOS MDM</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="color2">swift,</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="color1">xcode</a>
               </li>
              
@@ -709,18 +954,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="color4">Lua</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="color3">iOS MDM</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="color4">iOS</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="color3">迭代</a>
               </li>
              
@@ -730,6 +963,18 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="color3">管理</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="color4">Lua</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="color4">iOS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="color5">iTunesconnect,</a>
               </li>
             
             <div class="clearfix"></div>
