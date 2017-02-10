@@ -131,45 +131,71 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-iOS-MDM流程记录" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-playgroud" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2014/01/08/iOS-MDM流程记录/">iOS-MDM流程记录</a>
+      <a class="article-title" href="/2011/12/16/playgroud/">playGroud</a>
     </h1>
   
 
-        <a href="/2014/01/08/iOS-MDM流程记录/" class="archive-article-date">
-  	<time datetime="2014-01-08T01:56:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2014-01-08</time>
+        <a href="/2011/12/16/playgroud/" class="archive-article-date">
+  	<time datetime="2011-12-16T06:25:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2011-12-16</time>
 </a>
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="MDM开发流程"><a href="#MDM开发流程" class="headerlink" title="MDM开发流程"></a>MDM开发流程</h2><p>1.申请企业开发者账号，这一步比较麻烦的是申请邓白氏码，因为要通过华夏邓白氏那边的审核。拖了比较久。<br>2.有开发者账号就可以做MDM证书了，</p>
-<p>主要参考:<br><a href="http://www.mbaike.net/ios/2014.html" target="_blank" rel="external">mbaike</a><br><a href="http://www.softhinker.com/in-the-news/iosmdmvendorcsrsigning" target="_blank" rel="external">softhinker</a></p>
-<p>这里要注意的是<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">//Change to your <span class="built_in">alias</span> 是你证书的名字！</div><div class="line">String <span class="built_in">alias</span> = <span class="string">"MbaikeMDMCSR"</span>;</div></pre></td></tr></table></figure></p>
-<h3 id="mdm证书制作"><a href="#mdm证书制作" class="headerlink" title="mdm证书制作"></a>mdm证书制作</h3><p>1.用apple钥匙串访问工具生成CertificateSigningRequest.certSigningRequest<br>2.利用生成的公私钥中的私钥导出为vendor.p12<br>2.登陆299企业帐号创建并下载mdm.cer<br>4.下载<a href="https://developer.apple.com/certificationauthority/AppleWWDRCA.cer" target="_blank" rel="external">AppleWWDRCA</a> 证书<br>5.下载<a href="http://www.apple.com/appleca/AppleIncRootCertificate.cer" target="_blank" rel="external">AppleIncRootCertificate</a> 苹果根证书<br>6.利用以下命令将cer证书转成证pem书<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">openssl x509 -inform der -in mdm.cer -out mdm.pem</div><div class="line">openssl x509 -inform der -in AppleWWDRCA.cer -out intermediate.pem</div><div class="line">openssl x509 -inform der -in AppleIncRootCertificate.cer -out root.pem</div></pre></td></tr></table></figure></p>
-<p>7.生成客户端证书<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">openssl genrsa -des3 -out customerPrivateKey.pem 2048</div><div class="line">openssl req -new -key customerPrivateKey.pem -out customer.csr</div><div class="line">openssl req -inform pem -outform der -in customer.csr -out customer.der</div></pre></td></tr></table></figure></p>
-<p>8.利用MDMIOSGenerateEncodedPlist.java生成plist.xml和plist_encoded<br>9.打开 <a href="https://identity.apple.com/pushcert/" target="_blank" rel="external">https://identity.apple.com/pushcert/</a> 登陆任意appleid帐号，上传plist_encoded文件，申请通过后，下载apns-mdm.pem证书<br>10.将apns-mdm.pem与customerPrivateKey.pem合并为apns-mdm.p12<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">openssl pkcs12 -export -inkeycustomerPrivateKey.pem -in apns-mdm.pem -out apns-mdm.p12</div></pre></td></tr></table></figure></p>
-<p>此apns-mdm.p12就是mdm服务器和苹果anps服务器通讯用的p12也是mobileconf中绑定的p12(mobileconf最终安装在移动设备上)</p>
-<p>MDMplist</p>
-<p>3.<a href="http://www.mbaike.net/ios/1554.html" target="_blank" rel="external">申请服务器所需证书</a></p>
-<p>4.<a href="http://www.mbaike.net/ios/1556.html" target="_blank" rel="external">部署https(SSL)服务器环境</a></p>
-<p>最好做下域名映射！</p>
-<p>5.配置描述文件mobileconfig的生成</p>
-<h4 id="下载iPhone配置实用工具，配置通用和移动设备管理"><a href="#下载iPhone配置实用工具，配置通用和移动设备管理" class="headerlink" title="下载iPhone配置实用工具，配置通用和移动设备管理"></a>下载iPhone配置实用工具，配置通用和移动设备管理</h4><p>注意：<br><blockquote><p>a：Topic must be com.apple.mgmt.<yourdesignation></yourdesignation></p>
-<p>b：通用的安全性为总是</p>
-<p>c：移动设备管理中的使用开发APNS服务器不能勾选</p>
-</blockquote></p>
-<p>主要参考：(<a href="http://www.mbaike.net/ios/1560.html" target="_blank" rel="external">http://www.mbaike.net/ios/1560.html</a>)</p>
-<img src="/2014/01/08/iOS-MDM流程记录/1.png" alt="1 image" title="1 image">
-<img src="/2014/01/08/iOS-MDM流程记录/2.png" alt="2 image" title="2 image">
-<p>导出（选“无”）后签名</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">openssl smime -sign -in unsigned.mobileconfig -out signed.mobileconfig -signer mbaike.crt -inkey mbaike.key -certfile ca-bundle.pem -outform der -nodetach</div></pre></td></tr></table></figure>
+        <p>( ⊙ o ⊙ )啊！</p>
+<p>–引用块</p>
+<blockquote><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque hendrerit lacus ut purus iaculis feugiat. Sed nec tempor elit, quis aliquam neque. Curabitur sed diam eget dolor fermentum semper at eu lorem.</p>
+</blockquote>
+<blockquote><p>Do not just seek happiness for yourself. Seek happiness for all. Through kindness. Through mercy.</p>
+<footer><strong>David Levithan</strong><cite>Wide Awake</cite></footer></blockquote>
+<blockquote><p>NEW: DevDocs now comes with syntax highlighting. <a href="http://devdocs.io" target="_blank" rel="external">http://devdocs.io</a></p>
+<footer><strong>@DevDocs</strong><cite><a href="https://twitter.com/devdocs/status/356095192085962752" target="_blank" rel="external">twitter.com/devdocs/status/356095192085962752</a></cite></footer></blockquote>
+<blockquote><p>Every interaction is both precious and an opportunity to delight.</p>
+<footer><strong>Seth Godin</strong><cite><a href="http://sethgodin.typepad.com/seths_blog/2009/07/welcome-to-island-marketing.html" target="_blank" rel="external">Welcome to Island Marketing</a></cite></footer></blockquote>
+<p>–代码块<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">alert(&apos;Hello World!&apos;);</div></pre></td></tr></table></figure></p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[rectangle setX: <span class="number">10</span> y: <span class="number">10</span> width: <span class="number">20</span> height: <span class="number">20</span>];</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><figcaption><span>Array.map</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">array.map(callback[, thisArg])</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><figcaption><span>_.compact</span><a href="http://underscorejs.org/#compact" target="_blank" rel="external">Underscore.js</a></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">_.compact([0, 1, false, 2, &apos;&apos;, 3]);</div><div class="line">=&gt; [1, 2, 3]</div></pre></td></tr></table></figure>
+<p>反引号代码块<br>另一种形式的代码块，不同的是它使用三个反引号来包裹。</p>
+<p><code>[language] [title] [url] [link text] code snippet</code><br>Pull Quote<br>在文章中插入 Pull quote。</p>
+<blockquote class="pullquote [class]"><p>content</p>
+</blockquote>
+<p>jsFiddle<br>在文章中嵌入 jsFiddle。</p>
+<iframe scrolling="no" width="[width]" height="[height]" src="http://jsfiddle.net/shorttag/embedded/[tabs]/[skin]" frameborder="0" allowfullscreen></iframe>
+<p>Gist<br>在文章中嵌入 Gist。</p>
+<script src="//gist.github.com/gist_id.js?file=[filename]"></script>
+<p>iframe<br>在文章中插入 iframe。</p>
+<iframe src="url" width="[width]" height="[height]" frameborder="0" allowfullscreen></iframe>
+<p>Image<br>在文章中插入指定大小的图片。</p>
+
+<p>😝<br><img src="/images/a.jpg" alt=""></p>
+<p>Link<br>在文章中插入链接，并自动给外部链接添加 target=”_blank” 属性。</p>
+<a>text url [external] [title]</a>
+<p>Include Code<br>插入 source 文件夹内的代码文件。</p>
+
+<p>Youtube<br>在文章中插入 Youtube 视频。</p>
+<div class="video-container"><iframe src="//www.youtube.com/embed/video_id" frameborder="0" allowfullscreen></iframe></div>
+<p>Vimeo<br>在文章中插入 Vimeo 视频。</p>
+<div class="video-container"><iframe src="//player.vimeo.com/video/video_id" frameborder="0" allowfullscreen></iframe></div>
+<p>引用文章<br>引用其他文章的链接。</p>
+
+
+<p>引用资源<br>引用文章的资源。</p>
+
+
+
+<p>Raw<br>如果您想在文章中插入 Swig 标签，可以尝试使用 Raw 标签，以免发生解析异常。</p>
+
+content
+
+
       
 
       
@@ -182,7 +208,7 @@
 		<ul class="article-tag-list">
 			 
         <li class="article-tag-list-item">
-        	<a href="javascript:void(0)" class="article-tag-list-link color3">iOS MDM</a>
+        	<a href="javascript:void(0)" class="article-tag-list-link color5">tag1</a>
         </li>
       
 		</ul>
@@ -191,13 +217,13 @@
       
 	<div class="article-category tagcloud">
 	<i class="icon-book icon"></i>
-	<a class="article-category-link" href="/categories/技术/">技术</a>
+	<a class="article-category-link" href="/categories/ios/">iOS</a>
 	</div>
 
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2014/01/08/iOS-MDM流程记录/">展开全文 >></a>
+          <a class="article-more-a" href="/2011/12/16/playgroud/">展开全文 >></a>
         </p>
       
 
@@ -431,6 +457,14 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="color3">管理</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="color5">iTunesconnect,</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="color1">xcode</a>
               </li>
              
@@ -443,23 +477,15 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="color5">iTunesconnect,</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="color4">Lua</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="color2">swift,</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="color3">iOS MDM</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="color5">tag1</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="color2">swift,</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -471,7 +497,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="color3">管理</a>
+                <a href="javascript:void(0)" class="color3">iOS MDM</a>
               </li>
             
             <div class="clearfix"></div>
