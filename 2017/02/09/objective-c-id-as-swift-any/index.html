@@ -6,18 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>about | ADu</title>
+  <title>Objective-C id as Swift Any | ADu</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="in amoy专注移动互联网">
-<meta property="og:type" content="website">
-<meta property="og:title" content="about">
-<meta property="og:url" content="http://yoursite.com/about/index.html">
+  <meta name="description" content="Swift3 接口和Objective-C 的APIs比之前的版本更强大。例如，Swift 2将Objective-C中的id类型映射到Swift中的AnyObject类型，通常只能保存值类型。 Swift 2还为AnyObject提供了对一些桥接值类型（例如String，Array，Dictionary，Set和一些数字）的隐式转换，以便原生Swift类型可以很容易地使用Cocoa APIs，如">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Objective-C id as Swift Any">
+<meta property="og:url" content="http://yoursite.com/2017/02/09/objective-c-id-as-swift-any/index.html">
 <meta property="og:site_name" content="ADu">
-<meta property="og:description" content="in amoy专注移动互联网">
-<meta property="og:updated_time" content="2016-12-15T09:16:48.000Z">
+<meta property="og:description" content="Swift3 接口和Objective-C 的APIs比之前的版本更强大。例如，Swift 2将Objective-C中的id类型映射到Swift中的AnyObject类型，通常只能保存值类型。 Swift 2还为AnyObject提供了对一些桥接值类型（例如String，Array，Dictionary，Set和一些数字）的隐式转换，以便原生Swift类型可以很容易地使用Cocoa APIs，如">
+<meta property="og:updated_time" content="2017-02-10T06:26:12.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="about">
-<meta name="twitter:description" content="in amoy专注移动互联网">
+<meta name="twitter:title" content="Objective-C id as Swift Any">
+<meta name="twitter:description" content="Swift3 接口和Objective-C 的APIs比之前的版本更强大。例如，Swift 2将Objective-C中的id类型映射到Swift中的AnyObject类型，通常只能保存值类型。 Swift 2还为AnyObject提供了对一些桥接值类型（例如String，Array，Dictionary，Set和一些数字）的隐式转换，以便原生Swift类型可以很容易地使用Cocoa APIs，如">
   
     <link rel="alternative" href="/atom.xml" title="ADu" type="application/atom+xml">
   
@@ -133,25 +133,102 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="page-undefined" class="article article-type-page " itemscope itemprop="blogPost">
+            <article id="post-objective-c-id-as-swift-any" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      about
+      Objective-C id as Swift Any
     </h1>
   
 
-        <a href="/about/index.html" class="archive-article-date">
-  	<time datetime="2016-12-15T06:51:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-15</time>
+        <a href="/2017/02/09/objective-c-id-as-swift-any/" class="archive-article-date">
+  	<time datetime="2017-02-09T06:29:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-09</time>
 </a>
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>in amoy<br>专注移动互联网</p>
+        <p>Swift3 接口和Objective-C 的APIs比之前的版本更强大。例如，Swift 2将Objective-C中的<strong>id</strong>类型映射到Swift中的<strong>AnyObject</strong>类型，通常只能保存值类型。 Swift 2还为<strong>AnyObject</strong>提供了对一些桥接值类型（例如<strong>String</strong>，<strong>Array</strong>，<strong>Dictionary</strong>，Set和一些数字）的隐式转换，以便原生Swift类型可以很容易地使用Cocoa APIs，如<strong>NSString</strong>，<strong>NSArray</strong>或Foundation的其他容器类。这些转换与语言的其他部分不一致，使得很难理解什么可以用作<strong>AnyObject</strong>，结果是bugs。</p>
+<p>在Swift 3中，Objective-C中的<strong>id</strong>类型现在映射到Swift中的<strong>Any</strong>类型，它描述了任何类型的值，无论是类，枚举，结构还是任何其他Swift类型。这种变化使得Swift中的Objective-C APIs更加灵活，因为Swift定义的值类型可以传递给Objective-C API，并作为Swift类型返回，从而无需手动“box”类型。这些优点也扩展到集合：Objective-C集合类型<strong>NSArray</strong>，<strong>NSDictionary</strong>和<strong>NSSet</strong>，以前只接受<strong>AnyObject</strong>的元素，现在可以保存<strong>Any</strong>类型的元素。对于散列容器，例如<strong>Dictionary</strong>和<strong>Set</strong>，有一个新类型<strong>AnyHashable</strong>可以容纳任何类型的值遵循Swift <strong>Hashable</strong>协议。总之，从Swift 2到Swift 3以下类型映射更改为：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Objective-C</th>
+<th style="text-align:left">Swift2</th>
+<th style="text-align:left">Swift3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">id</td>
+<td style="text-align:left">AnyObject</td>
+<td style="text-align:left">Any</td>
+</tr>
+<tr>
+<td style="text-align:left">NSArray *</td>
+<td style="text-align:left">[AnyObject]</td>
+<td style="text-align:left">[Any]</td>
+</tr>
+<tr>
+<td style="text-align:left">NSDictionary *</td>
+<td style="text-align:left">[NSObject: AnyObject]</td>
+<td style="text-align:left">[AnyHashable: Any]</td>
+</tr>
+<tr>
+<td style="text-align:left">NSSet *</td>
+<td style="text-align:left">Set<nsobject></nsobject></td>
+<td style="text-align:left">Set<anyhashable></anyhashable></td>
+</tr>
+</tbody>
+</table>
+<p>在许多情况下，您的代码不必为响应此更改而显着地更改。 Swift 2中的代码依赖于隐式转换为<strong>AnyObject</strong>的值类型，它将继续按照<strong>Any</strong>的原样在Swift 3中工作。但是，有些地方需要更改声明的变量和方法类型，并获得Swift 3的最佳体验。另外，如果你的代码显式使用<strong>AnyObject</strong>或Cocoa类，如<strong>NSString</strong>，<strong>NSArray</strong>或<strong>NSDictionary</strong>，你将需要引入更多的显式转换使用<strong>as NSString</strong>或<strong>as String</strong>，因为在Swift 3中对象和值类型之间的隐式转换不再允许。Xcode中的自动迁移器将进行最小的更改，以保持您的代码从Swift 2到3编译，但结果可能不总是最优雅的。本文将介绍您可能需要做的一些更改，以及在更改代码以充分利用<strong>id</strong>为<strong>Any</strong>时需要注意的一些陷阱。</p>
+<h3 id="覆盖方法和遵循协议"><a href="#覆盖方法和遵循协议" class="headerlink" title="覆盖方法和遵循协议"></a>覆盖方法和遵循协议</h3><p>当子类化一个Objective-C类并覆盖它的方法，或者遵循一个Objective-C协议，当父方法在Objective-C中使用<strong>id</strong>时，需要更新方法的类型。一些常见的例子是<strong>NSObject</strong>类的<strong>isEqual：</strong>方法和<strong>NSCopying</strong>协议的<strong>copyWithZone：</strong>方法。在Swift 2中，你将写一个遵循<strong>NSCopying</strong>的<strong>NSObject</strong>子类，如下所示：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">// Swift 2</div><div class="line">class Foo: NSObject, NSCopying &#123;</div><div class="line">	override func isEqual(_ x: AnyObject?) -&gt; Bool &#123; ... &#125;</div><div class="line">	func copyWithZone(_ zone: NSZone?) -&gt; AnyObject &#123; ... &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在Swift 3中，除了将命名从<strong>copyWithZone（_ :)</strong>更改为<strong>copy（with :)</strong>之外，还需要将这些方法的签名更改为<strong>Any</strong>而不是<strong>AnyObject：</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">// Swift 3</div><div class="line">class Foo: NSObject, NSCopying &#123;</div><div class="line">	override func isEqual(_ x: Any?) -&gt; Bool &#123; ... &#125;</div><div class="line">	func copy(with zone: NSZone?) -&gt; Any &#123; ... &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="非类型集合"><a href="#非类型集合" class="headerlink" title="非类型集合"></a>非类型集合</h3><p>属性列表，JSON和用户信息字典在Cocoa中很常见，Cocoa本地将这些表示为非类型化集合。在Swift 2中，为此需要构建<strong>Array</strong>，<strong>Dictionary</strong>或<strong>Set</strong> with <strong>AnyObject</strong>或<strong>NSObject</strong>元素，依靠隐式桥接转换来处理值类型：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">// Swift 2</div><div class="line">struct State &#123;</div><div class="line">	var name: String</div><div class="line">	var abbreviation: String</div><div class="line">	var population: Int</div><div class="line"></div><div class="line">	var asPropertyList: [NSObject: AnyObject] &#123;</div><div class="line">		var result: [NSObject: AnyObject] = [:]</div><div class="line">		// Implicit conversions turn String into NSString here…</div><div class="line">		result[<span class="string">"name"</span>] = self.name</div><div class="line">		result[<span class="string">"abbreviation"</span>] = self.abbreviation</div><div class="line">		// …and Int into NSNumber here.</div><div class="line">		result[<span class="string">"population"</span>] = self.population</div><div class="line">		<span class="built_in">return</span> result</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="built_in">let</span> california = State(name: <span class="string">"California"</span>,</div><div class="line">					   abbreviation: <span class="string">"CA"</span>,</div><div class="line">					   population: 39_000_000)</div><div class="line">NSNotification(name: <span class="string">"foo"</span>, object: nil,</div><div class="line">			   userInfo: california.asPropertyList)</div></pre></td></tr></table></figure>
+<p>或者，您可以使用Cocoa容器类，例如<strong>NSDictionary</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">// Swift 2</div><div class="line">struct State &#123;</div><div class="line">	var name: String</div><div class="line">	var abbreviation: String</div><div class="line">	var population: Int</div><div class="line"></div><div class="line">	var asPropertyList: NSDictionary &#123;</div><div class="line">		var result = NSMutableDictionary()</div><div class="line">		// Implicit conversions turn String into NSString here…</div><div class="line">		result[<span class="string">"name"</span>] = self.name</div><div class="line">		result[<span class="string">"abbreviation"</span>] = self.abbreviation</div><div class="line">		// …and Int into NSNumber here.</div><div class="line">		result[<span class="string">"population"</span>] = self.population</div><div class="line">		<span class="built_in">return</span> result.copy()</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"><span class="built_in">let</span> california = State(name: <span class="string">"California"</span>,</div><div class="line">					   abbreviation: <span class="string">"CA"</span>,</div><div class="line">					   population: 39_000_000)</div><div class="line">// NSDictionary <span class="keyword">then</span> implicitly converts to [NSObject: AnyObject] here.</div><div class="line">NSNotification(name: <span class="string">"foo"</span>, object: nil,</div><div class="line">			   userInfo: california.asPropertyList)</div></pre></td></tr></table></figure>
+<p>在Swift 3中，隐式转换已经消失，因此上述两个片段都不会按原样工作。迁移者可能建议用<strong>as</strong>单独转换每个值，以保持此代码的工作，但有一个更好的解决方案。 Swift现在导入Cocoa API接受<strong>Any</strong>和/或<strong>AnyHashable</strong>的集合，所以我们可以更改集合类型为<strong>[AnyHashable：Any]</strong>替换<strong>[NSObject：AnyObject]</strong>或<strong>NSDictionary</strong>，而不更改任何其他代码：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">// Swift 3</div><div class="line">struct State &#123;</div><div class="line">	var name: String</div><div class="line">	var abbreviation: String</div><div class="line">	var population: Int</div><div class="line"></div><div class="line">	// Change the dictionary <span class="built_in">type</span> to [AnyHashable: Any] here...</div><div class="line">	var asPropertyList: [AnyHashable: Any] &#123;</div><div class="line">		var result: [AnyHashable: Any] = [:]</div><div class="line">		// No implicit conversions necessary, since String and Int are subtypes</div><div class="line">		// of Any and AnyHashable</div><div class="line">		result[<span class="string">"name"</span>] = self.name</div><div class="line">		result[<span class="string">"abbreviation"</span>] = self.abbreviation</div><div class="line">		result[<span class="string">"population"</span>] = self.population</div><div class="line">		<span class="built_in">return</span> result</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"><span class="built_in">let</span> california = State(name: <span class="string">"California"</span>,</div><div class="line">					   abbreviation: <span class="string">"CA"</span>,</div><div class="line">					   population: 39_000_000)</div><div class="line">// ...and you can still use it with Cocoa API here</div><div class="line">Notification(name: <span class="string">"foo"</span>, object: nil,</div><div class="line">			 userInfo: california.asPropertyList)</div></pre></td></tr></table></figure>
+<h3 id="AnyHashable类型"><a href="#AnyHashable类型" class="headerlink" title="AnyHashable类型"></a>AnyHashable类型</h3><p>Swift的<strong>Any</strong>类型可以保存任何类型，但是<strong>Dictionary</strong>和<strong>Set</strong>需要的键是<strong>Hashable</strong>，所以Any是太普通。从Swift 3开始，Swift标准库提供了一个新的类型<strong>AnyHashabl</strong>e。与<strong>Any</strong>类似，它充当所有<strong>Hashable</strong>类型的父类型，因此<strong>String</strong>，<strong>Int</strong>和其他<strong>hashable</strong>类型的值可以隐式地用<strong>AnyHashable</strong>值，A<strong>nyHashable</strong>中的类型可以使用<strong>is</strong>，<strong>as!</strong>或<strong>as?</strong>动态检查，动态转换运算符。当从Objective-C导入无类型的<strong>NSDictionary</strong>或<strong>NSSet</strong>对象时，使用<strong>AnyHashable</strong>，但是在纯Swift中也可用于构建异构集合或字典。</p>
+<h3 id="未链接上下文的显式转换"><a href="#未链接上下文的显式转换" class="headerlink" title="未链接上下文的显式转换"></a>未链接上下文的显式转换</h3><p>在某些有限的情况下，Swift不能自动桥接C和Objective-C构造。例如，一些C和Cocoa API使用<strong>id * </strong>指针作为“out”或“in-out”参数，并且由于Swift不能静态地确定指针的使用方式，因此它不能对内存中的值自动执行桥接转换。在这种情况下，指针仍将显示为<strong>UnsafePointer <anyobject></anyobject></strong>。如果您需要使用这些非桥接API，您可以使用显式桥接转换，在代码中使用<strong>as Type</strong>或<strong>as AnyObject</strong>显式编写。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">// ObjC</div><div class="line">@interface Foo</div><div class="line"></div><div class="line">- (void)updateString:(NSString *)string;</div><div class="line">- (void)updateObject:(id *)obj;</div><div class="line"></div><div class="line">@end</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">// Swift</div><div class="line">func interactWith(foo: Foo) -&gt; (String, Any) &#123;</div><div class="line">	var string = <span class="string">"string"</span> as NSString // explicit conversion</div><div class="line">	foo.updateString(&amp;string) // parameter imports as UnsafeMutablePointer&lt;NSString&gt;</div><div class="line">	<span class="built_in">let</span> finishedString = string as String</div><div class="line"></div><div class="line">	var object = <span class="string">"string"</span> as AnyObject</div><div class="line">	foo.updateObject(&amp;object) // parameter imports as UnsafeMutablePointer&lt;AnyObject&gt;</div><div class="line">	<span class="built_in">let</span> finishedObject = object as Any</div><div class="line"></div><div class="line">	<span class="built_in">return</span> (finishedString, finishedObject)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>另外，Objective-C协议在Swift中仍然是类约束，所以你不能让Swift结构或枚举直接遵循Objective-C协议或者使用轻量级通用类。您需要使用这些协议和API显式转换<strong>String as NSString</strong>，<strong>Array as NSArray</strong>等。</p>
+<h3 id="AnyObject成员查找"><a href="#AnyObject成员查找" class="headerlink" title="AnyObject成员查找"></a>AnyObject成员查找</h3><p><strong>Any</strong>没有与<strong>AnyObject</strong>相同的魔法方法查找行为。这可能会破坏一些Swift 2代码，查找属性或发送消息到一个无类型的Objective-C对象。例如，这个Swift 2的代码：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">// Swift 2</div><div class="line">func foo(x: NSArray) &#123;</div><div class="line">	// Invokes -description by magic AnyObject lookup</div><div class="line">	<span class="built_in">print</span>(x[0].description)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>将抱怨<strong>description</strong>不是Swift 3中<strong>Any</strong>的成员。可以将<strong>x [0] as AnyObject</strong>以获取动态行为：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">// Swift 3</div><div class="line">func foo(x: NSArray) &#123;</div><div class="line">	// Result of subscript is now Any, needs to be coerced to get method lookup</div><div class="line">	<span class="built_in">print</span>((x[0] as AnyObject).description)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>或者，将值强制转换为您期望的具体对象类型：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">func foo(x: NSArray) &#123;</div><div class="line">	// Cast to the concrete object <span class="built_in">type</span> you expect</div><div class="line">	<span class="built_in">print</span>((x[0] as! NSObject).description)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="Swift中的值类型"><a href="#Swift中的值类型" class="headerlink" title="Swift中的值类型"></a>Swift中的值类型</h3><p><strong>Any</strong>可以hold住任何结构，枚举，元组或你可以在语言中定义的其他Swift类型。 Swift 3中的Objective-C桥接器可以提供任何Swift值作为Objective-C的<strong>id</strong>兼容对象。这使得更容易在Cocoa容器，<strong>userInfo</strong>字典和其他对象中存储自定义Swift值类型。例如，在Swift 2中，您需要将数据类型更改为类，或者手动box它们，以将它们的值附加到<strong>NSNotification</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">// Swift 2</div><div class="line">struct CreditCard &#123; number: UInt64, expiration: NSDate &#125;</div><div class="line"></div><div class="line"><span class="built_in">let</span> PaymentMade = <span class="string">"PaymentMade"</span></div><div class="line"></div><div class="line">// We can<span class="string">'t attach CreditCard directly to the notification, since it</span></div><div class="line">// isn't a class, and doesn<span class="string">'t bridge.</span></div><div class="line">// Wrap it in a Box class.</div><div class="line">class Box&lt;T&gt; &#123;</div><div class="line">	let value: T</div><div class="line">	init(value: T) &#123; self.value = value &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">let paymentNotification =</div><div class="line">	NSNotification(name: PaymentMade,</div><div class="line">				   object: Box(value: CreditCard(number: 1234_0000_0000_0000,</div><div class="line">												 expiration: NSDate())))</div></pre></td></tr></table></figure>
+<p>使用Swift 3，我们可以取消box，并将对象直接附加到Notification：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">// Swift 3</div><div class="line"><span class="built_in">let</span> PaymentMade = Notification.Name(<span class="string">"PaymentMade"</span>)</div><div class="line"></div><div class="line">// We can associate the CreditCard value directly with the Notification</div><div class="line"><span class="built_in">let</span> paymentNotification =</div><div class="line">	Notification(name: PaymentMade,</div><div class="line">				 object: CreditCard(number: 1234_0000_0000_0000,</div><div class="line">									expiration: Date()))</div></pre></td></tr></table></figure>
+<p>在Objective-C中，<strong>CreditCard</strong>值将作为一个<strong>id</strong>兼容的，继承<strong>NSObject</strong>对象实现<strong>isEqual：</strong>，<strong>hash</strong>和<strong>description</strong>，如果它们存在原生的Swift类型的话，使用Swift的<strong>Equatable</strong>，<strong>Hashable</strong>和<strong>CustomStringConvertible</strong>。从Swift中，可以通过将其动态地转换回其原始类型来检索该值：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">// Swift 3</div><div class="line"><span class="built_in">let</span> paymentCard = paymentNotification.object as! CreditCard</div><div class="line"><span class="built_in">print</span>(paymentCard.number) // 1234000000000000</div></pre></td></tr></table></figure>
+<p>请注意，在Swift 3.0中，一些常见的Swift和Objective-C结构类型将桥接为不透明对象，而不是惯用的Cocoa对象。例如，<strong>Int</strong>，<strong>UInt</strong>，<strong>Double</strong>和<strong>Bool</strong>桥接到<strong>NSNumber</strong>，其他大小的数字类型，例如<strong>Int8</strong>，<strong>UInt16</strong>等只桥接为不透明对象。可变结构如<strong>CGRect</strong>，<strong>CGPoint</strong>和<strong>CGSize</strong>也作为不透明对象桥接，即使大多数Cocoa API期望它们一起作为对象在<strong>NSValue</strong>实例中被box。如果你看到<strong>unrecognized selector sent to _SwiftValue</strong>错误，这表明Objective-C代码试图调用一个不透明的Swift值类型的方法，你可能需要手动box该类的实例中Objective-C代码期望的值。</p>
+<p>要注意的一个特殊问题是Optionals。 Swift <strong>Any</strong>可以代表任何东西，包括一个Optional，所以可以在不首先检查它情况下将一个包装的Optional传递给Objective-C API，即使API被声明为一个<strong>nonnull id</strong>类型。这通常表现为包括<strong>_SwiftValue</strong>的运行时错误，而不是编译时错误。 Xcode 8.1 beta中包含的Swift 3.0.1通过实现这些建议来透明地处理数字类型，Objective-C结构和可选类型，以解决<strong>NSNumber</strong>，<strong>NSValue</strong>和<strong>Optional</strong>桥接中的上述限制：</p>
+<ul>
+<li><a href="https://github.com/apple/swift-evolution/blob/master/proposals/0139-bridge-nsnumber-and-nsvalue.md" target="_blank" rel="external">SE–0139: Bridge Numeric Types to NSNumber and Cocoa Structs to NSValue</a></li>
+<li><a href="https://github.com/apple/swift-evolution/blob/master/proposals/0140-bridge-optional-to-nsnull.md" target="_blank" rel="external">SE–0140: Warn when Optional converts to Any, and bridge Optional As Its Payload Or NSNull</a>
+</li>
+</ul>
+<p>为了避免向前兼容性问题，你不应该依赖<strong>_SwiftValue</strong>类的不透明对象的实现细节，因为未来版本的Swift可能允许更多的Swift类型桥接到惯用的Objective-C类。</p>
+<h3 id="Linux可移植性"><a href="#Linux可移植性" class="headerlink" title="Linux可移植性"></a>Linux可移植性</h3><p>在Linux上使用Swift Core 运行的Swift程序库使用了原生Swift中编写的一个Foundation版本，没有Objective-C运行时桥接。 <strong>id</strong>-as-<strong>Any</strong>允许Core Libraries直接使用原生Swift <strong>Any</strong>和标准库值类型，同时使用Objective-C <strong>Foundation</strong>实现保持与Apple平台上的代码兼容。由于Swift在Linux上不与Objective-C交互操作，因此不支持桥接转换，例如<strong>string as NSString</strong>或<strong>value as AnyObject</strong>。希望在Cocoa和Swift Core Libraries之间移植的Swift代码应该只使用值类型。</p>
+<h3 id="学习更多"><a href="#学习更多" class="headerlink" title="学习更多"></a>学习更多</h3><p><strong>id</strong>-as-<strong>Any</strong>是Swift语言改进的一个很好的例子，受到用户对早期版本的Swift的反馈的启发，并通过来自开放的Swift Evolution过程的回顾完善。如果你想更多地了解<strong>id</strong>-as-<strong>Any</strong>背后的动机和设计决策，原始的Swift Evolution提议可以在GitHub的swift-evolution仓库中找到：</p>
+<ul>
+<li><a href="https://github.com/apple/swift-evolution/blob/master/proposals/0072-eliminate-implicit-bridging-conversions.md" target="_blank" rel="external">SE-0072：完全消除来自Swift的隐式桥接转换</a></li>
+<li><a href="https://github.com/apple/swift-evolution/blob/master/proposals/0116-id-as-any.md" target="_blank" rel="external">SE-0116：将Objective-C **id**导入为Swift**Any**类型</a></li>
+<li><a href="https://github.com/apple/swift-evolution/blob/master/proposals/0131-anyhashable.md" target="_blank" rel="external">SE-0131：将AnyHashable添加到标准库</a>
+</li>
+</ul>
+<p>最终结果是，Swift是一种更加一致的语言，当使用Swift时，Cocoa API变得更强大。</p>
 
       
 
@@ -210,7 +287,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/about/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/02/09/objective-c-id-as-swift-any/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -222,6 +299,16 @@
 </article>
 
   
+<nav id="article-nav">
+  
+  
+    <a href="/2016/12/21/unit-testing/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Unit Testing</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 
 
@@ -229,7 +316,7 @@
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="undefined" data-title="about" data-url="http://yoursite.com/about/index.html"></div>
+	<div class="ds-thread" data-thread-key="objective-c-id-as-swift-any" data-title="Objective-C id as Swift Any" data-url="http://yoursite.com/2017/02/09/objective-c-id-as-swift-any/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
@@ -270,7 +357,7 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,

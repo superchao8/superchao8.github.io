@@ -131,6 +131,132 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-objective-c-id-as-swift-any" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/02/09/objective-c-id-as-swift-any/">Objective-C id as Swift Any</a>
+    </h1>
+  
+
+        <a href="/2017/02/09/objective-c-id-as-swift-any/" class="archive-article-date">
+  	<time datetime="2017-02-09T06:29:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-09</time>
+</a>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Swift3 接口和Objective-C 的APIs比之前的版本更强大。例如，Swift 2将Objective-C中的<strong>id</strong>类型映射到Swift中的<strong>AnyObject</strong>类型，通常只能保存值类型。 Swift 2还为<strong>AnyObject</strong>提供了对一些桥接值类型（例如<strong>String</strong>，<strong>Array</strong>，<strong>Dictionary</strong>，Set和一些数字）的隐式转换，以便原生Swift类型可以很容易地使用Cocoa APIs，如<strong>NSString</strong>，<strong>NSArray</strong>或Foundation的其他容器类。这些转换与语言的其他部分不一致，使得很难理解什么可以用作<strong>AnyObject</strong>，结果是bugs。</p>
+<p>在Swift 3中，Objective-C中的<strong>id</strong>类型现在映射到Swift中的<strong>Any</strong>类型，它描述了任何类型的值，无论是类，枚举，结构还是任何其他Swift类型。这种变化使得Swift中的Objective-C APIs更加灵活，因为Swift定义的值类型可以传递给Objective-C API，并作为Swift类型返回，从而无需手动“box”类型。这些优点也扩展到集合：Objective-C集合类型<strong>NSArray</strong>，<strong>NSDictionary</strong>和<strong>NSSet</strong>，以前只接受<strong>AnyObject</strong>的元素，现在可以保存<strong>Any</strong>类型的元素。对于散列容器，例如<strong>Dictionary</strong>和<strong>Set</strong>，有一个新类型<strong>AnyHashable</strong>可以容纳任何类型的值遵循Swift <strong>Hashable</strong>协议。总之，从Swift 2到Swift 3以下类型映射更改为：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Objective-C</th>
+<th style="text-align:left">Swift2</th>
+<th style="text-align:left">Swift3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">id</td>
+<td style="text-align:left">AnyObject</td>
+<td style="text-align:left">Any</td>
+</tr>
+<tr>
+<td style="text-align:left">NSArray *</td>
+<td style="text-align:left">[AnyObject]</td>
+<td style="text-align:left">[Any]</td>
+</tr>
+<tr>
+<td style="text-align:left">NSDictionary *</td>
+<td style="text-align:left">[NSObject: AnyObject]</td>
+<td style="text-align:left">[AnyHashable: Any]</td>
+</tr>
+<tr>
+<td style="text-align:left">NSSet *</td>
+<td style="text-align:left">Set<nsobject></nsobject></td>
+<td style="text-align:left">Set<anyhashable></anyhashable></td>
+</tr>
+</tbody>
+</table>
+<p>在许多情况下，您的代码不必为响应此更改而显着地更改。 Swift 2中的代码依赖于隐式转换为<strong>AnyObject</strong>的值类型，它将继续按照<strong>Any</strong>的原样在Swift 3中工作。但是，有些地方需要更改声明的变量和方法类型，并获得Swift 3的最佳体验。另外，如果你的代码显式使用<strong>AnyObject</strong>或Cocoa类，如<strong>NSString</strong>，<strong>NSArray</strong>或<strong>NSDictionary</strong>，你将需要引入更多的显式转换使用<strong>as NSString</strong>或<strong>as String</strong>，因为在Swift 3中对象和值类型之间的隐式转换不再允许。Xcode中的自动迁移器将进行最小的更改，以保持您的代码从Swift 2到3编译，但结果可能不总是最优雅的。本文将介绍您可能需要做的一些更改，以及在更改代码以充分利用<strong>id</strong>为<strong>Any</strong>时需要注意的一些陷阱。</p>
+<h3 id="覆盖方法和遵循协议"><a href="#覆盖方法和遵循协议" class="headerlink" title="覆盖方法和遵循协议"></a>覆盖方法和遵循协议</h3><p>当子类化一个Objective-C类并覆盖它的方法，或者遵循一个Objective-C协议，当父方法在Objective-C中使用<strong>id</strong>时，需要更新方法的类型。一些常见的例子是<strong>NSObject</strong>类的<strong>isEqual：</strong>方法和<strong>NSCopying</strong>协议的<strong>copyWithZone：</strong>方法。在Swift 2中，你将写一个遵循<strong>NSCopying</strong>的<strong>NSObject</strong>子类，如下所示：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">// Swift 2</div><div class="line">class Foo: NSObject, NSCopying &#123;</div><div class="line">	override func isEqual(_ x: AnyObject?) -&gt; Bool &#123; ... &#125;</div><div class="line">	func copyWithZone(_ zone: NSZone?) -&gt; AnyObject &#123; ... &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在Swift 3中，除了将命名从<strong>copyWithZone（_ :)</strong>更改为<strong>copy（with :)</strong>之外，还需要将这些方法的签名更改为<strong>Any</strong>而不是<strong>AnyObject：</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">// Swift 3</div><div class="line">class Foo: NSObject, NSCopying &#123;</div><div class="line">	override func isEqual(_ x: Any?) -&gt; Bool &#123; ... &#125;</div><div class="line">	func copy(with zone: NSZone?) -&gt; Any &#123; ... &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="非类型集合"><a href="#非类型集合" class="headerlink" title="非类型集合"></a>非类型集合</h3><p>属性列表，JSON和用户信息字典在Cocoa中很常见，Cocoa本地将这些表示为非类型化集合。在Swift 2中，为此需要构建<strong>Array</strong>，<strong>Dictionary</strong>或<strong>Set</strong> with <strong>AnyObject</strong>或<strong>NSObject</strong>元素，依靠隐式桥接转换来处理值类型：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">// Swift 2</div><div class="line">struct State &#123;</div><div class="line">	var name: String</div><div class="line">	var abbreviation: String</div><div class="line">	var population: Int</div><div class="line"></div><div class="line">	var asPropertyList: [NSObject: AnyObject] &#123;</div><div class="line">		var result: [NSObject: AnyObject] = [:]</div><div class="line">		// Implicit conversions turn String into NSString here…</div><div class="line">		result[<span class="string">"name"</span>] = self.name</div><div class="line">		result[<span class="string">"abbreviation"</span>] = self.abbreviation</div><div class="line">		// …and Int into NSNumber here.</div><div class="line">		result[<span class="string">"population"</span>] = self.population</div><div class="line">		<span class="built_in">return</span> result</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="built_in">let</span> california = State(name: <span class="string">"California"</span>,</div><div class="line">					   abbreviation: <span class="string">"CA"</span>,</div><div class="line">					   population: 39_000_000)</div><div class="line">NSNotification(name: <span class="string">"foo"</span>, object: nil,</div><div class="line">			   userInfo: california.asPropertyList)</div></pre></td></tr></table></figure>
+<p>或者，您可以使用Cocoa容器类，例如<strong>NSDictionary</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">// Swift 2</div><div class="line">struct State &#123;</div><div class="line">	var name: String</div><div class="line">	var abbreviation: String</div><div class="line">	var population: Int</div><div class="line"></div><div class="line">	var asPropertyList: NSDictionary &#123;</div><div class="line">		var result = NSMutableDictionary()</div><div class="line">		// Implicit conversions turn String into NSString here…</div><div class="line">		result[<span class="string">"name"</span>] = self.name</div><div class="line">		result[<span class="string">"abbreviation"</span>] = self.abbreviation</div><div class="line">		// …and Int into NSNumber here.</div><div class="line">		result[<span class="string">"population"</span>] = self.population</div><div class="line">		<span class="built_in">return</span> result.copy()</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"><span class="built_in">let</span> california = State(name: <span class="string">"California"</span>,</div><div class="line">					   abbreviation: <span class="string">"CA"</span>,</div><div class="line">					   population: 39_000_000)</div><div class="line">// NSDictionary <span class="keyword">then</span> implicitly converts to [NSObject: AnyObject] here.</div><div class="line">NSNotification(name: <span class="string">"foo"</span>, object: nil,</div><div class="line">			   userInfo: california.asPropertyList)</div></pre></td></tr></table></figure>
+<p>在Swift 3中，隐式转换已经消失，因此上述两个片段都不会按原样工作。迁移者可能建议用<strong>as</strong>单独转换每个值，以保持此代码的工作，但有一个更好的解决方案。 Swift现在导入Cocoa API接受<strong>Any</strong>和/或<strong>AnyHashable</strong>的集合，所以我们可以更改集合类型为<strong>[AnyHashable：Any]</strong>替换<strong>[NSObject：AnyObject]</strong>或<strong>NSDictionary</strong>，而不更改任何其他代码：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">// Swift 3</div><div class="line">struct State &#123;</div><div class="line">	var name: String</div><div class="line">	var abbreviation: String</div><div class="line">	var population: Int</div><div class="line"></div><div class="line">	// Change the dictionary <span class="built_in">type</span> to [AnyHashable: Any] here...</div><div class="line">	var asPropertyList: [AnyHashable: Any] &#123;</div><div class="line">		var result: [AnyHashable: Any] = [:]</div><div class="line">		// No implicit conversions necessary, since String and Int are subtypes</div><div class="line">		// of Any and AnyHashable</div><div class="line">		result[<span class="string">"name"</span>] = self.name</div><div class="line">		result[<span class="string">"abbreviation"</span>] = self.abbreviation</div><div class="line">		result[<span class="string">"population"</span>] = self.population</div><div class="line">		<span class="built_in">return</span> result</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"><span class="built_in">let</span> california = State(name: <span class="string">"California"</span>,</div><div class="line">					   abbreviation: <span class="string">"CA"</span>,</div><div class="line">					   population: 39_000_000)</div><div class="line">// ...and you can still use it with Cocoa API here</div><div class="line">Notification(name: <span class="string">"foo"</span>, object: nil,</div><div class="line">			 userInfo: california.asPropertyList)</div></pre></td></tr></table></figure>
+<h3 id="AnyHashable类型"><a href="#AnyHashable类型" class="headerlink" title="AnyHashable类型"></a>AnyHashable类型</h3><p>Swift的<strong>Any</strong>类型可以保存任何类型，但是<strong>Dictionary</strong>和<strong>Set</strong>需要的键是<strong>Hashable</strong>，所以Any是太普通。从Swift 3开始，Swift标准库提供了一个新的类型<strong>AnyHashabl</strong>e。与<strong>Any</strong>类似，它充当所有<strong>Hashable</strong>类型的父类型，因此<strong>String</strong>，<strong>Int</strong>和其他<strong>hashable</strong>类型的值可以隐式地用<strong>AnyHashable</strong>值，A<strong>nyHashable</strong>中的类型可以使用<strong>is</strong>，<strong>as!</strong>或<strong>as?</strong>动态检查，动态转换运算符。当从Objective-C导入无类型的<strong>NSDictionary</strong>或<strong>NSSet</strong>对象时，使用<strong>AnyHashable</strong>，但是在纯Swift中也可用于构建异构集合或字典。</p>
+<h3 id="未链接上下文的显式转换"><a href="#未链接上下文的显式转换" class="headerlink" title="未链接上下文的显式转换"></a>未链接上下文的显式转换</h3><p>在某些有限的情况下，Swift不能自动桥接C和Objective-C构造。例如，一些C和Cocoa API使用<strong>id * </strong>指针作为“out”或“in-out”参数，并且由于Swift不能静态地确定指针的使用方式，因此它不能对内存中的值自动执行桥接转换。在这种情况下，指针仍将显示为<strong>UnsafePointer <anyobject></anyobject></strong>。如果您需要使用这些非桥接API，您可以使用显式桥接转换，在代码中使用<strong>as Type</strong>或<strong>as AnyObject</strong>显式编写。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">// ObjC</div><div class="line">@interface Foo</div><div class="line"></div><div class="line">- (void)updateString:(NSString *)string;</div><div class="line">- (void)updateObject:(id *)obj;</div><div class="line"></div><div class="line">@end</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">// Swift</div><div class="line">func interactWith(foo: Foo) -&gt; (String, Any) &#123;</div><div class="line">	var string = <span class="string">"string"</span> as NSString // explicit conversion</div><div class="line">	foo.updateString(&amp;string) // parameter imports as UnsafeMutablePointer&lt;NSString&gt;</div><div class="line">	<span class="built_in">let</span> finishedString = string as String</div><div class="line"></div><div class="line">	var object = <span class="string">"string"</span> as AnyObject</div><div class="line">	foo.updateObject(&amp;object) // parameter imports as UnsafeMutablePointer&lt;AnyObject&gt;</div><div class="line">	<span class="built_in">let</span> finishedObject = object as Any</div><div class="line"></div><div class="line">	<span class="built_in">return</span> (finishedString, finishedObject)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>另外，Objective-C协议在Swift中仍然是类约束，所以你不能让Swift结构或枚举直接遵循Objective-C协议或者使用轻量级通用类。您需要使用这些协议和API显式转换<strong>String as NSString</strong>，<strong>Array as NSArray</strong>等。</p>
+<h3 id="AnyObject成员查找"><a href="#AnyObject成员查找" class="headerlink" title="AnyObject成员查找"></a>AnyObject成员查找</h3><p><strong>Any</strong>没有与<strong>AnyObject</strong>相同的魔法方法查找行为。这可能会破坏一些Swift 2代码，查找属性或发送消息到一个无类型的Objective-C对象。例如，这个Swift 2的代码：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">// Swift 2</div><div class="line">func foo(x: NSArray) &#123;</div><div class="line">	// Invokes -description by magic AnyObject lookup</div><div class="line">	<span class="built_in">print</span>(x[0].description)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>将抱怨<strong>description</strong>不是Swift 3中<strong>Any</strong>的成员。可以将<strong>x [0] as AnyObject</strong>以获取动态行为：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">// Swift 3</div><div class="line">func foo(x: NSArray) &#123;</div><div class="line">	// Result of subscript is now Any, needs to be coerced to get method lookup</div><div class="line">	<span class="built_in">print</span>((x[0] as AnyObject).description)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>或者，将值强制转换为您期望的具体对象类型：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">func foo(x: NSArray) &#123;</div><div class="line">	// Cast to the concrete object <span class="built_in">type</span> you expect</div><div class="line">	<span class="built_in">print</span>((x[0] as! NSObject).description)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="Swift中的值类型"><a href="#Swift中的值类型" class="headerlink" title="Swift中的值类型"></a>Swift中的值类型</h3><p><strong>Any</strong>可以hold住任何结构，枚举，元组或你可以在语言中定义的其他Swift类型。 Swift 3中的Objective-C桥接器可以提供任何Swift值作为Objective-C的<strong>id</strong>兼容对象。这使得更容易在Cocoa容器，<strong>userInfo</strong>字典和其他对象中存储自定义Swift值类型。例如，在Swift 2中，您需要将数据类型更改为类，或者手动box它们，以将它们的值附加到<strong>NSNotification</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">// Swift 2</div><div class="line">struct CreditCard &#123; number: UInt64, expiration: NSDate &#125;</div><div class="line"></div><div class="line"><span class="built_in">let</span> PaymentMade = <span class="string">"PaymentMade"</span></div><div class="line"></div><div class="line">// We can<span class="string">'t attach CreditCard directly to the notification, since it</span></div><div class="line">// isn't a class, and doesn<span class="string">'t bridge.</span></div><div class="line">// Wrap it in a Box class.</div><div class="line">class Box&lt;T&gt; &#123;</div><div class="line">	let value: T</div><div class="line">	init(value: T) &#123; self.value = value &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">let paymentNotification =</div><div class="line">	NSNotification(name: PaymentMade,</div><div class="line">				   object: Box(value: CreditCard(number: 1234_0000_0000_0000,</div><div class="line">												 expiration: NSDate())))</div></pre></td></tr></table></figure>
+<p>使用Swift 3，我们可以取消box，并将对象直接附加到Notification：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">// Swift 3</div><div class="line"><span class="built_in">let</span> PaymentMade = Notification.Name(<span class="string">"PaymentMade"</span>)</div><div class="line"></div><div class="line">// We can associate the CreditCard value directly with the Notification</div><div class="line"><span class="built_in">let</span> paymentNotification =</div><div class="line">	Notification(name: PaymentMade,</div><div class="line">				 object: CreditCard(number: 1234_0000_0000_0000,</div><div class="line">									expiration: Date()))</div></pre></td></tr></table></figure>
+<p>在Objective-C中，<strong>CreditCard</strong>值将作为一个<strong>id</strong>兼容的，继承<strong>NSObject</strong>对象实现<strong>isEqual：</strong>，<strong>hash</strong>和<strong>description</strong>，如果它们存在原生的Swift类型的话，使用Swift的<strong>Equatable</strong>，<strong>Hashable</strong>和<strong>CustomStringConvertible</strong>。从Swift中，可以通过将其动态地转换回其原始类型来检索该值：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">// Swift 3</div><div class="line"><span class="built_in">let</span> paymentCard = paymentNotification.object as! CreditCard</div><div class="line"><span class="built_in">print</span>(paymentCard.number) // 1234000000000000</div></pre></td></tr></table></figure>
+<p>请注意，在Swift 3.0中，一些常见的Swift和Objective-C结构类型将桥接为不透明对象，而不是惯用的Cocoa对象。例如，<strong>Int</strong>，<strong>UInt</strong>，<strong>Double</strong>和<strong>Bool</strong>桥接到<strong>NSNumber</strong>，其他大小的数字类型，例如<strong>Int8</strong>，<strong>UInt16</strong>等只桥接为不透明对象。可变结构如<strong>CGRect</strong>，<strong>CGPoint</strong>和<strong>CGSize</strong>也作为不透明对象桥接，即使大多数Cocoa API期望它们一起作为对象在<strong>NSValue</strong>实例中被box。如果你看到<strong>unrecognized selector sent to _SwiftValue</strong>错误，这表明Objective-C代码试图调用一个不透明的Swift值类型的方法，你可能需要手动box该类的实例中Objective-C代码期望的值。</p>
+<p>要注意的一个特殊问题是Optionals。 Swift <strong>Any</strong>可以代表任何东西，包括一个Optional，所以可以在不首先检查它情况下将一个包装的Optional传递给Objective-C API，即使API被声明为一个<strong>nonnull id</strong>类型。这通常表现为包括<strong>_SwiftValue</strong>的运行时错误，而不是编译时错误。 Xcode 8.1 beta中包含的Swift 3.0.1通过实现这些建议来透明地处理数字类型，Objective-C结构和可选类型，以解决<strong>NSNumber</strong>，<strong>NSValue</strong>和<strong>Optional</strong>桥接中的上述限制：</p>
+<ul>
+<li><a href="https://github.com/apple/swift-evolution/blob/master/proposals/0139-bridge-nsnumber-and-nsvalue.md" target="_blank" rel="external">SE–0139: Bridge Numeric Types to NSNumber and Cocoa Structs to NSValue</a></li>
+<li><a href="https://github.com/apple/swift-evolution/blob/master/proposals/0140-bridge-optional-to-nsnull.md" target="_blank" rel="external">SE–0140: Warn when Optional converts to Any, and bridge Optional As Its Payload Or NSNull</a>
+</li>
+</ul>
+<p>为了避免向前兼容性问题，你不应该依赖<strong>_SwiftValue</strong>类的不透明对象的实现细节，因为未来版本的Swift可能允许更多的Swift类型桥接到惯用的Objective-C类。</p>
+<h3 id="Linux可移植性"><a href="#Linux可移植性" class="headerlink" title="Linux可移植性"></a>Linux可移植性</h3><p>在Linux上使用Swift Core 运行的Swift程序库使用了原生Swift中编写的一个Foundation版本，没有Objective-C运行时桥接。 <strong>id</strong>-as-<strong>Any</strong>允许Core Libraries直接使用原生Swift <strong>Any</strong>和标准库值类型，同时使用Objective-C <strong>Foundation</strong>实现保持与Apple平台上的代码兼容。由于Swift在Linux上不与Objective-C交互操作，因此不支持桥接转换，例如<strong>string as NSString</strong>或<strong>value as AnyObject</strong>。希望在Cocoa和Swift Core Libraries之间移植的Swift代码应该只使用值类型。</p>
+<h3 id="学习更多"><a href="#学习更多" class="headerlink" title="学习更多"></a>学习更多</h3><p><strong>id</strong>-as-<strong>Any</strong>是Swift语言改进的一个很好的例子，受到用户对早期版本的Swift的反馈的启发，并通过来自开放的Swift Evolution过程的回顾完善。如果你想更多地了解<strong>id</strong>-as-<strong>Any</strong>背后的动机和设计决策，原始的Swift Evolution提议可以在GitHub的swift-evolution仓库中找到：</p>
+<ul>
+<li><a href="https://github.com/apple/swift-evolution/blob/master/proposals/0072-eliminate-implicit-bridging-conversions.md" target="_blank" rel="external">SE-0072：完全消除来自Swift的隐式桥接转换</a></li>
+<li><a href="https://github.com/apple/swift-evolution/blob/master/proposals/0116-id-as-any.md" target="_blank" rel="external">SE-0116：将Objective-C **id**导入为Swift**Any**类型</a></li>
+<li><a href="https://github.com/apple/swift-evolution/blob/master/proposals/0131-anyhashable.md" target="_blank" rel="external">SE-0131：将AnyHashable添加到标准库</a>
+</li>
+</ul>
+<p>最终结果是，Swift是一种更加一致的语言，当使用Swift时，Cocoa API变得更强大。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/02/09/objective-c-id-as-swift-any/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
     <article id="post-unit-testing" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -169,6 +295,125 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2016/12/21/unit-testing/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="post-Markdown语法说明" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/12/20/Markdown语法说明/">Markdown语法说明</a>
+    </h1>
+  
+
+        <a href="/2016/12/20/Markdown语法说明/" class="archive-article-date">
+  	<time datetime="2016-12-20T09:52:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-20</time>
+</a>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>标题：</p>
+<p>#h1级标题</p>
+<p>##h2级标题</p>
+<p>###h3级标题</p>
+<p>####h4级标题</p>
+<p>#####h5级标题</p>
+<p>######h6级标题</p>
+<p>分割线：三个以上的短线 即可作出分割线</p>
+<hr>
+<p>超链接：<a href="网址 , 标题">连接名称</a><br><a href="http://www.izhangbo.cn," title="我是标题" target="_blank" rel="external">我是链接名</a><br><a href="/sonfilename/"><i class="icon-refresh"></i> 点我刷新</a></p>
+<p>另一种超链接写法：[链接名][链接代号]<br><a href="http://www.izhangbo.cn" title="聚牛团队" target="_blank" rel="external">here</a><br>然后在别的地方定义 3 这个详细链接信息，</p>
+<p>直接展示链接的写法：<a href="http://www.izhangbo.cn" target="_blank" rel="external">http://www.izhangbo.cn</a></p>
+<p>键盘键<br><kbd>Ctrl+[</kbd> and <kbd>Ctrl+]</kbd></p>
+<p>code格式：反引号<br>Use the <code>printf()</code> function.</p>
+<p><code>There is a literal backtick (`) here.针对在代码区段内插入反引号的情况</code> </p>
+<p>强调：<br><em>斜体强调</em><br><strong>粗体强调</strong></p>
+<p>图片<br><img src="http://www.izhangbo.cn/wp-content/themes/minty/img/logo.png" alt="Alt text" title="Optional title"></p>
+<p>使用 icon 图标文字<br><i class="icon-cog"></i></p>
+<p>段落：以一个空行开始，以一个空行结束，中间的就是一个段落。</p>
+<p>表格：</p>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Computer</td>
+<td>$1600</td>
+</tr>
+<tr>
+<td>Phone</td>
+<td>$12</td>
+</tr>
+<tr>
+<td>Pipe</td>
+<td>$1</td>
+</tr>
+</tbody>
+</table>
+<p>无序列表：使用 - 加一个空格（）</p>
+<ul>
+<li>无需列表1</li>
+<li>无序列表2</li>
+<li>无序列表3</li>
+</ul>
+<p>有序列表：使用 数字 加一个英文句点</p>
+<ol>
+<li>有序列表</li>
+<li>有序列表</li>
+<li>有序列表</li>
+<li>有序列表</li>
+<li>有序列表</li>
+</ol>
+<p>换行缩进形成代码区块</p>
+<pre><code>这里先换行，然后缩进4个空格，之后的内容便可以原样显示了，适合用于显示代码内容。直到文本结束或最后一个存在缩进的行为止。    
+</code></pre><p>块引用</p>
+<blockquote>
+<p>给引用的文本开始位置都加一个 ‘&gt;’，<br>便可组成一个块引用。在块引用中，可以结合<br>其他markdown元素一块使用，比如列表。<br><strong>强调</strong><br>也可以只在第一行加大于号，其他位置不加。</p>
+<ul>
+<li>块引用里使用列表，需要和上面的内容隔开一个空行</li>
+<li>记得加空格哦。</li>
+</ul>
+</blockquote>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+	<div class="article-category tagcloud">
+	<i class="icon-book icon"></i>
+	<a class="article-category-link" href="/categories/产品/">产品</a>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2016/12/20/Markdown语法说明/">展开全文 >></a>
         </p>
       
 
@@ -234,6 +479,115 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2016/12/20/产品-产品/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="post-playgroud" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/12/16/playgroud/">playGroud</a>
+    </h1>
+  
+
+        <a href="/2016/12/16/playgroud/" class="archive-article-date">
+  	<time datetime="2016-12-16T06:25:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-16</time>
+</a>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>( ⊙ o ⊙ )啊！</p>
+<p>–引用块</p>
+<blockquote><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque hendrerit lacus ut purus iaculis feugiat. Sed nec tempor elit, quis aliquam neque. Curabitur sed diam eget dolor fermentum semper at eu lorem.</p>
+</blockquote>
+<blockquote><p>Do not just seek happiness for yourself. Seek happiness for all. Through kindness. Through mercy.</p>
+<footer><strong>David Levithan</strong><cite>Wide Awake</cite></footer></blockquote>
+<blockquote><p>NEW: DevDocs now comes with syntax highlighting. <a href="http://devdocs.io" target="_blank" rel="external">http://devdocs.io</a></p>
+<footer><strong>@DevDocs</strong><cite><a href="https://twitter.com/devdocs/status/356095192085962752" target="_blank" rel="external">twitter.com/devdocs/status/356095192085962752</a></cite></footer></blockquote>
+<blockquote><p>Every interaction is both precious and an opportunity to delight.</p>
+<footer><strong>Seth Godin</strong><cite><a href="http://sethgodin.typepad.com/seths_blog/2009/07/welcome-to-island-marketing.html" target="_blank" rel="external">Welcome to Island Marketing</a></cite></footer></blockquote>
+<p>–代码块<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">alert(&apos;Hello World!&apos;);</div></pre></td></tr></table></figure></p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[rectangle setX: <span class="number">10</span> y: <span class="number">10</span> width: <span class="number">20</span> height: <span class="number">20</span>];</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><figcaption><span>Array.map</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">array.map(callback[, thisArg])</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><figcaption><span>_.compact</span><a href="http://underscorejs.org/#compact" target="_blank" rel="external">Underscore.js</a></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">_.compact([0, 1, false, 2, &apos;&apos;, 3]);</div><div class="line">=&gt; [1, 2, 3]</div></pre></td></tr></table></figure>
+<p>反引号代码块<br>另一种形式的代码块，不同的是它使用三个反引号来包裹。</p>
+<p><code>[language] [title] [url] [link text] code snippet</code><br>Pull Quote<br>在文章中插入 Pull quote。</p>
+<blockquote class="pullquote [class]"><p>content</p>
+</blockquote>
+<p>jsFiddle<br>在文章中嵌入 jsFiddle。</p>
+<iframe scrolling="no" width="[width]" height="[height]" src="http://jsfiddle.net/shorttag/embedded/[tabs]/[skin]" frameborder="0" allowfullscreen></iframe>
+<p>Gist<br>在文章中嵌入 Gist。</p>
+<script src="//gist.github.com/gist_id.js?file=[filename]"></script>
+<p>iframe<br>在文章中插入 iframe。</p>
+<iframe src="url" width="[width]" height="[height]" frameborder="0" allowfullscreen></iframe>
+<p>Image<br>在文章中插入指定大小的图片。</p>
+<p>source/images<br><img src="/images/a1.jpg" alt=""></p>
+<p>Link<br>在文章中插入链接，并自动给外部链接添加 target=”_blank” 属性。</p>
+<a>text url [external] [title]</a>
+<p>Include Code<br>插入 source 文件夹内的代码文件。</p>
+
+<p>Youtube<br>在文章中插入 Youtube 视频。</p>
+<div class="video-container"><iframe src="//www.youtube.com/embed/video_id" frameborder="0" allowfullscreen></iframe></div>
+<p>Vimeo<br>在文章中插入 Vimeo 视频。</p>
+<div class="video-container"><iframe src="//player.vimeo.com/video/video_id" frameborder="0" allowfullscreen></iframe></div>
+<p>引用文章<br>引用其他文章的链接。</p>
+
+
+<p>引用资源<br>引用文章的资源。</p>
+
+
+
+<p>Raw<br>如果您想在文章中插入 Swig 标签，可以尝试使用 Raw 标签，以免发生解析异常。</p>
+
+content
+
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list">
+			 
+        <li class="article-tag-list-item">
+        	<a href="javascript:void(0)" class="article-tag-list-link color5">tag1</a>
+        </li>
+      
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<i class="icon-book icon"></i>
+	<a class="article-category-link" href="/categories/ios/">iOS</a>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2016/12/16/playgroud/">展开全文 >></a>
         </p>
       
 
@@ -638,163 +992,10 @@
 
 
   
-    <article id="post-iOS-MDM流程记录" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/01/08/iOS-MDM流程记录/">iOS-MDM流程记录</a>
-    </h1>
-  
-
-        <a href="/2014/01/08/iOS-MDM流程记录/" class="archive-article-date">
-  	<time datetime="2014-01-08T01:56:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2014-01-08</time>
-</a>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="MDM开发流程"><a href="#MDM开发流程" class="headerlink" title="MDM开发流程"></a>MDM开发流程</h2><p>1.申请企业开发者账号，这一步比较麻烦的是申请邓白氏码，因为要通过华夏邓白氏那边的审核。拖了比较久。<br>2.有开发者账号就可以做MDM证书了，</p>
-<p>主要参考:<br><a href="http://www.mbaike.net/ios/2014.html" target="_blank" rel="external">mbaike</a><br><a href="http://www.softhinker.com/in-the-news/iosmdmvendorcsrsigning" target="_blank" rel="external">softhinker</a></p>
-<p>这里要注意的是<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">//Change to your <span class="built_in">alias</span> 是你证书的名字！</div><div class="line">String <span class="built_in">alias</span> = <span class="string">"MbaikeMDMCSR"</span>;</div></pre></td></tr></table></figure></p>
-<h3 id="mdm证书制作"><a href="#mdm证书制作" class="headerlink" title="mdm证书制作"></a>mdm证书制作</h3><p>1.用apple钥匙串访问工具生成CertificateSigningRequest.certSigningRequest<br>2.利用生成的公私钥中的私钥导出为vendor.p12<br>2.登陆299企业帐号创建并下载mdm.cer<br>4.下载<a href="https://developer.apple.com/certificationauthority/AppleWWDRCA.cer" target="_blank" rel="external">AppleWWDRCA</a> 证书<br>5.下载<a href="http://www.apple.com/appleca/AppleIncRootCertificate.cer" target="_blank" rel="external">AppleIncRootCertificate</a> 苹果根证书<br>6.利用以下命令将cer证书转成证pem书<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">openssl x509 -inform der -in mdm.cer -out mdm.pem</div><div class="line">openssl x509 -inform der -in AppleWWDRCA.cer -out intermediate.pem</div><div class="line">openssl x509 -inform der -in AppleIncRootCertificate.cer -out root.pem</div></pre></td></tr></table></figure></p>
-<p>7.生成客户端证书<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">openssl genrsa -des3 -out customerPrivateKey.pem 2048</div><div class="line">openssl req -new -key customerPrivateKey.pem -out customer.csr</div><div class="line">openssl req -inform pem -outform der -in customer.csr -out customer.der</div></pre></td></tr></table></figure></p>
-<p>8.利用MDMIOSGenerateEncodedPlist.java生成plist.xml和plist_encoded<br>9.打开 <a href="https://identity.apple.com/pushcert/" target="_blank" rel="external">https://identity.apple.com/pushcert/</a> 登陆任意appleid帐号，上传plist_encoded文件，申请通过后，下载apns-mdm.pem证书<br>10.将apns-mdm.pem与customerPrivateKey.pem合并为apns-mdm.p12<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">openssl pkcs12 -export -inkeycustomerPrivateKey.pem -in apns-mdm.pem -out apns-mdm.p12</div></pre></td></tr></table></figure></p>
-<p>此apns-mdm.p12就是mdm服务器和苹果anps服务器通讯用的p12也是mobileconf中绑定的p12(mobileconf最终安装在移动设备上)</p>
-<p>MDMplist</p>
-<p>3.<a href="http://www.mbaike.net/ios/1554.html" target="_blank" rel="external">申请服务器所需证书</a></p>
-<p>4.<a href="http://www.mbaike.net/ios/1556.html" target="_blank" rel="external">部署https(SSL)服务器环境</a></p>
-<p>最好做下域名映射！</p>
-<p>5.配置描述文件mobileconfig的生成</p>
-<h4 id="下载iPhone配置实用工具，配置通用和移动设备管理"><a href="#下载iPhone配置实用工具，配置通用和移动设备管理" class="headerlink" title="下载iPhone配置实用工具，配置通用和移动设备管理"></a>下载iPhone配置实用工具，配置通用和移动设备管理</h4><p>注意：<br><blockquote><p>a：Topic must be com.apple.mgmt.<yourdesignation></yourdesignation></p>
-<p>b：通用的安全性为总是</p>
-<p>c：移动设备管理中的使用开发APNS服务器不能勾选</p>
-</blockquote></p>
-<p>主要参考：(<a href="http://www.mbaike.net/ios/1560.html" target="_blank" rel="external">http://www.mbaike.net/ios/1560.html</a>)</p>
-<img src="/2014/01/08/iOS-MDM流程记录/1.png" alt="1 image" title="1 image">
-<img src="/2014/01/08/iOS-MDM流程记录/2.png" alt="2 image" title="2 image">
-<p>导出（选“无”）后签名</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">openssl smime -sign -in unsigned.mobileconfig -out signed.mobileconfig -signer mbaike.crt -inkey mbaike.key -certfile ca-bundle.pem -outform der -nodetach</div></pre></td></tr></table></figure>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list">
-			 
-        <li class="article-tag-list-item">
-        	<a href="javascript:void(0)" class="article-tag-list-link color3">iOS MDM</a>
-        </li>
-      
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<i class="icon-book icon"></i>
-	<a class="article-category-link" href="/categories/技术/">技术</a>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2014/01/08/iOS-MDM流程记录/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-Lua内存管理" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2011/07/04/Lua内存管理/">Lua内存管理</a>
-    </h1>
-  
-
-        <a href="/2011/07/04/Lua内存管理/" class="archive-article-date">
-  	<time datetime="2011-07-04T07:55:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2011-07-04</time>
-</a>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>本文主要介绍某项目脚本(lua)部分内存泄漏的查证与处理过程，希望对大家有点帮助。需要说明的是，lua本身并不存在<br>真正的内存泄漏，只是因为使用上面的原因导致无法gc，从而导致逻辑上的泄漏:)。</p>
-<p>参考GCObject的声明可以发现，lua中的复杂数据类型变量的传递都是基于引用的。当lua从根开始gc扫描的时候，只要<br>还有一个地方有对此变量的引用，那么这个变量就不会被collect。这种情况造成的危害取决于多大程度上依赖于引用，如<br>果有适当的间接层/弱引用来隔离这个问题，可能问题会有所缓解。</p>
-<h3 id="以下是一些常见的错误引用情景"><a href="#以下是一些常见的错误引用情景" class="headerlink" title="以下是一些常见的错误引用情景:"></a>以下是一些常见的错误引用情景:</h3><p>   1.本应该local 的变量进入global空间或者module空间了(忘记写local)，如果这是一个<br>table/function/udata等类型的变量的话，非常不幸的，这个变量将不会被正确gc了 —-除非你再显式的释放。这是<br>非常容易犯的错误，一直在想为什么lua变量不是默认local呢？ 当然这个话题会引发另外一场争论。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">local</span> <span class="keyword">function</span> test_user(id)</div><div class="line">	userobj = get_user_by_id(id) --这里总是会有一个玩家对象泄漏</div><div class="line">	<span class="built_in">print</span>(<span class="string">"only test"</span>, userobj:get_name())</div><div class="line">end</div></pre></td></tr></table></figure>
-<p>   2.c/c++部分调用的lua_ref是否有正常lua_unref释放？ 通过debug.getregistry()可以查到这些ref.</p>
-<p>   3.其他各种各样的实际bug造成的泄漏。</p>
-<p>当怀疑系统有泄漏以后，我们可以怎么查到这些泄漏呢？我强烈建议大家建立一个weak table, 把你所有创建过的能够称<br>之为资源的，包含但不限于“战斗对象，玩家，npc，物品，场景，邮件”等等对象全部扔到这个table里面。当你知道玩家<br>已经下线、战斗已经销毁了，但通过连续的强制full gc以后weak table里面还有这个变量，这就证明了这个变量的引用<br>没有被完全释放，于是问题就被发现了，我们又有事情干了@_@。</p>
-<p>知道有泄漏是比较容易的，能够完全揪出来就不是很容易了。是的，它究竟在哪儿呢? 一开始在此项目里面也是先发现比如<br>某npc泄漏了，然后就去查代码，看看究竟哪个地方写得不对。这种方式效率极低，基本上查不到什么问题。在迟一点的时<br>候才使用现在的方案：从_G深度遍历所有的table、metatable、funciton’supvalue、function’s env、<br>registentry(lua_ref)。 目前所知的所有引用必定存在于这几个空间， 遍历完成以后一定可以找到那个“迷失了的引<br>用”。 这种方式在脚本层就可以完成所有事情，甚至你可以在运营环境中在线查证，其遍历的速度是非常快的，但内存开销<br>非常大(:，可以考虑一边遍历一边gc，当然还要记得避免重复搜索。 在应用此方案以后，此项目解决了脚本中所有的泄漏<br>问题。</p>
-<p>   一点总结：1.如果系统性能还能够承受的话，建议不要直接引用对象，可以多做一层间接层。2.lua里面的弱引用是非<br>常有用的。3.比较大的物理内存是必要的，这可以为大家查证问题争取足够多的时间:) 4.可以把查找泄漏的部分写入到关<br>机逻辑里面，每次关机的时候自动查找泄漏，然后出具报告。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list">
-			 
-        <li class="article-tag-list-item">
-        	<a href="javascript:void(0)" class="article-tag-list-link color4">Lua</a>
-        </li>
-      
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<i class="icon-book icon"></i>
-	<a class="article-category-link" href="/categories/技术/">技术</a>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2011/07/04/Lua内存管理/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
+    <nav id="page-nav">
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+    </nav>
   
 
 
@@ -934,14 +1135,6 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="color3">iOS MDM</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="color2">swift,</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="color1">xcode</a>
               </li>
              
@@ -954,15 +1147,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="color3">迭代</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="color5">tag1</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="color3">管理</a>
+                <a href="javascript:void(0)" class="color5">iTunesconnect,</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -970,11 +1155,27 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="color2">swift,</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="color3">iOS MDM</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="color5">tag1</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="color3">迭代</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="color4">iOS</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="color5">iTunesconnect,</a>
+                <a href="javascript:void(0)" class="color3">管理</a>
               </li>
             
             <div class="clearfix"></div>
