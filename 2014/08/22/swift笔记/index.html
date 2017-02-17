@@ -16,7 +16,7 @@ if nil在OC中我们在判断一个值是不是nil时，一般就是123NSString 
 <meta property="og:site_name" content="ADu">
 <meta property="og:description" content="swift出世时，断断续续看了一些。在PlayGround耍了耍还是挺好玩的:]有OC作为基础，上手swift还是挺快的。但是有一些语法还是要留意下。这个就作为学习笔记吧，记录学习过程中的注意点。swift官网The Swift Programming Language
 if nil在OC中我们在判断一个值是不是nil时，一般就是123NSString *values = @&quot;&quot;;if(value">
-<meta property="og:updated_time" content="2017-01-23T09:49:11.000Z">
+<meta property="og:updated_time" content="2017-02-13T07:39:54.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Swift笔记">
 <meta name="twitter:description" content="swift出世时，断断续续看了一些。在PlayGround耍了耍还是挺好玩的:]有OC作为基础，上手swift还是挺快的。但是有一些语法还是要留意下。这个就作为学习笔记吧，记录学习过程中的注意点。swift官网The Swift Programming Language
@@ -162,7 +162,14 @@ if nil在OC中我们在判断一个值是不是nil时，一般就是123NSString 
 </blockquote></p>
 <p>正确的写法<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">var optionalString: String? = nil</div><div class="line"><span class="built_in">print</span>(optionalString == nil)</div><div class="line"></div><div class="line"><span class="keyword">if</span> <span class="built_in">let</span> str = optionalString &#123;</div><div class="line">    <span class="built_in">print</span>(str)</div><div class="line">&#125; <span class="keyword">else</span> &#123;</div><div class="line">    <span class="built_in">print</span>(<span class="string">"optionalString is nil"</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>这样写也可以<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">var optionalString: String? = <span class="string">"janes"</span></div><div class="line"><span class="built_in">print</span>(optionalString == nil)</div><div class="line"></div><div class="line"><span class="built_in">let</span> isBool = (optionalString == nil)</div><div class="line"><span class="keyword">if</span> isBool &#123;</div><div class="line">    <span class="built_in">print</span>(<span class="string">"optionalString is nil \(isBool)"</span>)</div><div class="line">&#125; <span class="keyword">else</span> &#123;</div><div class="line">    <span class="built_in">print</span>(<span class="string">"optionalString is not nil"</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="In-Out-Parameters"><a href="#In-Out-Parameters" class="headerlink" title="In-Out Parameters"></a>In-Out Parameters</h3><p>函数中的输入输出参数，可以改变函数参数。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">func swapTwoInts(_ a: inout Int, _ b: inout Int) &#123;</div><div class="line">    <span class="built_in">let</span> temporaryA = a</div><div class="line">    a = b</div><div class="line">    b = temporaryA</div><div class="line">&#125;</div><div class="line"></div><div class="line">var someInt = 3</div><div class="line">var anotherInt = 107</div><div class="line">swapTwoInts(&amp;someInt, &amp;anotherInt)</div><div class="line"><span class="built_in">print</span>(<span class="string">"someInt is now \(someInt), and anotherInt is now \(anotherInt)"</span>)</div></pre></td></tr></table></figure>
+<p>好奇的看下内存地址有没有改变<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">func address(o: UnsafeRawPointer) -&gt; String &#123;</div><div class="line">    <span class="built_in">return</span> String.init(format: <span class="string">"%018p"</span>, unsafeBitCast(o, to: Int.self))</div><div class="line">&#125;</div><div class="line"></div><div class="line">var someInt = 3</div><div class="line">var anotherInt = 107</div><div class="line"><span class="built_in">print</span>(<span class="string">"before swap:\(address(o: &amp;someInt)), value:\(someInt))"</span>)</div><div class="line">swapTwoInts(&amp;someInt, &amp;anotherInt)</div><div class="line"><span class="built_in">print</span>(<span class="string">"after swap:\(address(o: &amp;someInt)), value:\(someInt)"</span>)</div></pre></td></tr></table></figure></p>
+<pre><code>before swap:0x00007fff595d6ac0, value:3)
+after swap:0x00007fff595d6ac0, value:107
+</code></pre><p>结果内存中的地址是没有变的</p>
 <p>###<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">let</span> sortedNumbers = numbers.sort &#123; <span class="variable">$0</span> &gt; <span class="variable">$1</span> &#125;</div><div class="line"><span class="built_in">print</span>(sortedNumbers)</div></pre></td></tr></table></figure></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
 
       
 
@@ -432,10 +439,6 @@ if nil在OC中我们在判断一个值是不是nil时，一般就是123NSString 
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="color3">管理</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="color5">iTunesconnect,</a>
               </li>
              
@@ -456,15 +459,7 @@ if nil在OC中我们在判断一个值是不是nil时，一般就是123NSString 
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="color5">tag1</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="color2">swift,</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="color3">迭代</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -472,7 +467,23 @@ if nil在OC中我们在判断一个值是不是nil时，一般就是123NSString 
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="color5">tag1</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="color3">迭代</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="color3">iOS MDM</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="color3">管理</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="color4">新鲜事</a>
               </li>
             
             <div class="clearfix"></div>

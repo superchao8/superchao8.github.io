@@ -257,6 +257,73 @@
 
 
   
+    <article id="post-共享单车" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/12/25/共享单车/">共享单车</a>
+    </h1>
+  
+
+        <a href="/2016/12/25/共享单车/" class="archive-article-date">
+  	<time datetime="2016-12-25T09:52:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-25</time>
+</a>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>进来厦门的大街小巷出现了小黄车，小白车等各种共享单车。<br>这让人想起了上个世纪的黄包车，城市中大街小巷中穿梭。。。</p>
+<p>时代变迁，黄车重现江湖，共享经济炙手可热。<br>移动互联网激烈角逐各领域的最后一公里。</p>
+<p>横尸片野的小黄车也让人忧心，维修起来也是个大难题。<br>但听说投资机构都排队上门，不担心资金问题</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list">
+			 
+        <li class="article-tag-list-item">
+        	<a href="javascript:void(0)" class="article-tag-list-link color4">新鲜事</a>
+        </li>
+      
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<i class="icon-book icon"></i>
+	<a class="article-category-link" href="/categories/移动互联网/">移动互联网</a>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2016/12/25/共享单车/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
     <article id="post-unit-testing" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -643,7 +710,14 @@
 </blockquote></p>
 <p>正确的写法<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">var optionalString: String? = nil</div><div class="line"><span class="built_in">print</span>(optionalString == nil)</div><div class="line"></div><div class="line"><span class="keyword">if</span> <span class="built_in">let</span> str = optionalString &#123;</div><div class="line">    <span class="built_in">print</span>(str)</div><div class="line">&#125; <span class="keyword">else</span> &#123;</div><div class="line">    <span class="built_in">print</span>(<span class="string">"optionalString is nil"</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>这样写也可以<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">var optionalString: String? = <span class="string">"janes"</span></div><div class="line"><span class="built_in">print</span>(optionalString == nil)</div><div class="line"></div><div class="line"><span class="built_in">let</span> isBool = (optionalString == nil)</div><div class="line"><span class="keyword">if</span> isBool &#123;</div><div class="line">    <span class="built_in">print</span>(<span class="string">"optionalString is nil \(isBool)"</span>)</div><div class="line">&#125; <span class="keyword">else</span> &#123;</div><div class="line">    <span class="built_in">print</span>(<span class="string">"optionalString is not nil"</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="In-Out-Parameters"><a href="#In-Out-Parameters" class="headerlink" title="In-Out Parameters"></a>In-Out Parameters</h3><p>函数中的输入输出参数，可以改变函数参数。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">func swapTwoInts(_ a: inout Int, _ b: inout Int) &#123;</div><div class="line">    <span class="built_in">let</span> temporaryA = a</div><div class="line">    a = b</div><div class="line">    b = temporaryA</div><div class="line">&#125;</div><div class="line"></div><div class="line">var someInt = 3</div><div class="line">var anotherInt = 107</div><div class="line">swapTwoInts(&amp;someInt, &amp;anotherInt)</div><div class="line"><span class="built_in">print</span>(<span class="string">"someInt is now \(someInt), and anotherInt is now \(anotherInt)"</span>)</div></pre></td></tr></table></figure>
+<p>好奇的看下内存地址有没有改变<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">func address(o: UnsafeRawPointer) -&gt; String &#123;</div><div class="line">    <span class="built_in">return</span> String.init(format: <span class="string">"%018p"</span>, unsafeBitCast(o, to: Int.self))</div><div class="line">&#125;</div><div class="line"></div><div class="line">var someInt = 3</div><div class="line">var anotherInt = 107</div><div class="line"><span class="built_in">print</span>(<span class="string">"before swap:\(address(o: &amp;someInt)), value:\(someInt))"</span>)</div><div class="line">swapTwoInts(&amp;someInt, &amp;anotherInt)</div><div class="line"><span class="built_in">print</span>(<span class="string">"after swap:\(address(o: &amp;someInt)), value:\(someInt)"</span>)</div></pre></td></tr></table></figure></p>
+<pre><code>before swap:0x00007fff595d6ac0, value:3)
+after swap:0x00007fff595d6ac0, value:107
+</code></pre><p>结果内存中的地址是没有变的</p>
 <p>###<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">let</span> sortedNumbers = numbers.sort &#123; <span class="variable">$0</span> &gt; <span class="variable">$1</span> &#125;</div><div class="line"><span class="built_in">print</span>(sortedNumbers)</div></pre></td></tr></table></figure></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
 
       
 
@@ -848,125 +922,6 @@
 
 
   
-    <article id="post-Markdown语法说明" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2011/12/20/Markdown语法说明/">Markdown语法说明</a>
-    </h1>
-  
-
-        <a href="/2011/12/20/Markdown语法说明/" class="archive-article-date">
-  	<time datetime="2011-12-20T09:52:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2011-12-20</time>
-</a>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>标题：</p>
-<p>#h1级标题</p>
-<p>##h2级标题</p>
-<p>###h3级标题</p>
-<p>####h4级标题</p>
-<p>#####h5级标题</p>
-<p>######h6级标题</p>
-<p>分割线：三个以上的短线 即可作出分割线</p>
-<hr>
-<p>超链接：<a href="网址 , 标题">连接名称</a><br><a href="http://www.izhangbo.cn," title="我是标题" target="_blank" rel="external">我是链接名</a><br><a href="/sonfilename/"><i class="icon-refresh"></i> 点我刷新</a></p>
-<p>另一种超链接写法：[链接名][链接代号]<br><a href="http://www.izhangbo.cn" title="聚牛团队" target="_blank" rel="external">here</a><br>然后在别的地方定义 3 这个详细链接信息，</p>
-<p>直接展示链接的写法：<a href="http://www.izhangbo.cn" target="_blank" rel="external">http://www.izhangbo.cn</a></p>
-<p>键盘键<br><kbd>Ctrl+[</kbd> and <kbd>Ctrl+]</kbd></p>
-<p>code格式：反引号<br>Use the <code>printf()</code> function.</p>
-<p><code>There is a literal backtick (`) here.针对在代码区段内插入反引号的情况</code> </p>
-<p>强调：<br><em>斜体强调</em><br><strong>粗体强调</strong></p>
-<p>图片<br><img src="http://www.izhangbo.cn/wp-content/themes/minty/img/logo.png" alt="Alt text" title="Optional title"></p>
-<p>使用 icon 图标文字<br><i class="icon-cog"></i></p>
-<p>段落：以一个空行开始，以一个空行结束，中间的就是一个段落。</p>
-<p>表格：</p>
-<table>
-<thead>
-<tr>
-<th>Item</th>
-<th>Value</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Computer</td>
-<td>$1600</td>
-</tr>
-<tr>
-<td>Phone</td>
-<td>$12</td>
-</tr>
-<tr>
-<td>Pipe</td>
-<td>$1</td>
-</tr>
-</tbody>
-</table>
-<p>无序列表：使用 - 加一个空格（）</p>
-<ul>
-<li>无需列表1</li>
-<li>无序列表2</li>
-<li>无序列表3</li>
-</ul>
-<p>有序列表：使用 数字 加一个英文句点</p>
-<ol>
-<li>有序列表</li>
-<li>有序列表</li>
-<li>有序列表</li>
-<li>有序列表</li>
-<li>有序列表</li>
-</ol>
-<p>换行缩进形成代码区块</p>
-<pre><code>这里先换行，然后缩进4个空格，之后的内容便可以原样显示了，适合用于显示代码内容。直到文本结束或最后一个存在缩进的行为止。    
-</code></pre><p>块引用</p>
-<blockquote>
-<p>给引用的文本开始位置都加一个 ‘&gt;’，<br>便可组成一个块引用。在块引用中，可以结合<br>其他markdown元素一块使用，比如列表。<br><strong>强调</strong><br>也可以只在第一行加大于号，其他位置不加。</p>
-<ul>
-<li>块引用里使用列表，需要和上面的内容隔开一个空行</li>
-<li>记得加空格哦。</li>
-</ul>
-</blockquote>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-	<div class="article-category tagcloud">
-	<i class="icon-book icon"></i>
-	<a class="article-category-link" href="/categories/产品/">产品</a>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2011/12/20/Markdown语法说明/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1110,10 +1065,6 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="color3">管理</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="color5">iTunesconnect,</a>
               </li>
              
@@ -1134,15 +1085,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="color5">tag1</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="color2">swift,</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="color3">迭代</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1150,7 +1093,23 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="color5">tag1</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="color3">迭代</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="color3">iOS MDM</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="color3">管理</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="color4">新鲜事</a>
               </li>
             
             <div class="clearfix"></div>
