@@ -131,6 +131,90 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-iOS-MDM流程记录" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/01/08/iOS-MDM流程记录/">iOS-MDM流程记录</a>
+    </h1>
+  
+
+        <a href="/2014/01/08/iOS-MDM流程记录/" class="archive-article-date">
+  	<time datetime="2014-01-08T01:56:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2014-01-08</time>
+</a>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="MDM开发流程"><a href="#MDM开发流程" class="headerlink" title="MDM开发流程"></a>MDM开发流程</h2><p>1.申请企业开发者账号，这一步比较麻烦的是申请邓白氏码，因为要通过华夏邓白氏那边的审核。拖了比较久。<br>2.有开发者账号就可以做MDM证书了，</p>
+<p>主要参考:<br><a href="http://www.mbaike.net/ios/2014.html" target="_blank" rel="external">mbaike</a><br><a href="http://www.softhinker.com/in-the-news/iosmdmvendorcsrsigning" target="_blank" rel="external">softhinker</a></p>
+<p>这里要注意的是<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">//Change to your <span class="built_in">alias</span> 是你证书的名字！</div><div class="line">String <span class="built_in">alias</span> = <span class="string">"MbaikeMDMCSR"</span>;</div></pre></td></tr></table></figure></p>
+<h3 id="mdm证书制作"><a href="#mdm证书制作" class="headerlink" title="mdm证书制作"></a>mdm证书制作</h3><p>1.用apple钥匙串访问工具生成CertificateSigningRequest.certSigningRequest<br>2.利用生成的公私钥中的私钥导出为vendor.p12<br>2.登陆299企业帐号创建并下载mdm.cer<br>4.下载<a href="https://developer.apple.com/certificationauthority/AppleWWDRCA.cer" target="_blank" rel="external">AppleWWDRCA</a> 证书<br>5.下载<a href="http://www.apple.com/appleca/AppleIncRootCertificate.cer" target="_blank" rel="external">AppleIncRootCertificate</a> 苹果根证书<br>6.利用以下命令将cer证书转成证pem书<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">openssl x509 -inform der -in mdm.cer -out mdm.pem</div><div class="line">openssl x509 -inform der -in AppleWWDRCA.cer -out intermediate.pem</div><div class="line">openssl x509 -inform der -in AppleIncRootCertificate.cer -out root.pem</div></pre></td></tr></table></figure></p>
+<p>7.生成客户端证书<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">openssl genrsa -des3 -out customerPrivateKey.pem 2048</div><div class="line">openssl req -new -key customerPrivateKey.pem -out customer.csr</div><div class="line">openssl req -inform pem -outform der -in customer.csr -out customer.der</div></pre></td></tr></table></figure></p>
+<p>8.利用MDMIOSGenerateEncodedPlist.java生成plist.xml和plist_encoded<br>9.打开 <a href="https://identity.apple.com/pushcert/" target="_blank" rel="external">https://identity.apple.com/pushcert/</a> 登陆任意appleid帐号，上传plist_encoded文件，申请通过后，下载apns-mdm.pem证书<br>10.将apns-mdm.pem与customerPrivateKey.pem合并为apns-mdm.p12<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">openssl pkcs12 -export -inkeycustomerPrivateKey.pem -in apns-mdm.pem -out apns-mdm.p12</div></pre></td></tr></table></figure></p>
+<p>此apns-mdm.p12就是mdm服务器和苹果anps服务器通讯用的p12也是mobileconf中绑定的p12(mobileconf最终安装在移动设备上)</p>
+<p>MDMplist</p>
+<p>3.<a href="http://www.mbaike.net/ios/1554.html" target="_blank" rel="external">申请服务器所需证书</a></p>
+<p>4.<a href="http://www.mbaike.net/ios/1556.html" target="_blank" rel="external">部署https(SSL)服务器环境</a></p>
+<p>最好做下域名映射！</p>
+<p>5.配置描述文件mobileconfig的生成</p>
+<h4 id="下载iPhone配置实用工具，配置通用和移动设备管理"><a href="#下载iPhone配置实用工具，配置通用和移动设备管理" class="headerlink" title="下载iPhone配置实用工具，配置通用和移动设备管理"></a>下载iPhone配置实用工具，配置通用和移动设备管理</h4><p>注意：<br><blockquote><p>a：Topic must be com.apple.mgmt.<yourdesignation></yourdesignation></p>
+<p>b：通用的安全性为总是</p>
+<p>c：移动设备管理中的使用开发APNS服务器不能勾选</p>
+</blockquote></p>
+<p>主要参考：(<a href="http://www.mbaike.net/ios/1560.html" target="_blank" rel="external">http://www.mbaike.net/ios/1560.html</a>)</p>
+<img src="/2014/01/08/iOS-MDM流程记录/1.png" alt="1 image" title="1 image">
+<img src="/2014/01/08/iOS-MDM流程记录/2.png" alt="2 image" title="2 image">
+<p>导出（选“无”）后签名</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">openssl smime -sign -in unsigned.mobileconfig -out signed.mobileconfig -signer mbaike.crt -inkey mbaike.key -certfile ca-bundle.pem -outform der -nodetach</div></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list">
+			 
+        <li class="article-tag-list-item">
+        	<a href="javascript:void(0)" class="article-tag-list-link color3">iOS MDM</a>
+        </li>
+      
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<i class="icon-book icon"></i>
+	<a class="article-category-link" href="/categories/技术/">技术</a>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2014/01/08/iOS-MDM流程记录/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
     <article id="post-Markdown语法说明" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -467,6 +551,14 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="color3">管理</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="color5">tag1</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="color5">iTunesconnect,</a>
               </li>
              
@@ -495,23 +587,15 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="color5">tag1</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="color3">迭代</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="color3">iOS MDM</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="color3">管理</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="color4">新鲜事</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="color3">iOS MDM</a>
               </li>
             
             <div class="clearfix"></div>
