@@ -131,31 +131,42 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-学习Objective-C语言" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-python3 Strings" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2011/09/22/学习Objective-C语言/">学习Objective-C语言</a>
+      <a class="article-title" href="/2016/03/12/python3 Strings/">python3 Strings</a>
     </h1>
   
 
-        <a href="/2011/09/22/学习Objective-C语言/" class="archive-article-date">
-  	<time datetime="2011-09-22T11:19:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2011-09-22</time>
+        <a href="/2016/03/12/python3 Strings/" class="archive-article-date">
+  	<time datetime="2016-03-12T11:08:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-03-12</time>
 </a>
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Objective-C领域的经典著作：Objective-C 2.0程序设计</p>
-<blockquote><p><a href="http://cocoadevcentral.com/d/learn_objectivec/" target="_blank" rel="external">learn_objectivec</a></p>
-</blockquote>
-<p>Apple 官方的「The Objective-C Programming Language」<br><blockquote><p><a href="https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/ProgrammingWithObjectiveC/Introduction/Introduction.html" target="_blank" rel="external">Programming with Objective-C</a></p>
-</blockquote></p>
-<p>重要的内存管理<br><blockquote><p><a href="https://developer.apple.com/library/content/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/CFMemoryMgmt.html" target="_blank" rel="external">Memory Management Programming Guide for Core Foundation</a></p>
-</blockquote></p>
+        <p>python 的文本类型<br>可以用’‘或””或“”““””标示文本。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">a = <span class="string">"0"</span></div><div class="line">b = <span class="string">"2"</span></div><div class="line"><span class="built_in">print</span>(a  + b)</div></pre></td></tr></table></figure>
+<h3 id="字符串的操作"><a href="#字符串的操作" class="headerlink" title="字符串的操作"></a>字符串的操作</h3><p>替换字符串</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">x = <span class="string">"Hello World"</span></div><div class="line">x = x.replace(<span class="string">"World"</span>, <span class="string">"Python"</span>)</div><div class="line"><span class="built_in">print</span>(x)</div></pre></td></tr></table></figure>
+<p>打印一个字符</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">x = <span class="string">"Hello World"</span></div><div class="line"><span class="built_in">print</span>(x[0])</div></pre></td></tr></table></figure>
+<p>打印多个字符</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">x = <span class="string">"Hello World"</span></div><div class="line"><span class="built_in">print</span>(x[0:4])</div></pre></td></tr></table></figure>
+<p>字符串大小写</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">x = <span class="string">"Hello World"</span></div><div class="line"><span class="built_in">print</span>(x.upper())</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">x = <span class="string">"Hello World"</span></div><div class="line"><span class="built_in">print</span>(x.lower())</div></pre></td></tr></table></figure>
+<p>字符串比较<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">x = <span class="string">"Hello World"</span></div><div class="line"></div><div class="line"><span class="keyword">if</span> x == <span class="string">"Hello World"</span>:</div><div class="line">	<span class="built_in">print</span>(<span class="string">"ok"</span>)</div><div class="line"><span class="keyword">else</span>:</div><div class="line">	<span class="built_in">print</span>(<span class="string">"False"</span>)</div></pre></td></tr></table></figure></p>
+<p>字符串查找</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">x = <span class="string">"All work and non play make jack all dull boy"</span></div><div class="line"></div><div class="line"><span class="keyword">if</span> <span class="string">"work"</span> <span class="keyword">in</span> x:</div><div class="line">	<span class="built_in">print</span>(<span class="string">"Found!"</span>)</div></pre></td></tr></table></figure>
+<p>字符串换行输出</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">x = <span class="string">"All work \nand non play make jack all dull boy"</span></div><div class="line"><span class="built_in">print</span>(x)</div></pre></td></tr></table></figure>
+<p>转义\</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">x = <span class="string">"All work \\nand non play make jack all dull boy"</span></div><div class="line"><span class="built_in">print</span>(x)</div></pre></td></tr></table></figure>
 
       
 
@@ -169,147 +180,7 @@
 		<ul class="article-tag-list">
 			 
         <li class="article-tag-list-item">
-        	<a href="javascript:void(0)" class="article-tag-list-link color4">教程, Objective-C，引道</a>
-        </li>
-      
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<i class="icon-book icon"></i>
-	<a class="article-category-link" href="/categories/移动互联网/">移动互联网</a>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2011/09/22/学习Objective-C语言/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-Lua内存管理" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2011/07/04/Lua内存管理/">Lua内存管理</a>
-    </h1>
-  
-
-        <a href="/2011/07/04/Lua内存管理/" class="archive-article-date">
-  	<time datetime="2011-07-04T07:55:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2011-07-04</time>
-</a>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>本文主要介绍某项目脚本(lua)部分内存泄漏的查证与处理过程，希望对大家有点帮助。需要说明的是，lua本身并不存在<br>真正的内存泄漏，只是因为使用上面的原因导致无法gc，从而导致逻辑上的泄漏:)。</p>
-<p>参考GCObject的声明可以发现，lua中的复杂数据类型变量的传递都是基于引用的。当lua从根开始gc扫描的时候，只要<br>还有一个地方有对此变量的引用，那么这个变量就不会被collect。这种情况造成的危害取决于多大程度上依赖于引用，如<br>果有适当的间接层/弱引用来隔离这个问题，可能问题会有所缓解。</p>
-<h3 id="以下是一些常见的错误引用情景"><a href="#以下是一些常见的错误引用情景" class="headerlink" title="以下是一些常见的错误引用情景:"></a>以下是一些常见的错误引用情景:</h3><p>   1.本应该local 的变量进入global空间或者module空间了(忘记写local)，如果这是一个<br>table/function/udata等类型的变量的话，非常不幸的，这个变量将不会被正确gc了 —-除非你再显式的释放。这是<br>非常容易犯的错误，一直在想为什么lua变量不是默认local呢？ 当然这个话题会引发另外一场争论。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">local</span> <span class="keyword">function</span> test_user(id)</div><div class="line">	userobj = get_user_by_id(id) --这里总是会有一个玩家对象泄漏</div><div class="line">	<span class="built_in">print</span>(<span class="string">"only test"</span>, userobj:get_name())</div><div class="line">end</div></pre></td></tr></table></figure>
-<p>   2.c/c++部分调用的lua_ref是否有正常lua_unref释放？ 通过debug.getregistry()可以查到这些ref.</p>
-<p>   3.其他各种各样的实际bug造成的泄漏。</p>
-<p>当怀疑系统有泄漏以后，我们可以怎么查到这些泄漏呢？我强烈建议大家建立一个weak table, 把你所有创建过的能够称<br>之为资源的，包含但不限于“战斗对象，玩家，npc，物品，场景，邮件”等等对象全部扔到这个table里面。当你知道玩家<br>已经下线、战斗已经销毁了，但通过连续的强制full gc以后weak table里面还有这个变量，这就证明了这个变量的引用<br>没有被完全释放，于是问题就被发现了，我们又有事情干了@_@。</p>
-<p>知道有泄漏是比较容易的，能够完全揪出来就不是很容易了。是的，它究竟在哪儿呢? 一开始在此项目里面也是先发现比如<br>某npc泄漏了，然后就去查代码，看看究竟哪个地方写得不对。这种方式效率极低，基本上查不到什么问题。在迟一点的时<br>候才使用现在的方案：从_G深度遍历所有的table、metatable、funciton’supvalue、function’s env、<br>registentry(lua_ref)。 目前所知的所有引用必定存在于这几个空间， 遍历完成以后一定可以找到那个“迷失了的引<br>用”。 这种方式在脚本层就可以完成所有事情，甚至你可以在运营环境中在线查证，其遍历的速度是非常快的，但内存开销<br>非常大(:，可以考虑一边遍历一边gc，当然还要记得避免重复搜索。 在应用此方案以后，此项目解决了脚本中所有的泄漏<br>问题。</p>
-<p>   一点总结：1.如果系统性能还能够承受的话，建议不要直接引用对象，可以多做一层间接层。2.lua里面的弱引用是非<br>常有用的。3.比较大的物理内存是必要的，这可以为大家查证问题争取足够多的时间:) 4.可以把查找泄漏的部分写入到关<br>机逻辑里面，每次关机的时候自动查找泄漏，然后出具报告。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list">
-			 
-        <li class="article-tag-list-item">
-        	<a href="javascript:void(0)" class="article-tag-list-link color4">Lua</a>
-        </li>
-      
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<i class="icon-book icon"></i>
-	<a class="article-category-link" href="/categories/技术/">技术</a>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2011/07/04/Lua内存管理/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-Java教程" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2010/02/22/Java教程/">Java教程</a>
-    </h1>
-  
-
-        <a href="/2010/02/22/Java教程/" class="archive-article-date">
-  	<time datetime="2010-02-22T07:19:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2010-02-22</time>
-</a>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote><p><a href="http://www.oracle.com/technetwork/java/codeconvtoc-136057.html" title="Code Conventions for the Java TM Programming Language" target="_blank" rel="external">Code Conventions for the Java TM Programming Language</a></p>
-</blockquote>
-<blockquote><p><a href="http://www.teamhost.org/?ac=2&amp;slt=8&amp;slr=1&amp;lpt=1&amp;query=Java教程&amp;afdToken=CoUCChMIoKS5t5fp0wIVWIG9Ch1LLA9dGAEgAFCyz6ABUPDQoAFQwtmECVC5qdAJUK6r0AlQhazQCVDSrNAJUPCs0AlQ9KzQCVD-rNAJUIWt0AlQhq3QCVCJrdAJUIqt0AlQi63QCVCNrdAJUJqt0AlQn63QCVClrdAJUKat0AlQr63QCVCxrdAJULKt0AlQtK3QCVC3rdAJULmt0AlQ8cHrCVCS9MxBUL7MkElQlZjTSVDP5_tJUOj046cBUIOn28wBUJC6ttgBUO34rMIFaLLPoAFo8NCgAXGugymSFwFu-4IBEwjK3bu3l-nTAhWCJr0KHQtqCGmNAd5kGEyRAZlQRlYMEK6qEhkAbTqKkI8n2nCh6d6JBQ3dzJUZegKZmVs6" target="_blank" rel="external">Java教程</a></p>
-</blockquote>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list">
-			 
-        <li class="article-tag-list-item">
-        	<a href="javascript:void(0)" class="article-tag-list-link color2">教程, Java,引道</a>
+        	<a href="javascript:void(0)" class="article-tag-list-link color2">Python</a>
         </li>
       
 		</ul>
@@ -324,7 +195,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2010/02/22/Java教程/">展开全文 >></a>
+          <a class="article-more-a" href="/2016/03/12/python3 Strings/">展开全文 >></a>
         </p>
       
 
@@ -342,28 +213,33 @@
 
 
   
-    <article id="post-java教程" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-python2Variables" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2010/02/22/java教程/">Java教程</a>
+      <a class="article-title" href="/2016/03/11/python2Variables/">python2Variables</a>
     </h1>
   
 
-        <a href="/2010/02/22/java教程/" class="archive-article-date">
-  	<time datetime="2010-02-22T07:19:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2010-02-22</time>
+        <a href="/2016/03/11/python2Variables/" class="archive-article-date">
+  	<time datetime="2016-03-11T11:28:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-03-11</time>
 </a>
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <blockquote><p><a href="http://www.oracle.com/technetwork/java/codeconvtoc-136057.html" title="Code Conventions for the Java TM Programming Language" target="_blank" rel="external">Code Conventions for the Java TM Programming Language</a></p>
-</blockquote>
-<blockquote><p><a href="http://www.teamhost.org/?ac=2&amp;slt=8&amp;slr=1&amp;lpt=1&amp;query=Java教程&amp;afdToken=CoUCChMIoKS5t5fp0wIVWIG9Ch1LLA9dGAEgAFCyz6ABUPDQoAFQwtmECVC5qdAJUK6r0AlQhazQCVDSrNAJUPCs0AlQ9KzQCVD-rNAJUIWt0AlQhq3QCVCJrdAJUIqt0AlQi63QCVCNrdAJUJqt0AlQn63QCVClrdAJUKat0AlQr63QCVCxrdAJULKt0AlQtK3QCVC3rdAJULmt0AlQ8cHrCVCS9MxBUL7MkElQlZjTSVDP5_tJUOj046cBUIOn28wBUJC6ttgBUO34rMIFaLLPoAFo8NCgAXGugymSFwFu-4IBEwjK3bu3l-nTAhWCJr0KHQtqCGmNAd5kGEyRAZlQRlYMEK6qEhkAbTqKkI8n2nCh6d6JBQ3dzJUZegKZmVs6" target="_blank" rel="external">Java教程</a></p>
-</blockquote>
+        <h3 id="Booleans-integers-and-floats"><a href="#Booleans-integers-and-floats" class="headerlink" title="Booleans,integers and floats"></a>Booleans,integers and floats</h3><p>不用事先声明数据类型，指向什么就是什么类型。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">switch = False</div><div class="line"><span class="built_in">print</span>(switch)</div></pre></td></tr></table></figure>
+<p>integers</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">x = 123</div><div class="line">y = 1.35462</div><div class="line"><span class="built_in">print</span>(x, y)</div></pre></td></tr></table></figure>
+<p>print输出多个值，用逗号隔开</p>
+<p>Python提供了强大的math库</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">import math</div><div class="line">x = math.sqrt(3)</div><div class="line"><span class="built_in">print</span>(x)</div></pre></td></tr></table></figure>
+<p>impotr 引进类库</p>
+
       
 
       
@@ -376,7 +252,7 @@
 		<ul class="article-tag-list">
 			 
         <li class="article-tag-list-item">
-        	<a href="javascript:void(0)" class="article-tag-list-link color4">教程, Java</a>
+        	<a href="javascript:void(0)" class="article-tag-list-link color2">Python</a>
         </li>
       
 		</ul>
@@ -391,7 +267,637 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2010/02/22/java教程/">展开全文 >></a>
+          <a class="article-more-a" href="/2016/03/11/python2Variables/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="post-python1Introduction&amp;Installa" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/03/10/python1Introduction&Installa/">python1Introduction&amp;Install</a>
+    </h1>
+  
+
+        <a href="/2016/03/10/python1Introduction&Installa/" class="archive-article-date">
+  	<time datetime="2016-03-10T11:18:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-03-10</time>
+</a>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="Python-简介"><a href="#Python-简介" class="headerlink" title="Python 简介"></a>Python 简介</h3><p>Python 是一个有条理的和强大的面向对象的程序设计语言，类似于Perl, Ruby, Scheme, 或 Java.</p>
+<p>Python的一些显著特点：</p>
+<p>使用优美的语法，使你编写的程序更加易读。<br>一种易用的程序语言，使用她可以容易地编写出你的程序。这使得Python目标为原型开发和其他特别编程任务，同时不损害其可维护性。<br>一个大型的标准库支持许多常见编程任务,诸如连接到Web服务器、 正则表达式全文检索、阅读及修改文件。<br>Python的互交模式使她容易测试小片断的代码。也有一个叫做IDLE的捆绑式开发环境。<br>易于将新的模块扩展到如C或者C++的汇编语言中。<br>能过嵌入到一个应用程序，为应用程序提供可编程接口。<br>可以运行许多不同的计算机和操作系统：Windows, MacOS, 各种Unix发行版, OS/2, …<br>在以下两层意义中是免费的软件。不需要花费任何费用就可以下载、使用或者开发程序。虽然这个语言受著作权保护，但是遵循开发式源代码协议，因此Python也可以被自由修改和重新发布。<br>Python的编程语言特点：</p>
+<p>可以使用多种基本数据类型： 数字(浮动小数点，复数和无限长度的长整数)，字符串(ASCII和Unicode)，列表和字典。<br>Python支持类的面向对象的编程技术和多重继承性<br>代码可以被加载到模块和包中。<br>支持错误捕捉（原文The language supports raising and catching exceptions, resulting in cleaner error handling.）<br>数据类型strongly and dynamically typed。 混合的不相容的类型(e。g. 试图增加串和数字)将造成一个异常，如此错误被捕捉。<br>Python包含先进的编程特点如生成程序和列表。<br>Python的自动内存管理，把你从必须手工分配和释放内存的代码中解救出来。</p>
+<h3 id="Python-安装"><a href="#Python-安装" class="headerlink" title="Python 安装"></a>Python 安装</h3><p>Python提供了多个平台的版本，Windows, Linux/UNIX, Mac OS X, Other 你可以在 <a href="https://www.python.org/downloads/," title="Python Downloads" target="_blank" rel="external">Python Downloads</a>中找到</p>
+<h3 id="愉快的玩耍吧"><a href="#愉快的玩耍吧" class="headerlink" title="愉快的玩耍吧"></a>愉快的玩耍吧</h3><p>安装完后，打开控制台键入python你可以看到Python的版本信息等。和Python <strong>命令提示符&gt;&gt;&gt;</strong><br>一般学习新的一门语言都是从“Hello World！”开始的。直接键入<br><code>print(&#39;hello python!&#39;）</code><br>回车，你可以看到屏幕输出：<br><code>hello python！</code><br>你可以在上面随便输入<br><code>1+2</code><br>3<br><code>x = 2</code><br><code>y = 3</code><br><code>x + y</code><br>5</p>
+<h3 id="Python-IDE"><a href="#Python-IDE" class="headerlink" title="Python IDE"></a>Python IDE</h3><p>什么？场地不够大不能愉快的玩耍。恩，你需要一个集成开发环境,在下面地址中挑选一款喜欢的<br><a href="https://wiki.python.org/moin/IntegratedDevelopmentEnvironments," title="IDE" target="_blank" rel="external">IDE</a></p>
+<p>Python文件是以 .py 结尾的，新建文件如hello.py </p>
+<p><code>print(&#39;hello python!&#39;)</code></p>
+<p>然后bulid，控制台输出</p>
+<p><code>hello python!</code></p>
+<h3 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h3><p>单行注释用 <strong>#</strong><br>多行注释用 ‘’’注释内容’’’</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#print("comments")</span></div><div class="line"><span class="string">''</span><span class="string">'</span></div><div class="line">print("comments")</div><div class="line">print("other comments")</div><div class="line">'<span class="string">''</span></div></pre></td></tr></table></figure>
+<h3 id="脚本"><a href="#脚本" class="headerlink" title="脚本"></a>脚本</h3><p>可以把python当做一个可执行的脚本，</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/bin/env python3</span></div><div class="line"><span class="built_in">print</span>(<span class="string">'hello python!'</span>)</div></pre></td></tr></table></figure>
+<p>指定python3来解释执行,也可以用默认的python来执行。</p>
+<p>需要修改上面程序的权限为可执行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">chmod 755 hello.py</div></pre></td></tr></table></figure>
+<p>然后再命令行中，输入</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./hello.py</div></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list">
+			 
+        <li class="article-tag-list-item">
+        	<a href="javascript:void(0)" class="article-tag-list-link color2">Python</a>
+        </li>
+      
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<i class="icon-book icon"></i>
+	<a class="article-category-link" href="/categories/互联网/">互联网</a>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2016/03/10/python1Introduction&Installa/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="post-给糖or给棒" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/10/15/给糖or给棒/">给糖or给棒</a>
+    </h1>
+  
+
+        <a href="/2015/10/15/给糖or给棒/" class="archive-article-date">
+  	<time datetime="2015-10-15T11:18:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2015-10-15</time>
+</a>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>  在团队中，团队的成员大部分都是由自诩程序猿（并以此为豪）组成的。个别的测试人员不懂程序，<br>但他们也经常和程序猿混在一起。（一起吃饭，一起打野，一起撸串…）“按照他们喜欢的被管理的方式去管理”<br>这样的黄金法则对他们是很适用的。</p>
+<p>  程序猿向往自由，不喜欢太多（一点也不）的约束。有时候和公司的制度很难走到一起。他们不喜欢条条框框<br>的东西，也不擅长这些东西。相反，他们更愿意把时间花在研究技术上面。他们工作起来还是很专注的，兢兢<br>业业的！在最近还是学到了不少好的管理方法，值得记录下来。</p>
+<p>  在开周会上，A君汇报了这周的工作，得到了肯定，获得了表杨。B君和A君是相同的职务，这周表现平平<br>。到了下周，A君自信满满，以为还能获得表扬。这时，即使A君工作的再好也不当在表扬了。在表扬会使A君<br>过度膨胀，B君更加消沉，并非好事。此时应该多鼓励B君，适当忽略A君，并对A提更高的要求。</p>
+<p>  之前看过一个故事，大体的意思是这样的。一个工厂里有甲乙两个生产队，管理者因为生产效率上不去而犯愁。<br>于是有人出点子，当甲生产队工作时，在里面立牌子赞扬乙生产队效率高。结果甲的生产效率上去了。相反，当乙生产队工作时，在里面立牌子赞扬<br>甲生产队效率高。结果乙的生产效率也提高了。这个故事恰恰反映了国人的心理，输人不输阵！</p>
+<p>  管理好他们能带来很好的效果。合适的“给糖”，能提高效率。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list">
+			 
+        <li class="article-tag-list-item">
+        	<a href="javascript:void(0)" class="article-tag-list-link color4">项目管理，软技能</a>
+        </li>
+      
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<i class="icon-book icon"></i>
+	<a class="article-category-link" href="/categories/互联网/">互联网</a>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2015/10/15/给糖or给棒/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="post-行之有效的站会" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/09/10/行之有效的站会/">行之有效的站会</a>
+    </h1>
+  
+
+        <a href="/2015/09/10/行之有效的站会/" class="archive-article-date">
+  	<time datetime="2015-09-10T11:19:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2015-09-10</time>
+</a>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>  最近项目很赶，需要有效的让每个人点后知晓最新项目状态、遇到的困难和发现潜在的障碍。<br>于是我就提出来，每天早上九点半(吃好早餐，做充分的准备)开始站会，时间控制在15分钟左右。<br>每个人依次阐述三个预定的问题：</p>
+<ol>
+<li>昨天我完成了什么？</li>
+<li>今天要去做什么？</li>
+<li><p>团队遇到了什么阻力？</p>
+<p>这样可以快速的了解昨天的进度，今天的计划是否按原定计划走，团队遇到的困难需要及时协助<br>解决的。以防在上面花费了过多的时间。当项目赶时，时间就决定了项目能否按时交付。</p>
+<p>在实施过程中，偶尔出现了昨天的任务有个别落下的，今天优先处理落下的任务，再提高效率把今天<br>的完成。今天要去做什么，主要是明确今天的任务，以防有落掉的。在忙起来的时候，工程师还真会把<br>任务落掉！团队遇到了什么阻力？主要还是出现了衔接的问题。流水线工作，上游的工作进度直接影响<br>了下游的工作进度。这就需要在统筹优先级。还有就是一些第三方的要提前申请，以免外界不可控的因素<br>影响了整个项目的进度。</p>
+</li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list">
+			 
+        <li class="article-tag-list-item">
+        	<a href="javascript:void(0)" class="article-tag-list-link color4">项目管理，软技能</a>
+        </li>
+      
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<i class="icon-book icon"></i>
+	<a class="article-category-link" href="/categories/互联网/">互联网</a>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2015/09/10/行之有效的站会/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="post-App-store转让App" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/08/22/App-store转让App/">App-store转让App</a>
+    </h1>
+  
+
+        <a href="/2015/08/22/App-store转让App/" class="archive-article-date">
+  	<time datetime="2015-08-22T07:44:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2015-08-22</time>
+</a>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>有时候需要转让App到别的账号下，需要注意的是只有符合条件的App才能转让。<br>由于App store里面应用名字的唯一性，当你新建了应用还没来得急上传，想把它过度到另外账号下只能等第一个版本审核<br>通过后才能操作。<br><img src="/2015/08/22/App-store转让App/1.png" alt="1.png" title=""></p>
+<h3 id="符合条件的才行"><a href="#符合条件的才行" class="headerlink" title="符合条件的才行"></a>符合条件的才行</h3><img src="/2015/08/22/App-store转让App/2.png" alt="2.png" title="">
+<h3 id="填写账号"><a href="#填写账号" class="headerlink" title="填写账号"></a>填写账号</h3><img src="/2015/08/22/App-store转让App/3.png" alt="3.png" title="">
+<h3 id="Team-ID在这"><a href="#Team-ID在这" class="headerlink" title="Team ID在这"></a>Team ID在这</h3><img src="/2015/08/22/App-store转让App/4.png" alt="4.png" title="">
+<h3 id="同意就行"><a href="#同意就行" class="headerlink" title="同意就行"></a>同意就行</h3><img src="/2015/08/22/App-store转让App/5.png" alt="5.png" title="">
+<h3 id="登录另一个账号"><a href="#登录另一个账号" class="headerlink" title="登录另一个账号"></a>登录另一个账号</h3><img src="/2015/08/22/App-store转让App/6.png" alt="6.png" title="">
+<p>填写信息，接收就可以了。应用马上就过来了，但App store上的信息还要等apple 服务器同步才行。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list">
+			 
+        <li class="article-tag-list-item">
+        	<a href="javascript:void(0)" class="article-tag-list-link color5">iTunesconnect,</a>
+        </li>
+      
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<i class="icon-book icon"></i>
+	<a class="article-category-link" href="/categories/app-store/">App store</a>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2015/08/22/App-store转让App/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="post-Best Practices for IT Project Managers" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/06/02/Best Practices for IT Project Managers/">Best Practices for IT Project Managers</a>
+    </h1>
+  
+
+        <a href="/2015/06/02/Best Practices for IT Project Managers/" class="archive-article-date">
+  	<time datetime="2015-06-02T11:43:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2015-06-02</time>
+</a>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>–Posted by:  Jenna Puckett</p>
+<p>Depending on which “shocking project management statistics” article you read, you’ll find failure rates for large IT projects range anywhere from 31 and 96 percent. Like a game of telephone, you never know what abysmal results consultants will reveal when surveying technology project budgets, schedules and objectives.</p>
+<p>Regardless of the exact percentage though, the message is clear: Too many IT projects fail.</p>
+<p>Project management vs project management for IT teams<br>IT project management is a nuanced and complex branch of project management. Traditional project management endeavors often result in tangible results—a space station is built, damage from a natural disaster is recovered, the Olympic Games are played.</p>
+<p>But IT project managers must bring an organization’s information technology goals to fruition through detailed tasks such as:</p>
+<p>Upgrading networks<br>Merging multiple databases<br>Removing outdated servers<br>Installing new hardware<br>Deploying virtualization<br>Creating new desktop images<br>Developing custom websites or software<br>Implementing business analytics or cloud computing services<br>Successfully merging multiple databases in order to improve customer service is not nearly as grandiose to the non-technical as a new product launch. But that doesn’t mean it’s any less important. Although IT projects require the five process groups universal to all projects—initiation, planning, execution, monitoring and controlling—they are further complicated by unique business and industry challenges.</p>
+<p>Why IT projects fail<br>When 36 – 91 percent of IT projects fail, such a wide percentage gap begs the question: Do a large number of IT projects fail, or do we only hear about the bad news?</p>
+<p>Unfortunately, even if it’s exaggerated, IT project failure is far from occasional.</p>
+<p>This is because in addition to usual project challenges, IT project managers are further plagued by shifting business needs and constantly evolving technology. They must address:</p>
+<p>Technology advances during the project’s execution<br>Infrastructure changes that impact security and data management<br>Interoperability issues, vendor configuration changes, and unknown dependencies between hardware, software, networks or data<br>The first-time, first-use penalty which is the learning curve you must overcome when you do something new for the first time. There is almost always a first-time first-use scenario somewhere in an IT project, yet it’s often dismissed as a non-issue.<br>IT project managers should follow the best practices outlined below to overcome the complexity and variability of IT systems and reduce the risk of costly rework.</p>
+<p>Develop a standard process<br>Establishing a repeatable method may seem like Project Management 101, and that’s because it is. Yet failure to follow a streamlined process is a common mistake that increases the risk associated with IT projects. If you have no baseline standards or defined phases to move the project forward, then you lack the ability to measure—and even define—project success.</p>
+<p>A standard project methodology eliminates many issues that can snowball out of control later, such as failure to define project scope, necessary roles and associated responsibilities. Clearly defined project objectives and requirements lay the foundation for a realistic plan with effective handoffs between teams and work phases—which leads to a successful project. If your problem isn’t defined, then you can’t create a project that project solves it.</p>
+<p>Reinforce your process<br>Once you have a streamlined workflow, invest in technology and IT software that bolsters it. Project management tools help centralize all project-related information, which increases visibility across the project, and provides valuable historical data.</p>
+<p>These systems help IT project managers and team leaders see what everyone is working on, so they know if a project is moving forward, or if additional tasks can be assigned. This visibility also increases communication and keeps everyone focused on a common goal. Analytics and simple data visualizations help show important project information as it happens, so teams can immediately take corrective action if a project veers off course.</p>
+<p>When project details are spread across multiple spreadsheets, apps, and inboxes, it leads to conflicting data, inaccurate information, and status reports that are outdated as soon as they’re pulled. Project management software provides a single source for information, which not only helps monitor current initiatives, but can be used to accurately document progress and lessons learned, which improves resource planning for future projects.</p>
+<p>Hire the right people<br>You need a team capable of executing your project plan; no amount of planning or technology will overcome a shortage of necessary skills. Again, the right project management platform can help provide visibility into the skills and workloads of your team, and also help evaluate performance and assess skills for future work. If you don’t have the necessary skills available, considering outsourcing or hiring a consultant to contribute to the project. Another option is to reallocate resources to a different initiative, while you search for IT staff to add to your in-house team.</p>
+<p>Communicate openly<br>Companies often rely on technology to gain a competitive edge. But pressure to cut costs or meet strict deadlines can lead to unrealistic project expectations, and ultimately failure. A rushed software implementation can result in lack of user adoption, loss of business if rolled out during a busy season, and inadequate system testing. It’s an IT project manager’s job to push back on unreasonable deadlines or scope and clearly communicate the associated risks to project stakeholders.</p>
+<p>Maintain core competencies<br>Above all else, it’s critical that IT project managers stay up to date on the essential project management knowledge areas: scope, schedule, costs, quality, HR, communications, risk, procurement, stakeholder, and integration management. Aside from procurement, these are present in all IT projects, so managers should be prepared to shift to the competency that is analogous to the project’s current needs.</p>
+<p>Don’t contribute to the latest shocking project failure rates. Follow these best practices to successfully handle the complexity and variety of IT initiatives.</p>
+<p>Here’s another important skill to master when you’re managing technical projects: being able to make accurate project estimates. It’s an art, a science; it takes practice and trial-and-error. If you can get it right, you’ll be the star of your organization. To learn more, download our eBook, “5 Best Practices for Accurate Project Estimates.”</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list">
+			 
+        <li class="article-tag-list-item">
+        	<a href="javascript:void(0)" class="article-tag-list-link color4">项目管理，软技能</a>
+        </li>
+      
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<i class="icon-book icon"></i>
+	<a class="article-category-link" href="/categories/互联网/">互联网</a>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2015/06/02/Best Practices for IT Project Managers/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="post-5 Best Practices for Managing Large IT Projects" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/04/15/5 Best Practices for Managing Large IT Projects/">5 Best Practices for Managing Large IT Projects</a>
+    </h1>
+  
+
+        <a href="/2015/04/15/5 Best Practices for Managing Large IT Projects/" class="archive-article-date">
+  	<time datetime="2015-04-15T11:18:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2015-04-15</time>
+</a>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>–Posted by: Susanne Madsen</p>
+<p>If you’re embarking on a large technology project, there’s a lot at stake. IT projects are technically challenging and can easily go on for more than 10 or 12 months. Team members are highly specialized and are often spread between different locations and across time zones.</p>
+<p>According to a McKinsey &amp; Company article, “Delivering large-scale IT projects on time, on budget, and on value” by Michael Bloch, Sven Blumberg, and Jürgen Laartz, the average large IT projects run 45 percent over budget and 7 percent over time, while delivering 56 percent less value than predicted.  Some of these mismanaged projects can put the whole organization in jeopardy.</p>
+<p>You don’t want to be part of that losing statistic. In order to get a head start and be successful in managing a large-scale IT venture, here are five important considerations to put into action when leading a technical project that has a lot at stake for a lot of people.</p>
+<p>Have a strong technical lead<br>Large technology projects are complex and often require that multiple technologies and components are designed and integrated into a tailored solution. Such projects contain a lot of uncertainty and rarely go according to plan as new information emerges throughout the project’s lifecycle. In order for the project to be successful, you must have access to a strong technical lead who you can rely on to manage this complexity. Without a strong technical, lead the project’s foundation will be weak; and you, as the project manager will be forced to make decisions and plan the project based on poor information.</p>
+<p>Consider the following questions when choosing a strong technical lead:</p>
+<p>How strong is the technical lead on your current project?<br>Does the person have a track record of successfully managing challenging technical solutions?<br>If not, what can you do to mitigate this risk?<br>To what extent are you able to influence who gets selected as technical lead?<br>Have a solid project management process in place<br>Because large IT projects are risky, complex and carry a significant budget, they require a more structured project management process than smaller projects. I coach many project managers who improvise when it comes to project management processes. As a result, they end up firefighting and dealing with the fallout of poor planning. On a large project you’ll lose control very quickly if you’re not sufficiently structured.</p>
+<p>To succeed at managing your IT project, have an agreed method for defining requirements, estimating and planning work, identifying and managing risks, escalating issues, managing changes and reporting progress. Better yet, have project management software that works for your organization and the needs of your clients. You can’t rely on chance or goodwill to get through a complex project.</p>
+<p>Questions to consider:</p>
+<p>Are your project management processes sufficiently defined?<br>Does your project management platform or process help your team manage all the complexities of a large IT project?<br>Have you validated the project management processes with your colleagues?<br>Have you learned from similar projects in the past?<br>Be iterative<br>Agile has been a buzzword for several years and has even spread to industries outside of technology circles where Agile was first invented. Many managers are keen to jump onto the Agile bandwagon and to switch from a Waterfall to an Agile delivery method. But the question isn’t whether your project should be Agile or not. That’s like asking if you should live in a skyscraper in the city or a farmhouse in the countryside without considering all the options in between!</p>
+<p>Whereas some IT projects will benefit from making use of Agile practices, many are simply too large to be fully Agile. It’s more useful to ask how flexible your approach should be. The traditional Waterfall methodology can be risky, as the customer only gets to see and interact with the product at the end of the project. With Agile’s iterative development, you split the project into discrete phases that each conclude with a tangible deliverable. It’s a great way to manage complexity for large IT projects that aren’t suited to a fully Agile structure.</p>
+<p>Questions to consider:</p>
+<p>In which ways are you moving away from a Waterfall methodology and allowing for a flexible approach?<br>How many phases will your project consist of and in which ways will you deliver your product incrementally?<br>Which method works best for your organization and your customers’/clients’ needs?<br>To help you decide between Agile and Waterfall read this article  or check out this infographic.</p>
+<p>Be impeccable with system integration testing<br>Multiple components need to be designed and integrated on large technology projects, which means testing is always imperative. Some teams rely on their developers for testing the solution, but in reality no one is great at QA’ing their own work. The best option will always be a dedicated test team. Allocate time in the schedule for this essential activity.</p>
+<p>On some projects testing is left for the users to carry out, but the result can be detrimental as the users reject the product based on too many errors. User testing should be a high-level validation of the product rather than a system test.</p>
+<p>Questions to consider:</p>
+<p>Have you allocated enough time in the schedule for integration and system testing of the product before it’s passed over to the users for validation?<br>Does your test team consist of experienced testers rather than developers or users?<br>How will you know when the QA is complete and can move on?<br>Have an approved decision-making structure<br>On large IT projects, the landscape can quickly change as unexpected technical problems occur. Decisions need to be made in a timely and effective manner; there’s really no room for hold-ups and for teams to wait for direction. You need effective decision-making at every level, especially since large IT projects means you’re probably working with multiple teams in multiple locations.</p>
+<p>You can keep the decision-making process active by organizing weekly working group meeting(s) for team leads, in addition to monthly steering committee meetings for executives. The purpose of the working group meetings is for team leads and business leads to make decisions about detailed requirements and imminent issues. The purpose of the more infrequent steering committee meetings is to inform the committee about progress and for the executive sponsor to make decisions escalated by the working group. Many projects fail due to lack of buy-in and access to decision-makers. A locked down decision-making structure is one of the best ways to mitigate that.</p>
+<p>Questions to consider:</p>
+<p>What is the decision-making structure on your project?<br>Is it effective?<br>Are the representatives empowered to make decisions at their level on behalf of their respective teams and business areas?<br>Large IT projects are too big, risky and complex to simply rely on the team to roll up their sleeves and get on with the work. These types of projects have to be particularly well staffed, planned, executed and quality controlled in order to be successful. Make sure you know all the considerations you need to think through before launching your project and during the life of it.</p>
+<p>Managing resources effectively is another important skill when it comes to successfully leading large IT projects. To learn more, download our eBook, “5 Best Practices to Manage Project Resources Effectively.”</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list">
+			 
+        <li class="article-tag-list-item">
+        	<a href="javascript:void(0)" class="article-tag-list-link color4">项目管理，软技能</a>
+        </li>
+      
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<i class="icon-book icon"></i>
+	<a class="article-category-link" href="/categories/互联网/">互联网</a>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2015/04/15/5 Best Practices for Managing Large IT Projects/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="post-10 Steps to Manage Your Budget When the Scope Changes" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/01/16/10 Steps to Manage Your Budget When the Scope Changes/">10 Steps to Manage Your Budget When the Scope Changes</a>
+    </h1>
+  
+
+        <a href="/2015/01/16/10 Steps to Manage Your Budget When the Scope Changes/" class="archive-article-date">
+  	<time datetime="2015-01-16T11:18:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2015-01-16</time>
+</a>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>–Posted by:  Tim Clark</p>
+<p>If your budget is the roadmap to completing the project, what happens when the destination changes? You assess where you are, and how you got there, then redo the budget to complete the journey. Managing resources is filled with surprises.</p>
+<p>Change orders in projects are the norm, not the exception, so the seasoned project manager won’t be stumped by recasting the budget to account for altered objectives. How well you can adjust your budget to a scope change depends on how well you budgeted the project in the first place.</p>
+<p>Here are 10 steps to updating your project budget when the project scope changes.</p>
+<ol>
+<li>Start with the work completed.<br>See how the project plan looks when you add the new objectives. How many more resources do you need? Then see what can be tweaked to keep you on or close to budget with the new objectives, e.g., removing nice-to-have features from a software project.</li>
+</ol>
+<p>If some completed work can’t be used, don’t jettison it too quickly. Put that work on hold—you never know when objectives may change again, and your management may be able to collect for work completed from the customer.</p>
+<ol>
+<li><p>Compare your budget to actual spending.<br>Identify how much of the original budget has been spent, and how much remains. If you’re using a good project management tool you should be able to figure this out pretty quickly.  This information gives you a reality check of where you stand versus budget.  And don’t forget: Focus on the big variances from budget; don’t sweat the small stuff.</p>
+</li>
+<li><p>Scrutinize scope.<br>Assess whether the change order affects your deliverables, and if it consequently affects the resources to produce those deliverables.</p>
+</li>
+<li><p>Determine how the change order will affect costs.<br>Project change orders often come with an updated budget—so you could be facing more money allocated, or less. Either way, the project manager’s approach doesn’t differ greatly here (except maybe in the stress department). Bottom line: Determine how much funding is needed to achieve the new objectives.</p>
+</li>
+<li><p>Negotiate with your client.<br>Once you know how much your project will cost to complete with the change order, it’s time to let the client know. This probably means some negotiation is going to take place. Whoever is asking for the changes might start from a weakened position, especially when the unsaid part of the conversation is, Why didn’t you ask for this in the first place? At this point you can negotiate on the budget or the scope—or both. If you’ve done your homework, bring up any specific elements of the deliverables that would be difficult or costly. Give the client the full picture and try to make the conversation show that you’re in this together, and not working against each other.</p>
+</li>
+<li><p>Renegotiate with outside contractors if needed.<br>If the change increases project scope, you might need to hire outside resources. If the budget is slashed, you face the delicate task of reducing the amount of work for your contractors, and even laying some off, while keeping the team motivated and focused on meeting the new deliverables.</p>
+</li>
+<li><p>Be transparent.<br>Keep your team informed of all change orders and budget updates. Team members want to know how the changes will affect them. Let them know so they can focus on their work, rather than worrying about what’s going to become of the project (and their contribution to it). Furthermore, when you’re open about scope changes, team members can contribute ideas and solutions.</p>
+</li>
+<li><p>Design a new work plan.<br>Keep your team focused on the new deliverables. Use a project planning software to outline the plan so individuals can recalibrate what they must do and when they need to finish their work by.</p>
+</li>
+<li><p>Continue to manage project scope.<br>The change order gives the project a new scope, but that doesn’t mean you’re immune from any future scope creep that can wreak havoc on your budget. Try to put yourself in a proactive position, rather than a reactive one.</p>
+</li>
+<li><p>Manage client expectations.<br>A change order process can make your client more anxious than usual to see how you deliver. Keep your client updated and communicate clearly about how the project is progressing—and how any possible glitches might affect the timeline. The first few status meetings or reports after a change order take on greater importance for the project manager, team, client and your organization. The more you stay in touch with your client, the fewer unpleasant surprises you have to deliver. Which is good for everyone.</p>
+</li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list">
+			 
+        <li class="article-tag-list-item">
+        	<a href="javascript:void(0)" class="article-tag-list-link color4">项目管理，软技能</a>
+        </li>
+      
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<i class="icon-book icon"></i>
+	<a class="article-category-link" href="/categories/互联网/">互联网</a>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2015/01/16/10 Steps to Manage Your Budget When the Scope Changes/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="post-Cornerstone-ignore-UserInterfaceState.xcuserstate" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/11/21/Cornerstone-ignore-UserInterfaceState.xcuserstate/">Cornerstone ignore UserInterfaceState.xcuserstate</a>
+    </h1>
+  
+
+        <a href="/2014/11/21/Cornerstone-ignore-UserInterfaceState.xcuserstate/" class="archive-article-date">
+  	<time datetime="2014-11-21T09:18:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2014-11-21</time>
+</a>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在控制台 <em>cd</em> 到项目目录下<br><em>svn -v status</em> 查看文件的状态(M):</p>
+<p>M   33769    33757 xxx         XXX.xcworkspace/xcuserdata/XXX.xcuserdatad/UserInterfaceState.xcuserstate</p>
+<pre><code>svn delete --keep-local --force xcuserdata/user.xcuserdatad/UserInterfaceState.xcuserstate
+</code></pre><p>此时，Cornerstone会显示它的状态为”？”,右键Ignore。解决了，世界清静了:]</p>
+<p><strong>PS:</strong><br>added <em>.xcuserstate to the Global Ignores<br>    (Cornerstone -&gt; Preferences -&gt; Subversion -&gt; turn off Use default global ignores -&gt; add “\</em>.xcuserstate”)</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list">
+			 
+        <li class="article-tag-list-item">
+        	<a href="javascript:void(0)" class="article-tag-list-link color1">xcode</a>
+        </li>
+       
+        <li class="article-tag-list-item">
+        	<a href="javascript:void(0)" class="article-tag-list-link color4">svn</a>
+        </li>
+       
+        <li class="article-tag-list-item">
+        	<a href="javascript:void(0)" class="article-tag-list-link color4">tutorial</a>
+        </li>
+      
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2014/11/21/Cornerstone-ignore-UserInterfaceState.xcuserstate/">展开全文 >></a>
         </p>
       
 
@@ -411,7 +917,7 @@
   
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
+      <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
     </nav>
   
 
@@ -552,6 +1058,22 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="color5">tag1</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="color3">管理</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="color5">设计模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="color4">项目管理，软技能</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="color1">xcode</a>
               </li>
              
@@ -572,47 +1094,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="color2">swift,</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="color3">iOS MDM</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="color4">新鲜事</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="color3">管理</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="color3">迭代</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="color4">iOS</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="color5">tag1</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="color4">教程, Java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="color1">教程, Objective-C</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="color5">教程, Objective-C，布道师</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="color4">教程, Objective-C，引道</a>
+                <a href="javascript:void(0)" class="color4">教程, Python，引道</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -620,7 +1102,43 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="color4">教程, Python，引道</a>
+                <a href="javascript:void(0)" class="color3">架构</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="color2">swift,</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="color4">iOS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="color2">Python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="color5">SQL, 性能优化</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="color3">iOS MDM</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="color3">迭代</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="color4">教程, Objective-C，引道</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="color4">新鲜事</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="color5">权限设计</a>
               </li>
              
               <li class="article-tag-list-item">

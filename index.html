@@ -615,31 +615,58 @@
 
 
   
-    <article id="post-App-store转让App" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-python17 django" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2015/08/22/App-store转让App/">App-store转让App</a>
+      <a class="article-title" href="/2016/03/28/python17 django/">python17 django</a>
     </h1>
   
 
-        <a href="/2015/08/22/App-store转让App/" class="archive-article-date">
-  	<time datetime="2015-08-22T07:44:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2015-08-22</time>
+        <a href="/2016/03/28/python17 django/" class="archive-article-date">
+  	<time datetime="2016-03-28T11:34:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-03-28</time>
 </a>
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>有时候需要转让App到别的账号下，需要注意的是只有符合条件的App才能转让。<br>由于App store里面应用名字的唯一性，当你新建了应用还没来得急上传，想把它过度到另外账号下只能等第一个版本审核<br>通过后才能操作。<br><img src="/2015/08/22/App-store转让App/1.png" alt="1.png" title=""></p>
-<h3 id="符合条件的才行"><a href="#符合条件的才行" class="headerlink" title="符合条件的才行"></a>符合条件的才行</h3><img src="/2015/08/22/App-store转让App/2.png" alt="2.png" title="">
-<h3 id="填写账号"><a href="#填写账号" class="headerlink" title="填写账号"></a>填写账号</h3><img src="/2015/08/22/App-store转让App/3.png" alt="3.png" title="">
-<h3 id="Team-ID在这"><a href="#Team-ID在这" class="headerlink" title="Team ID在这"></a>Team ID在这</h3><img src="/2015/08/22/App-store转让App/4.png" alt="4.png" title="">
-<h3 id="同意就行"><a href="#同意就行" class="headerlink" title="同意就行"></a>同意就行</h3><img src="/2015/08/22/App-store转让App/5.png" alt="5.png" title="">
-<h3 id="登录另一个账号"><a href="#登录另一个账号" class="headerlink" title="登录另一个账号"></a>登录另一个账号</h3><img src="/2015/08/22/App-store转让App/6.png" alt="6.png" title="">
-<p>填写信息，接收就可以了。应用马上就过来了，但App store上的信息还要等apple 服务器同步才行。</p>
+        <p>mac自带的python版本是2.7的，现在最新的是3.6的。因为系统自带的2.7版本的Xcode会用到，不建议替换掉。从新下载最新的安装，启动2.7的就直接python，启动3.6的就python3。如此一来就方便了。</p>
+<p>mac自带了pip，但由于版本太低需要升级在安装</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pip3 install --upgrade pip</div></pre></td></tr></table></figure>
+<p>安装django</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pip3 install django</div></pre></td></tr></table></figure>
+<p>安装完成以后，启动python3，引入django包。打印django版本。至此安装django成功。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Mac-mini:Django adu$ python3</div><div class="line">Python 3.6.1 (v3.6.1:69c0db5050, Mar 21 2017, 01:21:04) </div><div class="line">[GCC 4.2.1 (Apple Inc. build 5666) (dot 3)] on darwin</div><div class="line">Type <span class="string">"help"</span>, <span class="string">"copyright"</span>, <span class="string">"credits"</span> or <span class="string">"license"</span> <span class="keyword">for</span> more information.</div><div class="line">&gt;&gt;&gt; import django</div><div class="line">&gt;&gt;&gt; <span class="built_in">print</span>(django.get_version())</div><div class="line">2.0</div></pre></td></tr></table></figure>
+<h3 id="创建第一个django项目"><a href="#创建第一个django项目" class="headerlink" title="创建第一个django项目"></a>创建第一个django项目</h3><p>使用 django-admin.py 来创建 HelloDjango 项目：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">django-admin.py startproject HelloDjango</div></pre></td></tr></table></figure>
+<p>目录说明：<br>HelloDjango: 项目的容器。<br>manage.py: 一个实用的命令行工具，可让你以各种方式与该 Django 项目进行交互。<br>HelloDjango/<strong>init</strong>.py: 一个空文件，告诉 Python 该目录是一个 Python 包。<br>HelloDjango/settings.py: 该 Django 项目的设置/配置。<br>HelloDjango/urls.py: 该 Django 项目的 URL 声明; 一份由 Django 驱动的网站”目录”。<br>HelloDjango/wsgi.py: 一个 WSGI 兼容的 Web 服务器的入口，以便运行你的项目。<br>接下来我们进入 HelloDjango 目录输入以下命令，启动服务器：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">python3 manage.py runserver</div></pre></td></tr></table></figure>
+<p>启动成功输出</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">Performing system checks...</div><div class="line"></div><div class="line">System check identified no issues (0 silenced).</div><div class="line"></div><div class="line">You have 14 unapplied migration(s). Your project may not work properly until you apply the migrations <span class="keyword">for</span> app(s): admin, auth, contenttypes, sessions.</div><div class="line">Run <span class="string">'python manage.py migrate'</span> to apply them.</div><div class="line"></div><div class="line">June 06, 2017 - 08:11:05</div><div class="line">Django version 2.0, using settings <span class="string">'Django.settings'</span></div><div class="line">Starting development server at http://127.0.0.1:8000/</div><div class="line">Quit the server with CONTROL-C.</div><div class="line">[06/Jun/2017 08:11:22] <span class="string">"GET / HTTP/1.1"</span> 200 1699</div><div class="line">Not Found: /favicon.ico</div><div class="line">[06/Jun/2017 08:11:22] <span class="string">"GET /favicon.ico HTTP/1.1"</span> 404 1961</div></pre></td></tr></table></figure>
+<p>在浏览器输入你服务器的ip及端口号，如果正常启动，输出结果如下：</p>
+<img src="/2016/03/28/python17%20django/1.png" alt="1.png" title="">
+<h3 id="视图和-URL-配置"><a href="#视图和-URL-配置" class="headerlink" title="视图和 URL 配置"></a>视图和 URL 配置</h3><p>在先前创建的 HelloDjango 目录下的 HelloDjango 目录新建一个 view.py 文件，并输入代码：<br>HelloDjango/HelloDjango/view.py 文件代码：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">from django.http import HttpResponse</div><div class="line"> </div><div class="line">def hello(request):</div><div class="line">    <span class="built_in">return</span> HttpResponse(<span class="string">"Hello django ! "</span>)</div></pre></td></tr></table></figure></p>
+<p>接着，绑定 URL 与视图函数。打开 urls.py 文件，删除原来代码，将以下代码复制粘贴到 urls.py 文件中：<br>HelloDjango/HelloDjango/urls.py 文件代码：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">from django.conf.urls import url</div><div class="line"> </div><div class="line">from . import view</div><div class="line"> </div><div class="line">urlpatterns = [</div><div class="line">    url(r<span class="string">'^$'</span>, view.hello),</div><div class="line">]</div></pre></td></tr></table></figure></p>
+<p>完成后，启动 Django 开发服务器，并在浏览器访问打开浏览器并访问：</p>
+<img src="/2016/03/28/python17%20django/2.png" alt="2.png" title="">
+<p>我们也可以修改以下规则：</p>
+<p>HelloDjango/HelloDjango/urls.py 文件代码：</p>
+<p>from django.conf.urls import url</p>
+<p>from . import view</p>
+<p>urlpatterns = [<br>    url(r’^helloview$’, view.hello),<br>]</p>
+<p>通过浏览器打开 <a href="http://127.0.0.1:8000/helloview，输出结果如下：" target="_blank" rel="external">http://127.0.0.1:8000/helloview，输出结果如下：</a></p>
+<img src="/2016/03/28/python17%20django/3.png" alt="3.png" title="">
+<p>注意：项目中如果代码有改动，服务器会自动监测代码的改动并自动重新载入，所以如果你已经启动了服务器则不需手动重启。</p>
+<h3 id="url-函数"><a href="#url-函数" class="headerlink" title="url() 函数"></a>url() 函数</h3><p>Django url() 可以接收四个参数，分别是两个必选参数：regex、view 和两个可选参数：kwargs、name，接下来详细介绍这四个参数。</p>
+<ul>
+<li>regex: 正则表达式，与之匹配的 URL 会执行对应的第二个参数 view。</li>
+<li>view: 用于执行与正则表达式匹配的 URL 请求。</li>
+<li>kwargs: 视图使用的字典类型的参数。</li>
+<li>name: 用来反向获取 URL。</li>
+</ul>
 
       
 
@@ -653,7 +680,7 @@
 		<ul class="article-tag-list">
 			 
         <li class="article-tag-list-item">
-        	<a href="javascript:void(0)" class="article-tag-list-link color5">iTunesconnect,</a>
+        	<a href="javascript:void(0)" class="article-tag-list-link color2">Python</a>
         </li>
       
 		</ul>
@@ -662,13 +689,13 @@
       
 	<div class="article-category tagcloud">
 	<i class="icon-book icon"></i>
-	<a class="article-category-link" href="/categories/app-store/">App store</a>
+	<a class="article-category-link" href="/categories/互联网/">互联网</a>
 	</div>
 
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2015/08/22/App-store转让App/">展开全文 >></a>
+          <a class="article-more-a" href="/2016/03/28/python17 django/">展开全文 >></a>
         </p>
       
 
@@ -686,29 +713,36 @@
 
 
   
-    <article id="post-Cornerstone-ignore-UserInterfaceState.xcuserstate" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-python16 Classes" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2014/11/21/Cornerstone-ignore-UserInterfaceState.xcuserstate/">Cornerstone ignore UserInterfaceState.xcuserstate</a>
+      <a class="article-title" href="/2016/03/26/python16 Classes/">python16 Classes</a>
     </h1>
   
 
-        <a href="/2014/11/21/Cornerstone-ignore-UserInterfaceState.xcuserstate/" class="archive-article-date">
-  	<time datetime="2014-11-21T09:18:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2014-11-21</time>
+        <a href="/2016/03/26/python16 Classes/" class="archive-article-date">
+  	<time datetime="2016-03-26T11:31:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-03-26</time>
 </a>
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>在控制台 <em>cd</em> 到项目目录下<br><em>svn -v status</em> 查看文件的状态(M):</p>
-<p>M   33769    33757 xxx         XXX.xcworkspace/xcuserdata/XXX.xcuserdatad/UserInterfaceState.xcuserstate</p>
-<pre><code>svn delete --keep-local --force xcuserdata/user.xcuserdatad/UserInterfaceState.xcuserstate
-</code></pre><p>此时，Cornerstone会显示它的状态为”？”,右键Ignore。解决了，世界清静了:]</p>
-<p><strong>PS:</strong><br>added <em>.xcuserstate to the Global Ignores<br>    (Cornerstone -&gt; Preferences -&gt; Subversion -&gt; turn off Use default global ignores -&gt; add “\</em>.xcuserstate”)</p>
+        <p>Python类教程解释Python中的类和面向对象编程。</p>
+<p>我不会骗你的。如果你从未有过面向对象编程（OOP）的经验，接下来的几篇教程将相当复杂。由于一些原因，类是真棒。首先，它们帮助您重用代码，而不是在程序的其他地方复制代码。当你意识到你想要改变一个函数时，类将挽救你的生命。你只需要它在一个点，而不是10个不同的点改变略有不同的代码。类的另一个重要部分是，它们允许您创建更灵活的函数。首先，我们需要弄得手脏兮兮的，然后想出如何做一个类。</p>
+<h3 id="在Python中创建类"><a href="#在Python中创建类" class="headerlink" title="在Python中创建类"></a>在Python中创建类</h3><p>例子</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#ClassOne.py </span></div><div class="line"></div><div class="line">class Calculator(object):</div><div class="line"></div><div class="line">    <span class="comment">#define class to simulate a simple calculator</span></div><div class="line"></div><div class="line">    def __init__ (self):</div><div class="line"></div><div class="line">        <span class="comment">#start with zero</span></div><div class="line"></div><div class="line">        self.current = 0</div><div class="line"></div><div class="line">    def add(self, amount):</div><div class="line"></div><div class="line">        <span class="comment">#add number to current</span></div><div class="line"></div><div class="line">        self.current += amount</div><div class="line"></div><div class="line">    def getCurrent(self):</div><div class="line"></div><div class="line">        <span class="built_in">return</span> self.current</div></pre></td></tr></table></figure>
+<p>现在，我不会像其他人一样，开始用术语轰炸你。坦率地说，面向对象编程对于初学者来说是相当困难的，把这些抽象概念扔给你只会让你学得更慢，更讨厌OOP。所以，类有点像函数。我们只是建立它使用<em>class</em>关键字，并跟在后面的是我们想要命名的类。在我们的例子中，我们正在做一个计算器，所以就用它来命名。很直白吧！接下来，我们抛出<em>object</em>的论点。这仅仅是这个类上面的一个类。不要太担心它。它涉及一些严肃的术语来解释。所以，只要输入它，我们稍后再谈。</p>
+<p>接下来，我们进入了这个小家伙，<em>def <strong>init</strong>（self):</em>。抽象概念时间！对象由类构成。所以，如果我们有一个班级叫蛋糕。我们可以做蛋糕对象。然而，每当你做蛋糕的时候，它和你以前做的蛋糕不一样。当然，它看起来像它和味道一样，但它不是相同的蛋糕。所以，在我们班，我们有实例，我们知道他们是两个不同的蛋糕。你问我们为什么需要这个？好吧，我们从同一个班级做两个蛋糕。现在，我咬了一口蛋糕。现在，你肯定想知道哪个蛋糕是哪个？这就是为什么实例如此重要！所以，<em>def <strong>init</strong>（self）:</em>只是说让我们创建这个类的一个实例。但是，我们为什么要通过一个自我参数，你可能会问。嗯，这与我们刚才讨论的很有关系。类使对象和类中的函数成为对象的方法。但是，我们确实需要知道哪个类函数属于类的哪个实例，所以我们只是隐式地传递<em>self</em>的属性（在后面的例子中进一步讨论）。最后，我们进入到初始化函数的心脏。在我们使用<em>self.current</em>创建一个实例变量等于零。哇塞!我们完成了最艰难的部分。</p>
+<p>下一站是<em>add</em>功能。我们只是在<em>self</em>和另一个参数称为<em>amount</em>。接下来，self就是实例，我们知道哪些实例。数字通过amount传入。使用我们以前的知识，我们明白，我们只是添加任何amount是当前变量。</p>
+<p>最后，但并非最不重要的是，我们将这个想法从类中“获取”变量。为了获取<em>self.current</em>变量的值，最佳实践是把它放在一个函数，然后调用函数得到值，我们不应把它和实例混在一起。在实例中设置函数并传递，并告诉Python返回值。</p>
+<h3 id="使用Python类"><a href="#使用Python类" class="headerlink" title="使用Python类"></a>使用Python类</h3><p>例子</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">from ClassOne import * <span class="comment">#get classes from ClassOne file</span></div><div class="line"></div><div class="line">myBuddy = Calculator() <span class="comment"># make myBuddy into a Calculator object</span></div><div class="line"></div><div class="line">myBuddy.add(2) <span class="comment">#use myBuddy's new add method derived from the Calculator class</span></div><div class="line"></div><div class="line"><span class="built_in">print</span>(myBuddy.getCurrent()) <span class="comment">#print myBuddy's current instance variable</span></div></pre></td></tr></table></figure>
+<p>在另一个文件中，我们输入了这个代码。一旦我们运行它，我们看到它打印2到我们的屏幕。所有的工作只是为了得到2的结果！无论如何，让我们打破这个家伙下来。首先，我假定你的两个类都在Python目录中。接下来，我们使用<em>from ClassOne</em>，让Python引用我们正在讨论的文件。然后，我们用<em>import **声明。它只是意味着我们需要文件中的所有类。在我们的例子中，我们只有一个类，计算器类。下一步，我们创建了一个计算器的对象称为myBuddy并标示8myBuddy = Calculator()</em>。现在，这给<em>myBuddy</em>拥有计算机类所有的变量和函数。（注：一旦myBuddy获取这些变量和函数，我们称之为属性和方法）。因为我们已经初始化了myBuddy，它具有current属性，在计算机类中叫做self.current.并被初始化为0.current。所以，现在我们调用<em>myBuddy.add(2)</em>，这是我们在计算器中的添加功能。简单地说，这只是0 + 2。最后，我们输出我们的实例的类变量<em>self.current</em>利用<em>myBuddy.getcurrent()</em>返回我们的变量。</p>
+<p>做得好!这有点长。放轻松。这是编程的最困难的概念之一，封装。信不信由你，当你使用字符串，列表，字典等，他们都是从类出来的。从这里开始，你应该花些时间研究面向对象编程，并尝试将其应用到Python中。</p>
 
       
 
@@ -722,25 +756,22 @@
 		<ul class="article-tag-list">
 			 
         <li class="article-tag-list-item">
-        	<a href="javascript:void(0)" class="article-tag-list-link color1">xcode</a>
-        </li>
-       
-        <li class="article-tag-list-item">
-        	<a href="javascript:void(0)" class="article-tag-list-link color4">svn</a>
-        </li>
-       
-        <li class="article-tag-list-item">
-        	<a href="javascript:void(0)" class="article-tag-list-link color4">tutorial</a>
+        	<a href="javascript:void(0)" class="article-tag-list-link color2">Python</a>
         </li>
       
 		</ul>
 	</div>
 
       
+	<div class="article-category tagcloud">
+	<i class="icon-book icon"></i>
+	<a class="article-category-link" href="/categories/互联网/">互联网</a>
+	</div>
+
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2014/11/21/Cornerstone-ignore-UserInterfaceState.xcuserstate/">展开全文 >></a>
+          <a class="article-more-a" href="/2016/03/26/python16 Classes/">展开全文 >></a>
         </p>
       
 
@@ -758,40 +789,39 @@
 
 
   
-    <article id="post-swift笔记" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-python15 Writing to Files" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2014/08/22/swift笔记/">Swift笔记</a>
+      <a class="article-title" href="/2016/03/25/python15 Writing to Files/">python15 Writing to Files</a>
     </h1>
   
 
-        <a href="/2014/08/22/swift笔记/" class="archive-article-date">
-  	<time datetime="2014-08-22T07:44:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2014-08-22</time>
+        <a href="/2016/03/25/python15 Writing to Files/" class="archive-article-date">
+  	<time datetime="2016-03-25T11:25:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-03-25</time>
 </a>
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>swift出世时，断断续续看了一些。在PlayGround耍了耍还是挺好玩的:]<br>有OC作为基础，上手swift还是挺快的。但是有一些语法还是要留意下。这个就作为学习笔记吧，记录学习过程中的注意点。<br><a href="https://swift.org" target="_blank" rel="external">swift官网</a><br><a href="https://developer.apple.com/library/prerelease/content/documentation/Swift/Conceptual/Swift_Programming_Language/index.html#//apple_ref/doc/uid/TP40014097-CH3-ID0" target="_blank" rel="external">The Swift Programming Language</a></p>
-<h3 id="if-nil"><a href="#if-nil" class="headerlink" title="if nil"></a>if nil</h3><p>在OC中我们在判断一个值是不是nil时，一般就是<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">NSString *values = @<span class="string">""</span>;</div><div class="line"><span class="keyword">if</span>(values) &#123;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>但在swift中，是会报错的<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">var apple = <span class="string">"apple"</span></div><div class="line"><span class="keyword">if</span> apple &#123;</div><div class="line">    <span class="built_in">print</span>(apple)</div><div class="line">&#125;</div><div class="line">//<span class="string">'String'</span> is not convertible to <span class="string">'Bool'</span></div></pre></td></tr></table></figure></p>
-<p>Apple 在GuidedTour中写道：<br><blockquote><p>In an if statement, the conditional must be a Boolean expression—this means that code such as if score { … } is an error, not an implicit comparison to zero.</p>
-<p>You can use if and let together to work with values that might be missing. These values are represented as optionals. An optional value either contains a value or contains nil to indicate that a value is missing. Write a question mark (?) after the type of a value to mark the value as optional.</p>
-</blockquote></p>
-<p>正确的写法<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">var optionalString: String? = nil</div><div class="line"><span class="built_in">print</span>(optionalString == nil)</div><div class="line"></div><div class="line"><span class="keyword">if</span> <span class="built_in">let</span> str = optionalString &#123;</div><div class="line">    <span class="built_in">print</span>(str)</div><div class="line">&#125; <span class="keyword">else</span> &#123;</div><div class="line">    <span class="built_in">print</span>(<span class="string">"optionalString is nil"</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>这样写也可以<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">var optionalString: String? = <span class="string">"janes"</span></div><div class="line"><span class="built_in">print</span>(optionalString == nil)</div><div class="line"></div><div class="line"><span class="built_in">let</span> isBool = (optionalString == nil)</div><div class="line"><span class="keyword">if</span> isBool &#123;</div><div class="line">    <span class="built_in">print</span>(<span class="string">"optionalString is nil \(isBool)"</span>)</div><div class="line">&#125; <span class="keyword">else</span> &#123;</div><div class="line">    <span class="built_in">print</span>(<span class="string">"optionalString is not nil"</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<h3 id="In-Out-Parameters"><a href="#In-Out-Parameters" class="headerlink" title="In-Out Parameters"></a>In-Out Parameters</h3><p>函数中的输入输出参数，可以改变函数参数。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">func swapTwoInts(_ a: inout Int, _ b: inout Int) &#123;</div><div class="line">    <span class="built_in">let</span> temporaryA = a</div><div class="line">    a = b</div><div class="line">    b = temporaryA</div><div class="line">&#125;</div><div class="line"></div><div class="line">var someInt = 3</div><div class="line">var anotherInt = 107</div><div class="line">swapTwoInts(&amp;someInt, &amp;anotherInt)</div><div class="line"><span class="built_in">print</span>(<span class="string">"someInt is now \(someInt), and anotherInt is now \(anotherInt)"</span>)</div></pre></td></tr></table></figure>
-<p>好奇的看下内存地址有没有改变<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">func address(o: UnsafeRawPointer) -&gt; String &#123;</div><div class="line">    <span class="built_in">return</span> String.init(format: <span class="string">"%018p"</span>, unsafeBitCast(o, to: Int.self))</div><div class="line">&#125;</div><div class="line"></div><div class="line">var someInt = 3</div><div class="line">var anotherInt = 107</div><div class="line"><span class="built_in">print</span>(<span class="string">"before swap:\(address(o: &amp;someInt)), value:\(someInt))"</span>)</div><div class="line">swapTwoInts(&amp;someInt, &amp;anotherInt)</div><div class="line"><span class="built_in">print</span>(<span class="string">"after swap:\(address(o: &amp;someInt)), value:\(someInt)"</span>)</div></pre></td></tr></table></figure></p>
-<pre><code>before swap:0x00007fff595d6ac0, value:3)
-after swap:0x00007fff595d6ac0, value:107
-</code></pre><p>结果内存中的地址是没有变的</p>
-<p>###<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">let</span> sortedNumbers = numbers.sort &#123; <span class="variable">$0</span> &gt; <span class="variable">$1</span> &#125;</div><div class="line"><span class="built_in">print</span>(sortedNumbers)</div></pre></td></tr></table></figure></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+        <p>Python写入文件教程解释了如何使用Python编写文件。</p>
+<p>阅读文件很酷，所有写入文件是一个很多的乐趣。它也应该给你带来一种危险感，因为你可以在一瞬间覆盖内容，失去一切。尽管有危险的威胁，我们也坚持下去。 Python使文件写入非常简单。有了类似的阅读方法，写作主要有两种写作方法。让我们来吧！</p>
+<h3 id="警告！邪恶的“w”在打开的方法"><a href="#警告！邪恶的“w”在打开的方法" class="headerlink" title="警告！邪恶的“w”在打开的方法"></a>警告！邪恶的“w”在打开的方法</h3><p>例</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">f = open(<span class="string">"test.txt"</span>,<span class="string">"w"</span>) <span class="comment">#opens file with name of "test.txt"</span></div><div class="line"></div><div class="line">f.close()</div></pre></td></tr></table></figure>
+<p>…哎呀！正如所料，我们在这里是危险的环境朋友。一旦你把“w”作为第二个参数，你基本上就是告诉Python来调整当前的文件。现在我们已经清空了文件，我们来尝试重建它。</p>
+<p>例</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">f = open(<span class="string">"test.txt"</span>,<span class="string">"w"</span>) <span class="comment">#opens file with name of "test.txt"</span></div><div class="line"></div><div class="line">f.write(<span class="string">"I am a test file."</span>)</div><div class="line"></div><div class="line">f.write(<span class="string">"Maybe someday, he will promote me to a real file."</span>)</div><div class="line"></div><div class="line">f.write(<span class="string">"Man, I long to be a real file"</span>)</div><div class="line"></div><div class="line">f.write(<span class="string">"and hang out with all my new real file friends."</span>)</div><div class="line">f.close()</div></pre></td></tr></table></figure>
+<p>如果您从上一个教程继续，我们只是重写了我们删除的内容到文件。但是，你可能会尖叫起来，“但是不一样！”你是100％正确，我的朋友。点击控制键几次，冷静，我会在一分钟内向您显示修复。最终，write（）方法真的很简单。你只需要传递一个字符串（或一个字符串变量），它会将它写入文件，然后按照它的单向处理方式。我们也注意到，它不会使用任何换行符来保持写作。让我们用另一种方法来解决这个问题。</p>
+<h3 id="将文字写入文件"><a href="#将文字写入文件" class="headerlink" title="将文字写入文件"></a>将文字写入文件</h3><p>我们有一个相当简单的解决方案，只需在每个字符串的末尾放置一个新的行字符“\ n”，如下所示：</p>
+<p>例</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">f.write(<span class="string">"Maybe someday, he will promote me to a real file.\n"</span>)</div></pre></td></tr></table></figure>
+<p>这只是一个简单的文本格式化字符。是的，甚至文本文件都有一个特殊的格式，类似于HTML文档具有自己的特殊格式。文本文件比HTML更受限制。</p>
+<h3 id="附加到文件"><a href="#附加到文件" class="headerlink" title="附加到文件"></a>附加到文件</h3><p>例</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">f = open(<span class="string">"test.txt"</span>,<span class="string">"a"</span>) <span class="comment">#opens file with name of "test.txt"</span></div><div class="line"></div><div class="line">f.write(<span class="string">"and can I get some pickles on that"</span>)</div><div class="line"></div><div class="line">f.close()</div></pre></td></tr></table></figure>
+<p>哇！虽然我们的文本文件对于人是绝对没有意义的，但我们都知道我们只是取得了巨大的胜利。这里唯一的重大变化是在<em>open（）</em>方法中。我们现在有一个“a”（附加）而不是“w”。追加真的只是那么简单。现在跳出这，在全世界写我的朋友。</p>
 
       
 
@@ -805,7 +835,7 @@ after swap:0x00007fff595d6ac0, value:107
 		<ul class="article-tag-list">
 			 
         <li class="article-tag-list-item">
-        	<a href="javascript:void(0)" class="article-tag-list-link color2">swift,</a>
+        	<a href="javascript:void(0)" class="article-tag-list-link color2">Python</a>
         </li>
       
 		</ul>
@@ -814,13 +844,13 @@ after swap:0x00007fff595d6ac0, value:107
       
 	<div class="article-category tagcloud">
 	<i class="icon-book icon"></i>
-	<a class="article-category-link" href="/categories/技术/">技术</a>
+	<a class="article-category-link" href="/categories/互联网/">互联网</a>
 	</div>
 
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2014/08/22/swift笔记/">展开全文 >></a>
+          <a class="article-more-a" href="/2016/03/25/python15 Writing to Files/">展开全文 >></a>
         </p>
       
 
@@ -838,34 +868,61 @@ after swap:0x00007fff595d6ac0, value:107
 
 
   
-    <article id="post-ios-crash-log处理" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-python14 Reading Files" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2014/06/24/ios-crash-log处理/">iOS Crash Log处理</a>
+      <a class="article-title" href="/2016/03/24/python14 Reading Files/">python14 Reading Files</a>
     </h1>
   
 
-        <a href="/2014/06/24/ios-crash-log处理/" class="archive-article-date">
-  	<time datetime="2014-06-24T06:02:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2014-06-24</time>
+        <a href="/2016/03/24/python14 Reading Files/" class="archive-article-date">
+  	<time datetime="2016-03-24T11:27:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-03-24</time>
 </a>
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>iOS crash log 处理</p>
-<blockquote class="pullquote [class]"><p>什么是崩溃日志，从哪里能得它?</p>
-</blockquote>
-<p>iOS设备上的应用闪退时，操作系统会生成一个崩溃报告，也叫崩溃日志，保存在设备上。</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Device Logs</div><div class="line">CrashReporter    ~/Library/Logs/CrashReporter/MobileDevice/</div><div class="line">iTunes Connect -&gt; Crash Reports</div><div class="line">用户</div></pre></td></tr></table></figure>
-<p>什么情况下会产生崩溃日志?</p>
-<p>两种主要情况会产生崩溃日志:</p>
-<pre><code>1.    应用违反操作系统规则。
-2.    应用中有Bug。
-</code></pre><figure class="highlight plain"><figcaption><span>Array.map</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div></pre></td><td class="code"><pre><div class="line">Incident Identifier: CE5E9C4A-A13D-4734-8483-97D55825AB57</div><div class="line">CrashReporter Key:   d3adfba37a68e78e6885adfe06034f2798cf0762</div><div class="line">Hardware Model:      iPhone6,1</div><div class="line">Process:             XiaoYu [447]</div><div class="line">Path:                /var/mobile/Applications/20FA34C5-0EC1-4692-A89E-1DC7C818C013/XiaoYu.app/XiaoYu</div><div class="line">Identifier:          com.rt.FISH4iPhone</div><div class="line">Version:             3.0.0 (3.0.0)</div><div class="line">Code Type:           ARM (Native)</div><div class="line">Parent Process:      launchd [1]</div><div class="line"></div><div class="line">Date/Time:           2014-06-20 18:32:00.417 +0800</div><div class="line">OS Version:          iOS 7.1.1 (11D201)</div><div class="line">Report Version:      104</div><div class="line"></div><div class="line">Exception Type:  EXC_CRASH (SIGABRT)</div><div class="line">Exception Codes: 0x0000000000000000, 0x0000000000000000</div><div class="line">Triggered by Thread:  0</div><div class="line"></div><div class="line">Last Exception Backtrace:</div><div class="line">(0x2fa3ef0b 0x3a1d1ce7 0x2fa3ee4d 0x54af09 0x3a7e971b 0x3a7ee7b7 0x3a736ff9 0x3a7add25 0x3a1d83a9 0x322a6857 0x3a1e0b6b 0x2f96f185 0x31ee933d 0x31eee7c7 0x3a1e0b6b 0x2f96f185 0x31ef0e11 0x3a6bad3f 0x3a6bd6c3 0x2fa09681 0x2fa07f4d 0x2f972769 0x2f97254b 0x348cf6d3 0x322d1891 0x233c79 0x3a6cfab7)</div><div class="line"></div><div class="line">Thread 0 Crashed:</div><div class="line"></div><div class="line">Last Exception Backtrace:</div><div class="line">(0x2fa3ef0b 0x3a1d1ce7 0x2fa3ee4d 0x54af09 0x3a7e971b 0x3a7ee7b7 0x3a736ff9 0x3a7add25 0x3a1d83a9 0x322a6857 0x3a1e0b6b 0x2f96f185 0x31ee933d 0x31eee7c7 0x3a1e0b6b 0x2f96f185 0x31ef0e11 0x3a6bad3f 0x3a6bd6c3 0x2fa09681 0x2fa07f4d 0x2f972769 0x2f97254b 0x348cf6d3 0x322d1891 0x233c79 0x3a6cfab7)</div><div class="line"></div><div class="line">Thread 0 Crashed:</div><div class="line">0   libsystem_kernel.dylib        	0x3a7861f0 0x3a773000 + 78320</div><div class="line">1   libsystem_pthread.dylib       	0x3a7ee7b3 0x3a7eb000 + 14259</div><div class="line">2   libsystem_c.dylib             	0x3a736ff5 0x3a6ed000 + 303093</div><div class="line">3   libc++abi.dylib               	0x39b8598b 0x39b85000 + 2443</div><div class="line">4   libc++abi.dylib               	0x39b9c1f5 0x39b85000 + 94709</div><div class="line">5   libc++abi.dylib               	0x39b9ba05 0x39b85000 + 92677</div><div class="line">6   libobjc.A.dylib               	0x3a1d1db7 0x3a1ce000 + 15799</div><div class="line">7   CoreFoundation                	0x2fa3ee49 0x2f96a000 + 872009</div><div class="line">8   XiaoYu                        	0x0054af05 0x10000 + 5484293</div><div class="line">9   libsystem_platform.dylib      	0x3a7e9719 0x3a7e6000 + 14105</div><div class="line">10  libsystem_pthread.dylib       	0x3a7ee7b3 0x3a7eb000 + 14259</div><div class="line">11  libsystem_c.dylib             	0x3a736ff5 0x3a6ed000 + 303093</div><div class="line">12  libsystem_malloc.dylib        	0x3a7add21 0x3a7ab000 + 11553</div><div class="line">13  libobjc.A.dylib               	0x3a1d83a5 0x3a1ce000 + 41893</div><div class="line">14  UIKit                         	0x322a6853 0x32263000 + 276563</div><div class="line">15  libobjc.A.dylib               	0x3a1e0b67 0x3a1ce000 + 76647</div><div class="line">16  CoreFoundation                	0x2f96f181 0x2f96a000 + 20865</div><div class="line">17  QuartzCore                    	0x31ee9339 0x31ede000 + 45881</div><div class="line">18  QuartzCore                    	0x31eee7c3 0x31ede000 + 67523</div><div class="line">19  libobjc.A.dylib               	0x3a1e0b67 0x3a1ce000 + 76647</div><div class="line">20  CoreFoundation                	0x2f96f181 0x2f96a000 + 20865</div><div class="line">21  QuartzCore                    	0x31ef0e0d 0x31ede000 + 77325</div><div class="line">22  libdispatch.dylib             	0x3a6bad3d 0x3a6ba000 + 3389</div><div class="line">23  libdispatch.dylib             	0x3a6bd6bf 0x3a6ba000 + 14015</div><div class="line">24  CoreFoundation                	0x2fa0967d 0x2f96a000 + 652925</div><div class="line">25  CoreFoundation                	0x2fa07f49 0x2f96a000 + 646985</div><div class="line">26  CoreFoundation                	0x2f972765 0x2f96a000 + 34661</div><div class="line">27  CoreFoundation                	0x2f972547 0x2f96a000 + 34119</div><div class="line">28  GraphicsServices              	0x348cf6cf 0x348c6000 + 38607</div><div class="line">29  UIKit                         	0x322d188d 0x32263000 + 452749</div><div class="line">30  XiaoYu                        	0x00233c75 0x10000 + 2243701</div><div class="line">31  libdyld.dylib                 	0x3a6cfab5 0x3a6ce000 + 6837</div><div class="line"></div><div class="line">Thread 1:</div><div class="line"></div><div class="line">Thread 0 crashed with ARM Thread State (32-bit):</div><div class="line">    r0: 0x00000000    r1: 0x00000000      r2: 0x00000000      r3: 0x00002060</div><div class="line">    r4: 0x00000006    r5: 0x3c42818c      r6: 0x186e33b0      r7: 0x27df21b0</div><div class="line">    r8: 0x186e33b0    r9: 0x00000001     r10: 0x00000006     r11: 0x00000005</div><div class="line">    ip: 0x00000148    sp: 0x27df21a4      lr: 0x3a7ee7b7      pc: 0x3a7861f0</div><div class="line">  cpsr: 0x00000010</div><div class="line"></div><div class="line">Binary Images:</div></pre></td></tr></table></figure>
+        <p>Python阅读文件教程介绍了如何使用Python读取文件。</p>
+<p>很多时候，程序员发现需要从文件中读取内容。可能是我们想从文本文件中读取，例如日志文件或XML文件以进行有效的数据检索。有时，确定如何完成这项工作是一项艰巨的任务。不用担心，Python总是有办法的，使阅读文件成为小事一件。 Python主要有2种方式阅读。为了保持简单，我们只是从文本文件中读取，随时可以自己探索XML。 XML是一个非常酷的标记，但随着你的深入，这是一个头痛的问题。示例如下：</p>
+<h3 id="在Python中打开文件"><a href="#在Python中打开文件" class="headerlink" title="在Python中打开文件"></a>在Python中打开文件</h3><p>test.txt</p>
+<pre><code>I am a test file.
+
+Maybe someday, he will promote me to a real file.
+
+Man, I long to be a real file
+
+and hang out with all my new real file friends.
+</code></pre><p>例</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">f = open(<span class="string">"test.txt"</span>, <span class="string">"r"</span>) <span class="comment">#opens file with name of "test.txt"</span></div></pre></td></tr></table></figure>
+<p>这很简单的解释。我们有一个令人敬畏的小的test.txt文件填充一些随机文本。现在，在这个例子中，我们有了我们的代码。就像你点击一个文件打开它，Python需要知道要打开什么文件。所以，我们使用open方法来告诉Python我们想要打开什么，并打开（连接）它。 “r”只是告诉我们想要阅读的Python（当我们想写入一个文件时，它是“w”）。当然，我们将这个新连接设置为一个变量，以便稍后再使用。但是，我们只打开一个文件，这不是令人兴奋的。我们来试试看读取文件。</p>
+<h3 id="Python文件读取方法"><a href="#Python文件读取方法" class="headerlink" title="Python文件读取方法"></a>Python文件读取方法</h3><p>file.read（n） - 该方法从文件读取n个字符，或者如果n为空，则读取整个文件。<br>file.readline（n） - 此方法从文本文件读取整行。</p>
+<p>例</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">f = open(<span class="string">"test.txt"</span>,<span class="string">"r"</span>) <span class="comment">#opens file with name of "test.txt"</span></div><div class="line"></div><div class="line"><span class="built_in">print</span>(f.read(1))</div><div class="line"></div><div class="line"><span class="built_in">print</span>(f.read())</div></pre></td></tr></table></figure>
+<p>结果</p>
+<p>I</p>
+<p> am a test file.</p>
+<p>Maybe someday, he will promote me to a real file.</p>
+<p>Man, I long to be a real file</p>
+<p>and hang out with all my new real file friends.</p>
+<p>哇哇！所以这可能有点混乱。首先，我们按预期打开文件。接下来，我们使用read（1），并注意到我们提供了1的参数，这意味着我们想要读取下一个字符。所以，Python为我们打印出“I”，因为这是test.txt文件中的第一个字符。接下来会发生什么事情呢？我们告诉Python用read（）读取整个文件，因为我们没有提供任何参数。但是，它不包括我们刚读的“I”！这是因为Python只是把它放弃了。所以，如果Python已经读了“I”，它将从下一个字符开始读取。原因是这样，您可以循环浏览文件，而无需每次想要读取新字符时跳过这么多字符。我知道这很复杂，但认为读取就像一个单向过程。 Python是懒惰的，它不想返回并重读内容。让我们进一步读取一下。</p>
+<p>例</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">f = open(<span class="string">"test.txt"</span>,<span class="string">"r"</span>) <span class="comment">#opens file with name of "test.txt"</span></div><div class="line"></div><div class="line"><span class="built_in">print</span>(f.readline())</div><div class="line"></div><div class="line"><span class="built_in">print</span>(f.readline())</div></pre></td></tr></table></figure>
+<p>结果</p>
+<p>I am a test file.</p>
+<p>Maybe someday, he will promote me to a real file.</p>
+<p>哈！这一次我们为Python的诡计做好了准备。由于我们只是使用readline（）方法两次，我们知道由于Python的阅读过程，我们会得到前2行。当然，我们也知道readline（）只读一行，因为它的语法很简单。对Python的阅读能力来说，最后一个重要的，复杂的和令人敬畏的读取功能是好的。</p>
+<p>例</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">f = open(<span class="string">"test.txt"</span>,<span class="string">"r"</span>) <span class="comment">#opens file with name of "test.txt"</span></div><div class="line"></div><div class="line">myList = []</div><div class="line"></div><div class="line"><span class="keyword">for</span> line <span class="keyword">in</span> f:</div><div class="line"></div><div class="line">    myList.append(line)</div><div class="line"></div><div class="line"><span class="built_in">print</span>(myList)</div></pre></td></tr></table></figure>
+<p>结果</p>
+<p>[‘I am a test file.\n’, ‘Maybe someday, he will promote me to a real file.\n’, ‘Man, I long to be a real file\n’, ‘and hang out with all my new real file friends.’]</p>
+<p>什么！？ Python只是吹我们的头脑！首先，不要为 <em>\n</em>惹恼。它只是一个换行符，因为这些行在不同的文件上，Python希望保留这种格式（您可以随时将其删除）。我们正常打开文件，我们创建一个列表，现在我们已经掌握了。然后，我们使用in关键字将文件分成我们for循环中的行。 Python足够聪明才能理解它应该将文件分解成行。接下来，当我们循环遍历文件的每一行时，我们使用myList.append（行）将每行添加到myList列表。最后，当我们打印出来时，Python向我们展示了它的荣耀。它将文件的每一行分解成一个字符串，我们可以操作它来做任何我们想要的。</p>
+<h3 id="等待！不要忘了关闭文件！"><a href="#等待！不要忘了关闭文件！" class="headerlink" title="等待！不要忘了关闭文件！"></a>等待！不要忘了关闭文件！</h3><p>例</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">f = open(<span class="string">"test.txt"</span>,<span class="string">"r"</span>) <span class="comment">#opens file with name of "test.txt"</span></div><div class="line"></div><div class="line"><span class="built_in">print</span>(f.read(1))</div><div class="line"></div><div class="line"><span class="built_in">print</span>(f.read())</div><div class="line"></div><div class="line">f.close()</div></pre></td></tr></table></figure>
+<p>保存到最后的重要事情是您应该始终使用close（）方法关闭文件。 Python在打开文件并阅读它们时消耗过大，因此暂停并关闭文件以结束连接。 关闭文件总是很好的习惯，你的内存会感谢你。 接下来，我们通过写入文件来做一些建设。</p>
 
       
 
@@ -879,7 +936,7 @@ after swap:0x00007fff595d6ac0, value:107
 		<ul class="article-tag-list">
 			 
         <li class="article-tag-list-item">
-        	<a href="javascript:void(0)" class="article-tag-list-link color4">iOS</a>
+        	<a href="javascript:void(0)" class="article-tag-list-link color2">Python</a>
         </li>
       
 		</ul>
@@ -888,13 +945,13 @@ after swap:0x00007fff595d6ac0, value:107
       
 	<div class="article-category tagcloud">
 	<i class="icon-book icon"></i>
-	<a class="article-category-link" href="/categories/技术/">技术</a>
+	<a class="article-category-link" href="/categories/互联网/">互联网</a>
 	</div>
 
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2014/06/24/ios-crash-log处理/">展开全文 >></a>
+          <a class="article-more-a" href="/2016/03/24/python14 Reading Files/">展开全文 >></a>
         </p>
       
 
@@ -914,7 +971,7 @@ after swap:0x00007fff595d6ac0, value:107
   
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
     </nav>
   
 
@@ -1055,6 +1112,22 @@ after swap:0x00007fff595d6ac0, value:107
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="color5">tag1</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="color3">管理</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="color5">设计模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="color4">项目管理，软技能</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="color1">xcode</a>
               </li>
              
@@ -1075,47 +1148,7 @@ after swap:0x00007fff595d6ac0, value:107
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="color2">swift,</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="color3">iOS MDM</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="color4">新鲜事</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="color3">管理</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="color3">迭代</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="color4">iOS</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="color5">tag1</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="color4">教程, Java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="color1">教程, Objective-C</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="color5">教程, Objective-C，布道师</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="color4">教程, Objective-C，引道</a>
+                <a href="javascript:void(0)" class="color4">教程, Python，引道</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1123,7 +1156,43 @@ after swap:0x00007fff595d6ac0, value:107
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="color4">教程, Python，引道</a>
+                <a href="javascript:void(0)" class="color3">架构</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="color2">swift,</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="color4">iOS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="color2">Python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="color5">SQL, 性能优化</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="color3">iOS MDM</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="color3">迭代</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="color4">教程, Objective-C，引道</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="color4">新鲜事</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="color5">权限设计</a>
               </li>
              
               <li class="article-tag-list-item">
