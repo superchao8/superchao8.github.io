@@ -131,6 +131,107 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-python14 Reading Files" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/03/24/python14 Reading Files/">python14 Reading Files</a>
+    </h1>
+  
+
+        <a href="/2016/03/24/python14 Reading Files/" class="archive-article-date">
+  	<time datetime="2016-03-24T11:27:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-03-24</time>
+</a>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Python阅读文件教程介绍了如何使用Python读取文件。</p>
+<p>很多时候，程序员发现需要从文件中读取内容。可能是我们想从文本文件中读取，例如日志文件或XML文件以进行有效的数据检索。有时，确定如何完成这项工作是一项艰巨的任务。不用担心，Python总是有办法的，使阅读文件成为小事一件。 Python主要有2种方式阅读。为了保持简单，我们只是从文本文件中读取，随时可以自己探索XML。 XML是一个非常酷的标记，但随着你的深入，这是一个头痛的问题。示例如下：</p>
+<h3 id="在Python中打开文件"><a href="#在Python中打开文件" class="headerlink" title="在Python中打开文件"></a>在Python中打开文件</h3><p>test.txt</p>
+<pre><code>I am a test file.
+
+Maybe someday, he will promote me to a real file.
+
+Man, I long to be a real file
+
+and hang out with all my new real file friends.
+</code></pre><p>例</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">f = open(<span class="string">"test.txt"</span>, <span class="string">"r"</span>) <span class="comment">#opens file with name of "test.txt"</span></div></pre></td></tr></table></figure>
+<p>这很简单的解释。我们有一个令人敬畏的小的test.txt文件填充一些随机文本。现在，在这个例子中，我们有了我们的代码。就像你点击一个文件打开它，Python需要知道要打开什么文件。所以，我们使用open方法来告诉Python我们想要打开什么，并打开（连接）它。 “r”只是告诉我们想要阅读的Python（当我们想写入一个文件时，它是“w”）。当然，我们将这个新连接设置为一个变量，以便稍后再使用。但是，我们只打开一个文件，这不是令人兴奋的。我们来试试看读取文件。</p>
+<h3 id="Python文件读取方法"><a href="#Python文件读取方法" class="headerlink" title="Python文件读取方法"></a>Python文件读取方法</h3><p>file.read（n） - 该方法从文件读取n个字符，或者如果n为空，则读取整个文件。<br>file.readline（n） - 此方法从文本文件读取整行。</p>
+<p>例</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">f = open(<span class="string">"test.txt"</span>,<span class="string">"r"</span>) <span class="comment">#opens file with name of "test.txt"</span></div><div class="line"></div><div class="line"><span class="built_in">print</span>(f.read(1))</div><div class="line"></div><div class="line"><span class="built_in">print</span>(f.read())</div></pre></td></tr></table></figure>
+<p>结果</p>
+<p>I</p>
+<p> am a test file.</p>
+<p>Maybe someday, he will promote me to a real file.</p>
+<p>Man, I long to be a real file</p>
+<p>and hang out with all my new real file friends.</p>
+<p>哇哇！所以这可能有点混乱。首先，我们按预期打开文件。接下来，我们使用read（1），并注意到我们提供了1的参数，这意味着我们想要读取下一个字符。所以，Python为我们打印出“I”，因为这是test.txt文件中的第一个字符。接下来会发生什么事情呢？我们告诉Python用read（）读取整个文件，因为我们没有提供任何参数。但是，它不包括我们刚读的“I”！这是因为Python只是把它放弃了。所以，如果Python已经读了“I”，它将从下一个字符开始读取。原因是这样，您可以循环浏览文件，而无需每次想要读取新字符时跳过这么多字符。我知道这很复杂，但认为读取就像一个单向过程。 Python是懒惰的，它不想返回并重读内容。让我们进一步读取一下。</p>
+<p>例</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">f = open(<span class="string">"test.txt"</span>,<span class="string">"r"</span>) <span class="comment">#opens file with name of "test.txt"</span></div><div class="line"></div><div class="line"><span class="built_in">print</span>(f.readline())</div><div class="line"></div><div class="line"><span class="built_in">print</span>(f.readline())</div></pre></td></tr></table></figure>
+<p>结果</p>
+<p>I am a test file.</p>
+<p>Maybe someday, he will promote me to a real file.</p>
+<p>哈！这一次我们为Python的诡计做好了准备。由于我们只是使用readline（）方法两次，我们知道由于Python的阅读过程，我们会得到前2行。当然，我们也知道readline（）只读一行，因为它的语法很简单。对Python的阅读能力来说，最后一个重要的，复杂的和令人敬畏的读取功能是好的。</p>
+<p>例</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">f = open(<span class="string">"test.txt"</span>,<span class="string">"r"</span>) <span class="comment">#opens file with name of "test.txt"</span></div><div class="line"></div><div class="line">myList = []</div><div class="line"></div><div class="line"><span class="keyword">for</span> line <span class="keyword">in</span> f:</div><div class="line"></div><div class="line">    myList.append(line)</div><div class="line"></div><div class="line"><span class="built_in">print</span>(myList)</div></pre></td></tr></table></figure>
+<p>结果</p>
+<p>[‘I am a test file.\n’, ‘Maybe someday, he will promote me to a real file.\n’, ‘Man, I long to be a real file\n’, ‘and hang out with all my new real file friends.’]</p>
+<p>什么！？ Python只是吹我们的头脑！首先，不要为 <em>\n</em>惹恼。它只是一个换行符，因为这些行在不同的文件上，Python希望保留这种格式（您可以随时将其删除）。我们正常打开文件，我们创建一个列表，现在我们已经掌握了。然后，我们使用in关键字将文件分成我们for循环中的行。 Python足够聪明才能理解它应该将文件分解成行。接下来，当我们循环遍历文件的每一行时，我们使用myList.append（行）将每行添加到myList列表。最后，当我们打印出来时，Python向我们展示了它的荣耀。它将文件的每一行分解成一个字符串，我们可以操作它来做任何我们想要的。</p>
+<h3 id="等待！不要忘了关闭文件！"><a href="#等待！不要忘了关闭文件！" class="headerlink" title="等待！不要忘了关闭文件！"></a>等待！不要忘了关闭文件！</h3><p>例</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">f = open(<span class="string">"test.txt"</span>,<span class="string">"r"</span>) <span class="comment">#opens file with name of "test.txt"</span></div><div class="line"></div><div class="line"><span class="built_in">print</span>(f.read(1))</div><div class="line"></div><div class="line"><span class="built_in">print</span>(f.read())</div><div class="line"></div><div class="line">f.close()</div></pre></td></tr></table></figure>
+<p>保存到最后的重要事情是您应该始终使用close（）方法关闭文件。 Python在打开文件并阅读它们时消耗过大，因此暂停并关闭文件以结束连接。 关闭文件总是很好的习惯，你的内存会感谢你。 接下来，我们通过写入文件来做一些建设。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list">
+			 
+        <li class="article-tag-list-item">
+        	<a href="javascript:void(0)" class="article-tag-list-link color2">Python</a>
+        </li>
+      
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<i class="icon-book icon"></i>
+	<a class="article-category-link" href="/categories/互联网/">互联网</a>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2016/03/24/python14 Reading Files/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
     <article id="post-python13 Exceptions" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -830,78 +931,6 @@
 
 
   
-    <article id="post-python4 Operators" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/03/13/python4 Operators/">python4 Operators</a>
-    </h1>
-  
-
-        <a href="/2016/03/13/python4 Operators/" class="archive-article-date">
-  	<time datetime="2016-03-13T11:10:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-03-13</time>
-</a>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>python 的操作符和其他语言一样，编程语言中的运算符用于模糊地描述5个不用的领域：算术，复制，递增/递减，比较，逻辑。</p>
-<h3 id="算术运算符"><a href="#算术运算符" class="headerlink" title="算术运算符"></a>算术运算符</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">print</span>(1 + 2)</div><div class="line"><span class="built_in">print</span>(1 - 2)</div><div class="line"><span class="built_in">print</span>(1 * 2)</div><div class="line"><span class="built_in">print</span>(1 / 2)</div><div class="line"><span class="built_in">print</span>(1 % 2)</div><div class="line"><span class="built_in">print</span>(1 ** 2) <span class="comment"># 1 to the twice power</span></div><div class="line"><span class="built_in">print</span>(1 // 2) <span class="comment"># floor division</span></div></pre></td></tr></table></figure>
-<p>结果<br>3<br>-1<br>2<br>0<br>1<br>1<br>0</p>
-<p>正如所料，他们按预期工作。不要忘记你可以使用+号来连接字符串。最后，（//）相除并取整</p>
-<h3 id="简写运算符"><a href="#简写运算符" class="headerlink" title="简写运算符"></a>简写运算符</h3><p>和之前的语言一样，python 也是支持简写，举个栗子</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">a = 1</div><div class="line">a+=2</div><div class="line"><span class="built_in">print</span>(a)</div></pre></td></tr></table></figure>
-<p>结果<br>2</p>
-<p>当然，你可以使用任何之前的算术运算符作为赋值运算符，之后是=我们只是告诉Python将值添加为2，而不必像a = a + 2那样说。我们是程序员，我们很自豪被称为懒惰！</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list">
-			 
-        <li class="article-tag-list-item">
-        	<a href="javascript:void(0)" class="article-tag-list-link color2">Python</a>
-        </li>
-      
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<i class="icon-book icon"></i>
-	<a class="article-category-link" href="/categories/互联网/">互联网</a>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/03/13/python4 Operators/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
@@ -916,7 +945,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2017 ADu
+    		&copy; 2019 ADu
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -1045,11 +1074,7 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="color5">tag1</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="color3">管理</a>
+                <a href="javascript:void(0)" class="color4">项目管理，软技能</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1057,7 +1082,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="color4">项目管理，软技能</a>
+                <a href="javascript:void(0)" class="color5">iTunesconnect,</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1073,11 +1098,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="color5">iTunesconnect,</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="color4">Lua</a>
+                <a href="javascript:void(0)" class="color2">教程, Java,引道</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1085,11 +1106,15 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="color2">教程, Java,引道</a>
+                <a href="javascript:void(0)" class="color3">架构</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="color3">架构</a>
+                <a href="javascript:void(0)" class="color4">Lua</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="color3">iOS MDM</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1101,15 +1126,15 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="color2">Python</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="color5">SQL, 性能优化</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="color3">iOS MDM</a>
+                <a href="javascript:void(0)" class="color2">Python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="color4">新鲜事</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1117,11 +1142,15 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="color3">管理</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="color4">教程, Objective-C，引道</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="color4">新鲜事</a>
+                <a href="javascript:void(0)" class="color4">管理, 生涯规划</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1130,6 +1159,14 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="color2">英语，软技能</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="color4">App</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="color5">tag1</a>
               </li>
             
             <div class="clearfix"></div>

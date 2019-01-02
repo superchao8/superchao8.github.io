@@ -131,6 +131,78 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-python4 Operators" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/03/13/python4 Operators/">python4 Operators</a>
+    </h1>
+  
+
+        <a href="/2016/03/13/python4 Operators/" class="archive-article-date">
+  	<time datetime="2016-03-13T11:10:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-03-13</time>
+</a>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>python 的操作符和其他语言一样，编程语言中的运算符用于模糊地描述5个不用的领域：算术，复制，递增/递减，比较，逻辑。</p>
+<h3 id="算术运算符"><a href="#算术运算符" class="headerlink" title="算术运算符"></a>算术运算符</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">print</span>(1 + 2)</div><div class="line"><span class="built_in">print</span>(1 - 2)</div><div class="line"><span class="built_in">print</span>(1 * 2)</div><div class="line"><span class="built_in">print</span>(1 / 2)</div><div class="line"><span class="built_in">print</span>(1 % 2)</div><div class="line"><span class="built_in">print</span>(1 ** 2) <span class="comment"># 1 to the twice power</span></div><div class="line"><span class="built_in">print</span>(1 // 2) <span class="comment"># floor division</span></div></pre></td></tr></table></figure>
+<p>结果<br>3<br>-1<br>2<br>0<br>1<br>1<br>0</p>
+<p>正如所料，他们按预期工作。不要忘记你可以使用+号来连接字符串。最后，（//）相除并取整</p>
+<h3 id="简写运算符"><a href="#简写运算符" class="headerlink" title="简写运算符"></a>简写运算符</h3><p>和之前的语言一样，python 也是支持简写，举个栗子</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">a = 1</div><div class="line">a+=2</div><div class="line"><span class="built_in">print</span>(a)</div></pre></td></tr></table></figure>
+<p>结果<br>2</p>
+<p>当然，你可以使用任何之前的算术运算符作为赋值运算符，之后是=我们只是告诉Python将值添加为2，而不必像a = a + 2那样说。我们是程序员，我们很自豪被称为懒惰！</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list">
+			 
+        <li class="article-tag-list-item">
+        	<a href="javascript:void(0)" class="article-tag-list-link color2">Python</a>
+        </li>
+      
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<i class="icon-book icon"></i>
+	<a class="article-category-link" href="/categories/互联网/">互联网</a>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2016/03/13/python4 Operators/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
     <article id="post-python3 Strings" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -843,78 +915,6 @@
 
 
   
-    <article id="post-Cornerstone-ignore-UserInterfaceState.xcuserstate" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/11/21/Cornerstone-ignore-UserInterfaceState.xcuserstate/">Cornerstone ignore UserInterfaceState.xcuserstate</a>
-    </h1>
-  
-
-        <a href="/2014/11/21/Cornerstone-ignore-UserInterfaceState.xcuserstate/" class="archive-article-date">
-  	<time datetime="2014-11-21T09:18:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2014-11-21</time>
-</a>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>在控制台 <em>cd</em> 到项目目录下<br><em>svn -v status</em> 查看文件的状态(M):</p>
-<p>M   33769    33757 xxx         XXX.xcworkspace/xcuserdata/XXX.xcuserdatad/UserInterfaceState.xcuserstate</p>
-<pre><code>svn delete --keep-local --force xcuserdata/user.xcuserdatad/UserInterfaceState.xcuserstate
-</code></pre><p>此时，Cornerstone会显示它的状态为”？”,右键Ignore。解决了，世界清静了:]</p>
-<p><strong>PS:</strong><br>added <em>.xcuserstate to the Global Ignores<br>    (Cornerstone -&gt; Preferences -&gt; Subversion -&gt; turn off Use default global ignores -&gt; add “\</em>.xcuserstate”)</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list">
-			 
-        <li class="article-tag-list-item">
-        	<a href="javascript:void(0)" class="article-tag-list-link color1">xcode</a>
-        </li>
-       
-        <li class="article-tag-list-item">
-        	<a href="javascript:void(0)" class="article-tag-list-link color4">svn</a>
-        </li>
-       
-        <li class="article-tag-list-item">
-        	<a href="javascript:void(0)" class="article-tag-list-link color4">tutorial</a>
-        </li>
-      
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2014/11/21/Cornerstone-ignore-UserInterfaceState.xcuserstate/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
@@ -929,7 +929,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2017 ADu
+    		&copy; 2019 ADu
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -1058,11 +1058,7 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="color5">tag1</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="color3">管理</a>
+                <a href="javascript:void(0)" class="color4">项目管理，软技能</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1070,7 +1066,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="color4">项目管理，软技能</a>
+                <a href="javascript:void(0)" class="color5">iTunesconnect,</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1086,11 +1082,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="color5">iTunesconnect,</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="color4">Lua</a>
+                <a href="javascript:void(0)" class="color2">教程, Java,引道</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1098,11 +1090,15 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="color2">教程, Java,引道</a>
+                <a href="javascript:void(0)" class="color3">架构</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="color3">架构</a>
+                <a href="javascript:void(0)" class="color4">Lua</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="color3">iOS MDM</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1114,15 +1110,15 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="color2">Python</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="color5">SQL, 性能优化</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="color3">iOS MDM</a>
+                <a href="javascript:void(0)" class="color2">Python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="color4">新鲜事</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1130,11 +1126,15 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="color3">管理</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="color4">教程, Objective-C，引道</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="color4">新鲜事</a>
+                <a href="javascript:void(0)" class="color4">管理, 生涯规划</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1143,6 +1143,14 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="color2">英语，软技能</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="color4">App</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="color5">tag1</a>
               </li>
             
             <div class="clearfix"></div>
