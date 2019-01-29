@@ -131,85 +131,6 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-python15 Writing to Files" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/03/25/python15 Writing to Files/">python15 Writing to Files</a>
-    </h1>
-  
-
-        <a href="/2016/03/25/python15 Writing to Files/" class="archive-article-date">
-  	<time datetime="2016-03-25T11:25:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-03-25</time>
-</a>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Python写入文件教程解释了如何使用Python编写文件。</p>
-<p>阅读文件很酷，所有写入文件是一个很多的乐趣。它也应该给你带来一种危险感，因为你可以在一瞬间覆盖内容，失去一切。尽管有危险的威胁，我们也坚持下去。 Python使文件写入非常简单。有了类似的阅读方法，写作主要有两种写作方法。让我们来吧！</p>
-<h3 id="警告！邪恶的“w”在打开的方法"><a href="#警告！邪恶的“w”在打开的方法" class="headerlink" title="警告！邪恶的“w”在打开的方法"></a>警告！邪恶的“w”在打开的方法</h3><p>例</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">f = open(<span class="string">"test.txt"</span>,<span class="string">"w"</span>) <span class="comment">#opens file with name of "test.txt"</span></div><div class="line"></div><div class="line">f.close()</div></pre></td></tr></table></figure>
-<p>…哎呀！正如所料，我们在这里是危险的环境朋友。一旦你把“w”作为第二个参数，你基本上就是告诉Python来调整当前的文件。现在我们已经清空了文件，我们来尝试重建它。</p>
-<p>例</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">f = open(<span class="string">"test.txt"</span>,<span class="string">"w"</span>) <span class="comment">#opens file with name of "test.txt"</span></div><div class="line"></div><div class="line">f.write(<span class="string">"I am a test file."</span>)</div><div class="line"></div><div class="line">f.write(<span class="string">"Maybe someday, he will promote me to a real file."</span>)</div><div class="line"></div><div class="line">f.write(<span class="string">"Man, I long to be a real file"</span>)</div><div class="line"></div><div class="line">f.write(<span class="string">"and hang out with all my new real file friends."</span>)</div><div class="line">f.close()</div></pre></td></tr></table></figure>
-<p>如果您从上一个教程继续，我们只是重写了我们删除的内容到文件。但是，你可能会尖叫起来，“但是不一样！”你是100％正确，我的朋友。点击控制键几次，冷静，我会在一分钟内向您显示修复。最终，write（）方法真的很简单。你只需要传递一个字符串（或一个字符串变量），它会将它写入文件，然后按照它的单向处理方式。我们也注意到，它不会使用任何换行符来保持写作。让我们用另一种方法来解决这个问题。</p>
-<h3 id="将文字写入文件"><a href="#将文字写入文件" class="headerlink" title="将文字写入文件"></a>将文字写入文件</h3><p>我们有一个相当简单的解决方案，只需在每个字符串的末尾放置一个新的行字符“\ n”，如下所示：</p>
-<p>例</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">f.write(<span class="string">"Maybe someday, he will promote me to a real file.\n"</span>)</div></pre></td></tr></table></figure>
-<p>这只是一个简单的文本格式化字符。是的，甚至文本文件都有一个特殊的格式，类似于HTML文档具有自己的特殊格式。文本文件比HTML更受限制。</p>
-<h3 id="附加到文件"><a href="#附加到文件" class="headerlink" title="附加到文件"></a>附加到文件</h3><p>例</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">f = open(<span class="string">"test.txt"</span>,<span class="string">"a"</span>) <span class="comment">#opens file with name of "test.txt"</span></div><div class="line"></div><div class="line">f.write(<span class="string">"and can I get some pickles on that"</span>)</div><div class="line"></div><div class="line">f.close()</div></pre></td></tr></table></figure>
-<p>哇！虽然我们的文本文件对于人是绝对没有意义的，但我们都知道我们只是取得了巨大的胜利。这里唯一的重大变化是在<em>open（）</em>方法中。我们现在有一个“a”（附加）而不是“w”。追加真的只是那么简单。现在跳出这，在全世界写我的朋友。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list">
-			 
-        <li class="article-tag-list-item">
-        	<a href="javascript:void(0)" class="article-tag-list-link color2">Python</a>
-        </li>
-      
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<i class="icon-book icon"></i>
-	<a class="article-category-link" href="/categories/互联网/">互联网</a>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/03/25/python15 Writing to Files/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
     <article id="post-python14 Reading Files" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -927,6 +848,89 @@ and hang out with all my new real file friends.
 
 
   
+    <article id="post-python5 Functions" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/03/15/python5 Functions/">python5 Functions</a>
+    </h1>
+  
+
+        <a href="/2016/03/15/python5 Functions/" class="archive-article-date">
+  	<time datetime="2016-03-15T11:19:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-03-15</time>
+</a>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Python中的函数在分离代码方面是非常有用的，但它们并不会停止。你认为任何其他地方都会使用的代码，你应该放在一个函数中。您还可以为函数添加参数以具有更多灵活的功能，但是我们将在此稍加讨论。您可以在函数名称之前使用关键字def来定义函数。我们使用我们的第一个Python函数。</p>
+<p>例</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">def sayHi():</div><div class="line">	<span class="built_in">print</span>(<span class="string">"Hi Janes"</span>)</div><div class="line">sayHi()</div></pre></td></tr></table></figure>
+<p>结果<br>Hi Janes</p>
+<p>在调用它们之前需要定义函数。即使我们必须在读取时跳过该函数来查看第一个语句sayHi()。这会把我们备份到def sayHi（）:,再次跟随一个冒号。然后在我们确认该函数被调用后，我们为简单的print语句创建一个新行，其中有四个空格。</p>
+<p>具有参数的函数</p>
+<p>上面简单的功能很棒，可以很常用。然而，通常会出现一个时间，我们希望将该功能作用于用户输入的数据。我们可以用（）中的参数来做这个，跟随函数名。</p>
+<p>例</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">def sayHi(name):</div><div class="line">	<span class="built_in">print</span>(<span class="string">"Hi "</span> + name)</div><div class="line">sayHi(<span class="string">"Janes"</span>)</div></pre></td></tr></table></figure>
+<p>结果</p>
+<p>Hi Janes<br>使用语句sayHi(“Janes”)我们传递”Janes”，这成为我们的函数。然后，我们只需要一些打印语句，添加它们并打印出来。</p>
+<p>函数作用域</p>
+<p>Python不支持全局变量，而不必明确表示它们是全局变量。显示而不是解释要容易得多：</p>
+<p>例</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">def someFunction():</div><div class="line">    z = 10</div><div class="line"></div><div class="line">someFunction()</div><div class="line"></div><div class="line"><span class="built_in">print</span> (z)</div></pre></td></tr></table></figure>
+<p>打印<br>这将导致错误，因为我们的变量z位于someFunction的本地范围。所以，当我们尝试打印一个，Python会报错，说一个变量没有定义。从技术上讲，它是定义的，但并不在全局范围内。现在，我们来看一个有用的例子。</p>
+<p>例</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">s = 10 </div><div class="line"></div><div class="line">def someFunction():</div><div class="line"></div><div class="line">    <span class="built_in">print</span> (s)</div><div class="line"></div><div class="line">someFunction()</div></pre></td></tr></table></figure>
+<p>在这个例子中，我们在全局范围内定义了一个。这意味着我们可以调用它或从任何地方编辑它，包括内部函数。但是，您无法在函数范围内声明一个变量，这个变量在全局范围内被外部使用。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list">
+			 
+        <li class="article-tag-list-item">
+        	<a href="javascript:void(0)" class="article-tag-list-link color2">Python</a>
+        </li>
+      
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<i class="icon-book icon"></i>
+	<a class="article-category-link" href="/categories/互联网/">互联网</a>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2016/03/15/python5 Functions/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
@@ -1070,7 +1074,27 @@ and hang out with all my new real file friends.
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="color5">tag1</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="color4">管理, 生涯规划</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="color3">管理</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="color4">项目管理，软技能</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="color5">设计模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="color5">iTunesconnect,</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1086,15 +1110,7 @@ and hang out with all my new real file friends.
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="color2">教程, Java,引道</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="color5">iTunesconnect,</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="color4">教程, Python，引道</a>
+                <a href="javascript:void(0)" class="color4">Lua</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1102,19 +1118,7 @@ and hang out with all my new real file friends.
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="color5">SQL, 性能优化</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="color4">Lua</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="color3">iOS MDM</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="color2">swift,</a>
+                <a href="javascript:void(0)" class="color2">教程, Java,引道</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1122,15 +1126,31 @@ and hang out with all my new real file friends.
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="color4">教程, Python，引道</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="color2">swift,</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="color4">App</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="color3">iOS MDM</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="color2">Python</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="color3">迭代</a>
+                <a href="javascript:void(0)" class="color5">SQL, 性能优化</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="color3">管理</a>
+                <a href="javascript:void(0)" class="color3">迭代</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1142,27 +1162,11 @@ and hang out with all my new real file friends.
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="color2">英语，软技能</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="color5">权限设计</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="color4">App</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="color4">管理, 生涯规划</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="color5">设计模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="color5">tag1</a>
+                <a href="javascript:void(0)" class="color2">英语，软技能</a>
               </li>
             
             <div class="clearfix"></div>

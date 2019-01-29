@@ -131,79 +131,6 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-Lua内存管理" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2011/07/04/Lua内存管理/">Lua内存管理</a>
-    </h1>
-  
-
-        <a href="/2011/07/04/Lua内存管理/" class="archive-article-date">
-  	<time datetime="2011-07-04T07:55:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2011-07-04</time>
-</a>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>本文主要介绍某项目脚本(lua)部分内存泄漏的查证与处理过程，希望对大家有点帮助。需要说明的是，lua本身并不存在<br>真正的内存泄漏，只是因为使用上面的原因导致无法gc，从而导致逻辑上的泄漏:)。</p>
-<p>参考GCObject的声明可以发现，lua中的复杂数据类型变量的传递都是基于引用的。当lua从根开始gc扫描的时候，只要<br>还有一个地方有对此变量的引用，那么这个变量就不会被collect。这种情况造成的危害取决于多大程度上依赖于引用，如<br>果有适当的间接层/弱引用来隔离这个问题，可能问题会有所缓解。</p>
-<h3 id="以下是一些常见的错误引用情景"><a href="#以下是一些常见的错误引用情景" class="headerlink" title="以下是一些常见的错误引用情景:"></a>以下是一些常见的错误引用情景:</h3><p>   1.本应该local 的变量进入global空间或者module空间了(忘记写local)，如果这是一个<br>table/function/udata等类型的变量的话，非常不幸的，这个变量将不会被正确gc了 —-除非你再显式的释放。这是<br>非常容易犯的错误，一直在想为什么lua变量不是默认local呢？ 当然这个话题会引发另外一场争论。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">local</span> <span class="keyword">function</span> test_user(id)</div><div class="line">	userobj = get_user_by_id(id) --这里总是会有一个玩家对象泄漏</div><div class="line">	<span class="built_in">print</span>(<span class="string">"only test"</span>, userobj:get_name())</div><div class="line">end</div></pre></td></tr></table></figure>
-<p>   2.c/c++部分调用的lua_ref是否有正常lua_unref释放？ 通过debug.getregistry()可以查到这些ref.</p>
-<p>   3.其他各种各样的实际bug造成的泄漏。</p>
-<p>当怀疑系统有泄漏以后，我们可以怎么查到这些泄漏呢？我强烈建议大家建立一个weak table, 把你所有创建过的能够称<br>之为资源的，包含但不限于“战斗对象，玩家，npc，物品，场景，邮件”等等对象全部扔到这个table里面。当你知道玩家<br>已经下线、战斗已经销毁了，但通过连续的强制full gc以后weak table里面还有这个变量，这就证明了这个变量的引用<br>没有被完全释放，于是问题就被发现了，我们又有事情干了@_@。</p>
-<p>知道有泄漏是比较容易的，能够完全揪出来就不是很容易了。是的，它究竟在哪儿呢? 一开始在此项目里面也是先发现比如<br>某npc泄漏了，然后就去查代码，看看究竟哪个地方写得不对。这种方式效率极低，基本上查不到什么问题。在迟一点的时<br>候才使用现在的方案：从_G深度遍历所有的table、metatable、funciton’supvalue、function’s env、<br>registentry(lua_ref)。 目前所知的所有引用必定存在于这几个空间， 遍历完成以后一定可以找到那个“迷失了的引<br>用”。 这种方式在脚本层就可以完成所有事情，甚至你可以在运营环境中在线查证，其遍历的速度是非常快的，但内存开销<br>非常大(:，可以考虑一边遍历一边gc，当然还要记得避免重复搜索。 在应用此方案以后，此项目解决了脚本中所有的泄漏<br>问题。</p>
-<p>   一点总结：1.如果系统性能还能够承受的话，建议不要直接引用对象，可以多做一层间接层。2.lua里面的弱引用是非<br>常有用的。3.比较大的物理内存是必要的，这可以为大家查证问题争取足够多的时间:) 4.可以把查找泄漏的部分写入到关<br>机逻辑里面，每次关机的时候自动查找泄漏，然后出具报告。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list">
-			 
-        <li class="article-tag-list-item">
-        	<a href="javascript:void(0)" class="article-tag-list-link color4">Lua</a>
-        </li>
-      
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<i class="icon-book icon"></i>
-	<a class="article-category-link" href="/categories/技术/">技术</a>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2011/07/04/Lua内存管理/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
     <article id="post-Java教程" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -493,7 +420,27 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="color5">tag1</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="color4">管理, 生涯规划</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="color3">管理</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="color4">项目管理，软技能</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="color5">设计模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="color5">iTunesconnect,</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -509,15 +456,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="color2">教程, Java,引道</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="color5">iTunesconnect,</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="color4">教程, Python，引道</a>
+                <a href="javascript:void(0)" class="color4">Lua</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -525,19 +464,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="color5">SQL, 性能优化</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="color4">Lua</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="color3">iOS MDM</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="color2">swift,</a>
+                <a href="javascript:void(0)" class="color2">教程, Java,引道</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -545,15 +472,31 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="color4">教程, Python，引道</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="color2">swift,</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="color4">App</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="color3">iOS MDM</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="color2">Python</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="color3">迭代</a>
+                <a href="javascript:void(0)" class="color5">SQL, 性能优化</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="color3">管理</a>
+                <a href="javascript:void(0)" class="color3">迭代</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -565,27 +508,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="color2">英语，软技能</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="color5">权限设计</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="color4">App</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="color4">管理, 生涯规划</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="color5">设计模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="color5">tag1</a>
+                <a href="javascript:void(0)" class="color2">英语，软技能</a>
               </li>
             
             <div class="clearfix"></div>
