@@ -131,6 +131,723 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-python14 Reading Files" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/03/24/python14 Reading Files/">python14 Reading Files</a>
+    </h1>
+  
+
+        <a href="/2016/03/24/python14 Reading Files/" class="archive-article-date">
+  	<time datetime="2016-03-24T11:27:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-03-24</time>
+</a>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Python阅读文件教程介绍了如何使用Python读取文件。</p>
+<p>很多时候，程序员发现需要从文件中读取内容。可能是我们想从文本文件中读取，例如日志文件或XML文件以进行有效的数据检索。有时，确定如何完成这项工作是一项艰巨的任务。不用担心，Python总是有办法的，使阅读文件成为小事一件。 Python主要有2种方式阅读。为了保持简单，我们只是从文本文件中读取，随时可以自己探索XML。 XML是一个非常酷的标记，但随着你的深入，这是一个头痛的问题。示例如下：</p>
+<h3 id="在Python中打开文件"><a href="#在Python中打开文件" class="headerlink" title="在Python中打开文件"></a>在Python中打开文件</h3><p>test.txt</p>
+<pre><code>I am a test file.
+
+Maybe someday, he will promote me to a real file.
+
+Man, I long to be a real file
+
+and hang out with all my new real file friends.
+</code></pre><p>例</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">f = open(<span class="string">"test.txt"</span>, <span class="string">"r"</span>) <span class="comment">#opens file with name of "test.txt"</span></div></pre></td></tr></table></figure>
+<p>这很简单的解释。我们有一个令人敬畏的小的test.txt文件填充一些随机文本。现在，在这个例子中，我们有了我们的代码。就像你点击一个文件打开它，Python需要知道要打开什么文件。所以，我们使用open方法来告诉Python我们想要打开什么，并打开（连接）它。 “r”只是告诉我们想要阅读的Python（当我们想写入一个文件时，它是“w”）。当然，我们将这个新连接设置为一个变量，以便稍后再使用。但是，我们只打开一个文件，这不是令人兴奋的。我们来试试看读取文件。</p>
+<h3 id="Python文件读取方法"><a href="#Python文件读取方法" class="headerlink" title="Python文件读取方法"></a>Python文件读取方法</h3><p>file.read（n） - 该方法从文件读取n个字符，或者如果n为空，则读取整个文件。<br>file.readline（n） - 此方法从文本文件读取整行。</p>
+<p>例</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">f = open(<span class="string">"test.txt"</span>,<span class="string">"r"</span>) <span class="comment">#opens file with name of "test.txt"</span></div><div class="line"></div><div class="line"><span class="built_in">print</span>(f.read(1))</div><div class="line"></div><div class="line"><span class="built_in">print</span>(f.read())</div></pre></td></tr></table></figure>
+<p>结果</p>
+<p>I</p>
+<p> am a test file.</p>
+<p>Maybe someday, he will promote me to a real file.</p>
+<p>Man, I long to be a real file</p>
+<p>and hang out with all my new real file friends.</p>
+<p>哇哇！所以这可能有点混乱。首先，我们按预期打开文件。接下来，我们使用read（1），并注意到我们提供了1的参数，这意味着我们想要读取下一个字符。所以，Python为我们打印出“I”，因为这是test.txt文件中的第一个字符。接下来会发生什么事情呢？我们告诉Python用read（）读取整个文件，因为我们没有提供任何参数。但是，它不包括我们刚读的“I”！这是因为Python只是把它放弃了。所以，如果Python已经读了“I”，它将从下一个字符开始读取。原因是这样，您可以循环浏览文件，而无需每次想要读取新字符时跳过这么多字符。我知道这很复杂，但认为读取就像一个单向过程。 Python是懒惰的，它不想返回并重读内容。让我们进一步读取一下。</p>
+<p>例</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">f = open(<span class="string">"test.txt"</span>,<span class="string">"r"</span>) <span class="comment">#opens file with name of "test.txt"</span></div><div class="line"></div><div class="line"><span class="built_in">print</span>(f.readline())</div><div class="line"></div><div class="line"><span class="built_in">print</span>(f.readline())</div></pre></td></tr></table></figure>
+<p>结果</p>
+<p>I am a test file.</p>
+<p>Maybe someday, he will promote me to a real file.</p>
+<p>哈！这一次我们为Python的诡计做好了准备。由于我们只是使用readline（）方法两次，我们知道由于Python的阅读过程，我们会得到前2行。当然，我们也知道readline（）只读一行，因为它的语法很简单。对Python的阅读能力来说，最后一个重要的，复杂的和令人敬畏的读取功能是好的。</p>
+<p>例</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">f = open(<span class="string">"test.txt"</span>,<span class="string">"r"</span>) <span class="comment">#opens file with name of "test.txt"</span></div><div class="line"></div><div class="line">myList = []</div><div class="line"></div><div class="line"><span class="keyword">for</span> line <span class="keyword">in</span> f:</div><div class="line"></div><div class="line">    myList.append(line)</div><div class="line"></div><div class="line"><span class="built_in">print</span>(myList)</div></pre></td></tr></table></figure>
+<p>结果</p>
+<p>[‘I am a test file.\n’, ‘Maybe someday, he will promote me to a real file.\n’, ‘Man, I long to be a real file\n’, ‘and hang out with all my new real file friends.’]</p>
+<p>什么！？ Python只是吹我们的头脑！首先，不要为 <em>\n</em>惹恼。它只是一个换行符，因为这些行在不同的文件上，Python希望保留这种格式（您可以随时将其删除）。我们正常打开文件，我们创建一个列表，现在我们已经掌握了。然后，我们使用in关键字将文件分成我们for循环中的行。 Python足够聪明才能理解它应该将文件分解成行。接下来，当我们循环遍历文件的每一行时，我们使用myList.append（行）将每行添加到myList列表。最后，当我们打印出来时，Python向我们展示了它的荣耀。它将文件的每一行分解成一个字符串，我们可以操作它来做任何我们想要的。</p>
+<h3 id="等待！不要忘了关闭文件！"><a href="#等待！不要忘了关闭文件！" class="headerlink" title="等待！不要忘了关闭文件！"></a>等待！不要忘了关闭文件！</h3><p>例</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">f = open(<span class="string">"test.txt"</span>,<span class="string">"r"</span>) <span class="comment">#opens file with name of "test.txt"</span></div><div class="line"></div><div class="line"><span class="built_in">print</span>(f.read(1))</div><div class="line"></div><div class="line"><span class="built_in">print</span>(f.read())</div><div class="line"></div><div class="line">f.close()</div></pre></td></tr></table></figure>
+<p>保存到最后的重要事情是您应该始终使用close（）方法关闭文件。 Python在打开文件并阅读它们时消耗过大，因此暂停并关闭文件以结束连接。 关闭文件总是很好的习惯，你的内存会感谢你。 接下来，我们通过写入文件来做一些建设。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list">
+			 
+        <li class="article-tag-list-item">
+        	<a href="javascript:void(0)" class="article-tag-list-link color2">Python</a>
+        </li>
+      
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<i class="icon-book icon"></i>
+	<a class="article-category-link" href="/categories/互联网/">互联网</a>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2016/03/24/python14 Reading Files/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="post-python13 Exceptions" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/03/23/python13 Exceptions/">python13 Exceptions</a>
+    </h1>
+  
+
+        <a href="/2016/03/23/python13 Exceptions/" class="archive-article-date">
+  	<time datetime="2016-03-23T11:17:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-03-23</time>
+</a>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Python异常教程解释了如何处理可能发生异常或错误的逻辑。<br>在任何包含Python的编程中，当处理相当大量的变量时，异常和错误处理常常成为必要。当我说变量我不意味着变量作为一个占位符，但变量如你所使用的是使用文件系统进程（如读取文件），处理外部输入等。有时候，你只是不知道你的代码会抛出什么。提前计划，并在适当的时候使用异常和错误处理。通常，目标是按照预期执行代码，但是如果发生异常，我们更希望Python不会吐出自己的异常。相反，我们想通知用户使用我们的措辞以及可能如何在障碍物周围进行错误的操作。</p>
+<h3 id="异常与错误"><a href="#异常与错误" class="headerlink" title="异常与错误"></a>异常与错误</h3><p>我知道我有关于异常和错误的说明，但是他们是什么，他们可能会有什么不同。那么，例外情况通常会处理你可能想要处理的小小问题。例如，也许你不完全知道变量的类型，但是你一定要用它来做某事。与数字和字符串做事情的差异是非常不同的。所以，你可能设置如下：</p>
+<p>例</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">var1 = <span class="string">'1'</span> </div><div class="line"></div><div class="line">try:</div><div class="line"></div><div class="line">    var1 = var1 + 1 <span class="comment"># since var1 is a string, it cannot be added to the number 1 </span></div><div class="line"></div><div class="line">except:</div><div class="line"></div><div class="line">    <span class="built_in">print</span>(var1, <span class="string">" is not a number"</span>) <span class="comment">#so we execute this</span></div><div class="line"></div><div class="line"><span class="built_in">print</span>(var1)</div></pre></td></tr></table></figure>
+<p>真棒！我们完全捕获了python给了我们的异常。我们只需将try代码放在try块下执行。但是，如果发生异常（向整数添加一个字符串是一个异常），我们告诉Python在except块中执行所有操作。</p>
+<p>那么什么是错误？坏消息，就是这些。你通常不想处理错误，除非你在做一些危险的事情。当产生错误时，通常意味着Python正在炸毁船舶，显然，如果船只被炸毁，我们应该跳船并退出程序。</p>
+<p>此外，您可能已经注意到在此示例中print（）有两个参数。那么它可以打印你想要的参数。 print（）将继续打印所有参数，它们之间有一个空格。</p>
+<h3 id="优雅的错误处理"><a href="#优雅的错误处理" class="headerlink" title="优雅的错误处理"></a>优雅的错误处理</h3><p>让我们来看看我们的尝试/除了上述之外，并不会对程序的可用性做很多事情。基本上，如果它搞砸了，只是告诉我们的用户有什么问题。有什么要点？我们应该尝试以帮助程序继续前进的方式处理我们的异常。一个更好的选择将是这样的：</p>
+<p>例</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">var1 = <span class="string">'1'</span></div><div class="line"></div><div class="line">try:</div><div class="line"> </div><div class="line">    var2 = var1 + 1 <span class="comment"># since var1 is a string, it cannot be added to the number 1 </span></div><div class="line"></div><div class="line">except:</div><div class="line"> </div><div class="line">    var2 = int(var1) + 1 </div><div class="line"></div><div class="line"><span class="built_in">print</span>(var2)</div></pre></td></tr></table></figure>
+<p>啊，好多了在这个例子中，我们使用<em>except</em>捕获一个异常。但是，如果你运行这个例子，你会看到一些更令人敬畏的事情。我们实际上捕获了异常，并告诉python，“在添加之前，尝试将其转换为一个整数”，Python忠实地遵守这些异常。作为最终结果，Python打印出数字2，休息一下，打个小的嗝。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list">
+			 
+        <li class="article-tag-list-item">
+        	<a href="javascript:void(0)" class="article-tag-list-link color2">Python</a>
+        </li>
+      
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<i class="icon-book icon"></i>
+	<a class="article-category-link" href="/categories/互联网/">互联网</a>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2016/03/23/python13 Exceptions/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="post-python12 Formatting" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/03/22/python12 Formatting/">python12 Formatting</a>
+    </h1>
+  
+
+        <a href="/2016/03/22/python12 Formatting/" class="archive-article-date">
+  	<time datetime="2016-03-22T11:15:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-03-22</time>
+</a>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>我们花点时间来谈论格式化，因为它可能会变得有点激烈，你可以做多少，以及如何轻松地使用Python中的变量来做事情。首先，Python中的格式化有点奇怪。但是，一旦你习惯了，你会很高兴你做到了。</p>
+<h3 id="将数字格式化为字符串"><a href="#将数字格式化为字符串" class="headerlink" title="将数字格式化为字符串"></a>将数字格式化为字符串</h3><p>例</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="built_in">print</span>(<span class="string">'The order total comes to %f'</span> % 123.44)</div><div class="line"><span class="built_in">print</span>(<span class="string">'The order total comes to %.2f'</span> % 123.444)</div></pre></td></tr></table></figure>
+<p>结果</p>
+<p>The order total comes to 123.440000<br>The order total comes to 123.44</p>
+<p>雅，我告诉过你有点奇怪。在第一个％之后的f是float的缩写，因为我们有浮点数，Python有一种具体处理格式化小数的方法。左边的％告诉Python你想放置格式化的字符串。正确的％后面的值是我们要格式化的值。所以，Python读取字符串，直到它到达第一个％，然后Python停止并跳转到下一个％。 Python接受第二个％的值，并根据第一个％进行格式化。最后，Python将第二个值放在第一个％的位置。我们可以使用单个值，如字符串或数字。我们也可以使用一个元组或一个字典。好的，这很棒，但格式化字符串怎么样？</p>
+<h3 id="格式化字符串"><a href="#格式化字符串" class="headerlink" title="格式化字符串"></a>格式化字符串</h3><p>字符串就像我们如何格式化上面的数字，除了我们将使用s代替字符串，而不是像以前一样。通常，您只需要格式化一个字符串来限制字符数。让我们看看它在行动：</p>
+<p>例</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">a =<span class="string">"abcdefghijklmnopqrstuvwxyz"</span></div><div class="line"></div><div class="line"><span class="built_in">print</span>(<span class="string">'%.20s'</span> % a)</div></pre></td></tr></table></figure>
+<p>结果</p>
+<p>abcdefghijklmnopqrst</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list">
+			 
+        <li class="article-tag-list-item">
+        	<a href="javascript:void(0)" class="article-tag-list-link color2">Python</a>
+        </li>
+      
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<i class="icon-book icon"></i>
+	<a class="article-category-link" href="/categories/互联网/">互联网</a>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2016/03/22/python12 Formatting/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="post-python11 Dictionaries" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/03/21/python11 Dictionaries/">python11 Dictionaries</a>
+    </h1>
+  
+
+        <a href="/2016/03/21/python11 Dictionaries/" class="archive-article-date">
+  	<time datetime="2016-03-21T11:10:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-03-21</time>
+</a>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Python的字典在其他编程语言中并不常见。至少起初，他们似乎不正常。一些超级变量，如列表，数组等，隐含地将索引与其中的每个元素绑定。 Python的字典有这样的键，就像这些索引一样，但是有一些不同（我稍后再强调一下）。与这些键合并的是字典的实际值或元素。足够我的可怕的解释，让我们举个例子。</p>
+<p>例</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">myExample = &#123;<span class="string">'someItem'</span>: 2, <span class="string">'otherItem'</span>: 20&#125;</div><div class="line"><span class="built_in">print</span>(myExample[<span class="string">'otherItem'</span>])</div></pre></td></tr></table></figure>
+<p>结果</p>
+<p>20</p>
+<p>看，这有点奇怪吗？如果你试图成为一个超能力者，你可能已经尝试过像print（myExample [1]）。 Python会咬你的。词典不完全基于索引。当我向您展示如何编辑字典时，您将开始看到字典中没有特定的顺序。您可以添加一个键：值，它将显示在随机的地方。</p>
+<p>这里要注意的是，您无法使用相同的键创建不同的值。 Python只会覆盖重复键的值。除了所有的警告之外，我们再向我们的myExample字典添加一些更多的关键字：值。</p>
+<p>例</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">myExample = &#123;<span class="string">'someItem'</span>: 2, <span class="string">'otherItem'</span>: 20&#125;</div><div class="line">myExample[<span class="string">'newItem'</span>] = 400</div><div class="line"></div><div class="line"><span class="keyword">for</span> a <span class="keyword">in</span> myExample:</div><div class="line"></div><div class="line">    <span class="built_in">print</span> (a)</div></pre></td></tr></table></figure>
+<p>结果</p>
+<p>newItem<br>otherItem<br>someItem</p>
+<p>字典如何无序？现在，您可能不认为它们是无序的，因为我的示例返回字母顺序。好吧，尝试用键名来看看它是否符合你的字母顺序。不会。无论如何，添加一个键：值真的很容易。将键放在括号中，并将其设置为等于该值。字典最后一件重要的事情。</p>
+<p>例</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">myExample = &#123;<span class="string">'someItem'</span>: 2, <span class="string">'otherItem'</span>: 20,<span class="string">'newItem'</span>:400&#125;</div><div class="line"></div><div class="line"><span class="keyword">for</span> a <span class="keyword">in</span> myExample:</div><div class="line"></div><div class="line">    <span class="built_in">print</span> (a, myExample[a])</div></pre></td></tr></table></figure>
+<p>结果</p>
+<p>（’newItem’，400）</p>
+<p>（’otherItem’，20）</p>
+<p>（’someItem’，2）</p>
+<p>我们在这里所做的一切都是吐出我们整个字典。在列表中，当我们告诉Python打印我们的变量（在我们的例子中，它是a），它将打印出该值。然而，使用字典，它只会打印出关键。要获得该值，您必须使用字典名称后面的方括号中的键。词典有点混乱，但是值得你们耐心。他们是闪电般快速，非常有用。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list">
+			 
+        <li class="article-tag-list-item">
+        	<a href="javascript:void(0)" class="article-tag-list-link color2">Python</a>
+        </li>
+      
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<i class="icon-book icon"></i>
+	<a class="article-category-link" href="/categories/互联网/">互联网</a>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2016/03/21/python11 Dictionaries/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="post-python10 Tupies" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/03/20/python10 Tupies/">python10 Tupies</a>
+    </h1>
+  
+
+        <a href="/2016/03/20/python10 Tupies/" class="archive-article-date">
+  	<time datetime="2016-03-20T11:20:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-03-20</time>
+</a>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在Python中，元组与列表几乎相同。那么我们为什么要用它们呢？元组和列表之间的主要区别是元组不能更改。也就是说，您无法从元组添加，更改或删除元素。元组起初可能看起来很奇怪，但是它们背后有很大的理由是不可改变的。作为程序员，我们偶尔搞砸了。我们改变了我们不想改变的变量，有时候，我们只是希望事情是不变的，所以我们以后不会意外地改变它们。但是，如果我们改变主意，我们还可以将元组转换为列表或列表为元组。事实上，我们需要有意识地说Python，我想把这个元组改成一个列表，所以我可以修改它。我们来看看一个元组在行动！</p>
+<p>列表与元组</p>
+<p>例</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">myList = [1,2,3]</div><div class="line">myList.append(4)</div><div class="line"><span class="built_in">print</span> (myList)</div><div class="line"></div><div class="line">myTuple = (1,2,3)</div><div class="line"><span class="built_in">print</span> (myTuple)</div><div class="line"></div><div class="line">myTuple2 = (1,2,3)</div><div class="line">myTuple2.append(4)</div><div class="line"><span class="built_in">print</span> (myTuple2)</div></pre></td></tr></table></figure>
+<p>结果</p>
+<p>[1, 2, 3, 4]<br>(1, 2, 3)<br>Traceback (most recent call last):<br>  File “/Users/adu/Documents/My Drawings/test.py”, line 17, in <module><br>    myTuple2.append(4)<br>AttributeError: ‘tuple’ object has no attribute ‘append’<br>[Finished in 0.8s with exit code 1]</module></p>
+<p>所以我们看到这个清单明显地按照预期工作。我们只是附加一个4到最后，Python不会错过一个节拍。接下来，我们测试我们的元组声明，它也是有效的。但是当我们尝试附加到元组时，Python给我们一个讨厌的小错误。就像我说的，你不能改变一个元组！如果您尝试使用诸如附加在元组上的东西，Python会咬你。但是，让我们说“嘿，我真的要给这个元组添加一个”。我们开始做吧：</p>
+<p>例</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">myTuple = (1,2,3)</div><div class="line">myList = list(myTuple)</div><div class="line">myList.append(4)</div><div class="line"><span class="built_in">print</span> (myList)</div></pre></td></tr></table></figure>
+<p>结果</p>
+<p>[1，2，3，4]</p>
+<p>oyeah！我们已经成功地撤销了Python试图教我们不做的事情。我们只是将元组转换成列表，然后一旦列表，我们使用它的追加方法来添加4.应该重申的是，元组的目的是不可变的。如果您打算更改变量，只需使用列表。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list">
+			 
+        <li class="article-tag-list-item">
+        	<a href="javascript:void(0)" class="article-tag-list-link color2">Python</a>
+        </li>
+      
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<i class="icon-book icon"></i>
+	<a class="article-category-link" href="/categories/互联网/">互联网</a>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2016/03/20/python10 Tupies/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="post-python9 Lists" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/03/19/python9 Lists/">python9 Lists</a>
+    </h1>
+  
+
+        <a href="/2016/03/19/python9 Lists/" class="archive-article-date">
+  	<time datetime="2016-03-19T11:25:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-03-19</time>
+</a>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Python没有数组但是有列表。列表是超级动态的，因为它们允许您在其中存储多个“变量”。列表具有允许您操纵其中的值的方法。这里真的有一点要告诉你，让我们来看看吧。</p>
+<p>例</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">sampleList = [1,2,3,4,5,6,7,8]</div><div class="line"><span class="built_in">print</span>(sampleList[1])</div></pre></td></tr></table></figure>
+<p>结果</p>
+<p>2</p>
+<p>括号只是索引号的指示。像大多数编程语言一样，Python的索引从0开始。所以在这个例子中，1是列表中的第二个数字。当然，这是一个数字列表，但你也可以做一个字符串列表，甚至混合匹配，如果你真的想（不是最好的想法）。好的，现在看看我们是否可以打印整个列表。</p>
+<p>例</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">sampleList = [1,2,3,4,5,6,7,8]</div><div class="line"><span class="built_in">print</span>(sampleList[1])</div><div class="line"></div><div class="line"><span class="keyword">for</span> x <span class="keyword">in</span> sampleList:</div><div class="line">    <span class="built_in">print</span>(x)</div></pre></td></tr></table></figure>
+<p>结果</p>
+<p>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8</p>
+<p>基本上，变量x是列表中的实际元素。我们递增隐式索引。</p>
+<h3 id="通用列表方法"><a href="#通用列表方法" class="headerlink" title="通用列表方法"></a>通用列表方法</h3><p>有很多方法用于列表，但是我们至少将介绍如何添加和删除项目。所有的列表方法都可以在Python的文档网站上找到。方法遵循列表名称。在语句listName.append（2）中，append（）是方法。</p>
+<p>.append（value） - 将元素追加到列表的末尾<br>.count（’x’） - 计算列表中“x”的出现次数<br>.index（’x’） - 返回列表中“x”的索引<br>.insert（’y’，’x’） - 在’y’的位置插入’x’<br>.pop（） - 返回最后一个元素，然后将其从列表中删除<br>.remove（’x’） - 从列表中查找并删除第一个“x”<br>.reverse（） - 反转列表中的元素<br>.sort（） - 按升序按字母顺序排列列表，或按升序排序</p>
+<p>尝试玩几个方法来获得列表的感觉。它们是相当简单的，但它们对于了解如何利用Python的力量非常重要。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list">
+			 
+        <li class="article-tag-list-item">
+        	<a href="javascript:void(0)" class="article-tag-list-link color2">Python</a>
+        </li>
+      
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<i class="icon-book icon"></i>
+	<a class="article-category-link" href="/categories/互联网/">互联网</a>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2016/03/19/python9 Lists/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="post-python8 Strings" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/03/18/python8 Strings/">python8 Strings</a>
+    </h1>
+  
+
+        <a href="/2016/03/18/python8 Strings/" class="archive-article-date">
+  	<time datetime="2016-03-18T11:26:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-03-18</time>
+</a>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>与任何编程语言一样，字符串是关于Python的最重要的一部分。此外，正如我们迄今为止在其他语言中所经历的，字符串包含字符。如果使用得当，它们几乎可以包含任何东西。你们放置的字符数量也不会有问题。快速示例！</p>
+<p>例</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">myString = <span class="string">""</span></div><div class="line"></div><div class="line"><span class="built_in">print</span> (<span class="built_in">type</span>(myString))</div></pre></td></tr></table></figure>
+<p>结果</p>
+ <type 'str'="">
+
+<p>type（）很棒。它返回括号内的任何变量类型，这是非常有用的，如果你有一些错误，你不能弄清楚，或者你没有看到一大段代码一段时间，不知道什么类型变量是。回到字符串中的字符数量，我们可以看到一个空的“”返回的字符串。字符串是强大的，很容易声明。我们来看一些常见的字符串方法，以便您快速上手。</p>
+<h5 id="Python中的常见字符串方法"><a href="#Python中的常见字符串方法" class="headerlink" title="Python中的常见字符串方法"></a>Python中的常见字符串方法</h5><p>stringVar.count（’x’） - 计算stringVar中出现的“x”的数量<br>stringVar.find（’x’） - 返回字符’x’的位置<br>stringVar.lower（） - 以小写形式返回stringVar（这是临时的）<br>stringVar.upper（） - 返回大写字符串（这是临时的）<br>stringVar.replace（’a’，’b’） - 替换字符串中与b的所有出现<br>stringVar.strip（） - 从字符串中删除前导/尾随的空格</p>
+<h3 id="字符串索引"><a href="#字符串索引" class="headerlink" title="字符串索引"></a>字符串索引</h3><p>关于Python的一个非常酷的事情是，几乎所有的东西都可以通过索引和字符串来分解。使用字符串，索引实际上是字符。你可以抓住一个字符，或者你可以指定一个字符范围。</p>
+<p>例</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">a = <span class="string">"string"</span></div><div class="line"></div><div class="line"><span class="built_in">print</span> (a[1:3])</div><div class="line"></div><div class="line"><span class="built_in">print</span> (a[:-1])</div></pre></td></tr></table></figure>
+<p>结果</p>
+<p>TR</p>
+<p>strin</p>
+<p>我们来讨论一下print（a [1：3]），因为这是最简单的解释。请记住，Python从0开始所有索引，这将是我们的变量a中的’s’。所以，我们打印出“tr”，因为我们打印的所有内容都是3，但不包括3。对于第二个例子，欢迎来到Python的一个很好的部分。实际上，在a之后指定一个负数：在索引中意味着您希望python从最后开始计算索引并向前移动。所以，我们告诉python我们希望从第一个字符到倒数第二个字符。喘着气，你赚了</p>
+</type>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list">
+			 
+        <li class="article-tag-list-item">
+        	<a href="javascript:void(0)" class="article-tag-list-link color2">Python</a>
+        </li>
+      
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<i class="icon-book icon"></i>
+	<a class="article-category-link" href="/categories/互联网/">互联网</a>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2016/03/18/python8 Strings/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="post-python7 Loops" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/03/17/python7 Loops/">python7 Loops</a>
+    </h1>
+  
+
+        <a href="/2016/03/17/python7 Loops/" class="archive-article-date">
+  	<time datetime="2016-03-17T11:16:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-03-17</time>
+</a>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="for-loops"><a href="#for-loops" class="headerlink" title="for loops"></a>for loops</h3><p>是时候介绍Python的一个很棒的部分。与其他语言相比，Python的for循环是非常惊人的，因为它们是多才多艺的。一个for循环的想法是相当简单的，你只需循环一些代码一定次数。举个例子：</p>
+<p>例</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> a <span class="keyword">in</span> xrange(1,3):</div><div class="line">	<span class="built_in">print</span>(a)</div></pre></td></tr></table></figure>
+<p>结果</p>
+<p>1<br>2</p>
+<p>首先，print是缩进的一个原因。记住Python对于间距是很挑剔的。了解这个例子中是有点复杂的。在这种情况下，a是一个变量，每次我们遍历循环时都会自动递增。接下来，我们使用range关键字在完成之后立即设置起点和点。这正是为什么第3号没有打印。 Python非常喜欢这个想法，直到一个数字，但不包括它。</p>
+<p>另外，请注意in关键字。这实际上是for循环的一部分，在处理列表和字典之后，您将会更了解它。所以基本上面的for循环说：“对于变量a，每个循环结束时都会增加，在1到3的范围内。”</p>
+<h3 id="White-loops"><a href="#White-loops" class="headerlink" title="White loops"></a>White loops</h3><p>White 循环在Python中的循环可以非常类似于for循环，如果你真的想要它们。基本上，他们都循环了一段时间，但一段时间的循环可能更模糊（稍后我会讨论一下）。通常，在while循环中，您将有一个条件，后跟一些语句，然后在该条件中增加变量。让我们看一眼，真的很快：</p>
+<p>例</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">a = 1</div><div class="line"></div><div class="line"><span class="keyword">while</span> a &lt; 10:</div><div class="line">    <span class="built_in">print</span> (a)</div><div class="line">    a+=1</div></pre></td></tr></table></figure>
+<p>结果</p>
+<p>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9</p>
+<p>这里很简单，我们的条件是一个&lt;10，一个先前被声明并设置为等于1.所以，我们的第一个打印出来的项目是1，这是有道理的。接下来，我们增加一个并再次运行循环。当然，一旦a等于10，我们就不会再循环了。</p>
+<p>while循环的令人敬畏的部分是事实，您可以将其设置为始终满足像1 == 1的条件，这意味着代码将永远运行！为什么那么酷？这是真棒，因为你创建规则。需要注意的是，你正在创建一个无限循环，这将使任何正常的程序员非常紧张。</p>
+<p>do-while循环在哪里</p>
+<p>简单的回答，它不是在Python中。在编写循环之前，您需要考虑这一点。不是一直以来常常使用do-while循环，但是Python目前没有任何支持。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list">
+			 
+        <li class="article-tag-list-item">
+        	<a href="javascript:void(0)" class="article-tag-list-link color2">Python</a>
+        </li>
+      
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<i class="icon-book icon"></i>
+	<a class="article-category-link" href="/categories/互联网/">互联网</a>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2016/03/17/python7 Loops/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="post-python6 If Statement" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/03/16/python6 If Statement/">python6 If Statement</a>
+    </h1>
+  
+
+        <a href="/2016/03/16/python6 If Statement/" class="archive-article-date">
+  	<time datetime="2016-03-16T11:19:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-03-16</time>
+</a>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在编程逻辑的核心，我们在Python中有if语句。 if语句是一个条件，当它满足时，执行一部分代码。通常与if语句合作if和else。并且语句后面用:结尾，Python的elseif被缩短为elif。if语句通常与变量相结合以产生更多的动态内容。让我们举个栗子。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">a = 20</div><div class="line"></div><div class="line"><span class="keyword">if</span> a &gt;= 22:</div><div class="line">    <span class="built_in">print</span>(<span class="string">"if"</span>)</div><div class="line"><span class="keyword">elif</span> a &gt;= 21:</div><div class="line">    <span class="built_in">print</span>(<span class="string">"elif"</span>)</div><div class="line"><span class="keyword">else</span>:</div><div class="line">    <span class="built_in">print</span>(<span class="string">"else"</span>)</div></pre></td></tr></table></figure>
+<p>结果<br>else</p>
+<p>所以，我们有变量a等于二十。现在，我们通过if语句来运行它来检查一个是否大于或等于22.不是。所以我们跳过了内部的print语句，继续执行elif语句。此条件检查a是否大于或等于21.它不是，这使我们进入了扩展if语句的最后一行。else符合条件，这意味着如果以前的条件不满足，我们将在其中运行代码。所以，我们运行print（“else”），我们在结果中看到字符串else。</p>
+<p>if语法</p>
+<p>在上面的例子中你可能会错过的最重要的是Python的语法比其他语言更清晰。然而，这也意味着它非常挑剔，倾向于咬住初学者错误。每一个条件我们都有一个冒号。接下来，您必须继续使用4个空格的新行来告诉Python，只有当前面的条件满足时，您才希望运行4个空格的代码。好的，它不一定是4个空格，但你必须与你用于缩进的空格保持一致。你可以每次使用3次，如果你想要的，但4是一种标准。此外，如果您希望在条件满足后运行多个语句，则必须在下一个语句之前具有相同数量的空格的新行。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list">
+			 
+        <li class="article-tag-list-item">
+        	<a href="javascript:void(0)" class="article-tag-list-link color2">Python</a>
+        </li>
+      
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<i class="icon-book icon"></i>
+	<a class="article-category-link" href="/categories/互联网/">互联网</a>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2016/03/16/python6 If Statement/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
     <article id="post-python5 Functions" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -214,701 +931,9 @@
 
 
   
-    <article id="post-python4 Operators" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/03/13/python4 Operators/">python4 Operators</a>
-    </h1>
-  
-
-        <a href="/2016/03/13/python4 Operators/" class="archive-article-date">
-  	<time datetime="2016-03-13T11:10:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-03-13</time>
-</a>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>python 的操作符和其他语言一样，编程语言中的运算符用于模糊地描述5个不用的领域：算术，复制，递增/递减，比较，逻辑。</p>
-<h3 id="算术运算符"><a href="#算术运算符" class="headerlink" title="算术运算符"></a>算术运算符</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">print</span>(1 + 2)</div><div class="line"><span class="built_in">print</span>(1 - 2)</div><div class="line"><span class="built_in">print</span>(1 * 2)</div><div class="line"><span class="built_in">print</span>(1 / 2)</div><div class="line"><span class="built_in">print</span>(1 % 2)</div><div class="line"><span class="built_in">print</span>(1 ** 2) <span class="comment"># 1 to the twice power</span></div><div class="line"><span class="built_in">print</span>(1 // 2) <span class="comment"># floor division</span></div></pre></td></tr></table></figure>
-<p>结果<br>3<br>-1<br>2<br>0<br>1<br>1<br>0</p>
-<p>正如所料，他们按预期工作。不要忘记你可以使用+号来连接字符串。最后，（//）相除并取整</p>
-<h3 id="简写运算符"><a href="#简写运算符" class="headerlink" title="简写运算符"></a>简写运算符</h3><p>和之前的语言一样，python 也是支持简写，举个栗子</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">a = 1</div><div class="line">a+=2</div><div class="line"><span class="built_in">print</span>(a)</div></pre></td></tr></table></figure>
-<p>结果<br>2</p>
-<p>当然，你可以使用任何之前的算术运算符作为赋值运算符，之后是=我们只是告诉Python将值添加为2，而不必像a = a + 2那样说。我们是程序员，我们很自豪被称为懒惰！</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list">
-			 
-        <li class="article-tag-list-item">
-        	<a href="javascript:void(0)" class="article-tag-list-link color2">Python</a>
-        </li>
-      
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<i class="icon-book icon"></i>
-	<a class="article-category-link" href="/categories/互联网/">互联网</a>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/03/13/python4 Operators/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-python3 Strings" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/03/12/python3 Strings/">python3 Strings</a>
-    </h1>
-  
-
-        <a href="/2016/03/12/python3 Strings/" class="archive-article-date">
-  	<time datetime="2016-03-12T11:08:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-03-12</time>
-</a>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>python 的文本类型<br>可以用’‘或””或“”““””标示文本。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">a = <span class="string">"0"</span></div><div class="line">b = <span class="string">"2"</span></div><div class="line"><span class="built_in">print</span>(a  + b)</div></pre></td></tr></table></figure>
-<h3 id="字符串的操作"><a href="#字符串的操作" class="headerlink" title="字符串的操作"></a>字符串的操作</h3><p>替换字符串</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">x = <span class="string">"Hello World"</span></div><div class="line">x = x.replace(<span class="string">"World"</span>, <span class="string">"Python"</span>)</div><div class="line"><span class="built_in">print</span>(x)</div></pre></td></tr></table></figure>
-<p>打印一个字符</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">x = <span class="string">"Hello World"</span></div><div class="line"><span class="built_in">print</span>(x[0])</div></pre></td></tr></table></figure>
-<p>打印多个字符</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">x = <span class="string">"Hello World"</span></div><div class="line"><span class="built_in">print</span>(x[0:4])</div></pre></td></tr></table></figure>
-<p>字符串大小写</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">x = <span class="string">"Hello World"</span></div><div class="line"><span class="built_in">print</span>(x.upper())</div></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">x = <span class="string">"Hello World"</span></div><div class="line"><span class="built_in">print</span>(x.lower())</div></pre></td></tr></table></figure>
-<p>字符串比较<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">x = <span class="string">"Hello World"</span></div><div class="line"></div><div class="line"><span class="keyword">if</span> x == <span class="string">"Hello World"</span>:</div><div class="line">	<span class="built_in">print</span>(<span class="string">"ok"</span>)</div><div class="line"><span class="keyword">else</span>:</div><div class="line">	<span class="built_in">print</span>(<span class="string">"False"</span>)</div></pre></td></tr></table></figure></p>
-<p>字符串查找</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">x = <span class="string">"All work and non play make jack all dull boy"</span></div><div class="line"></div><div class="line"><span class="keyword">if</span> <span class="string">"work"</span> <span class="keyword">in</span> x:</div><div class="line">	<span class="built_in">print</span>(<span class="string">"Found!"</span>)</div></pre></td></tr></table></figure>
-<p>字符串换行输出</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">x = <span class="string">"All work \nand non play make jack all dull boy"</span></div><div class="line"><span class="built_in">print</span>(x)</div></pre></td></tr></table></figure>
-<p>转义\</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">x = <span class="string">"All work \\nand non play make jack all dull boy"</span></div><div class="line"><span class="built_in">print</span>(x)</div></pre></td></tr></table></figure>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list">
-			 
-        <li class="article-tag-list-item">
-        	<a href="javascript:void(0)" class="article-tag-list-link color2">Python</a>
-        </li>
-      
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<i class="icon-book icon"></i>
-	<a class="article-category-link" href="/categories/互联网/">互联网</a>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/03/12/python3 Strings/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-python2Variables" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/03/11/python2Variables/">python2Variables</a>
-    </h1>
-  
-
-        <a href="/2016/03/11/python2Variables/" class="archive-article-date">
-  	<time datetime="2016-03-11T11:28:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-03-11</time>
-</a>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="Booleans-integers-and-floats"><a href="#Booleans-integers-and-floats" class="headerlink" title="Booleans,integers and floats"></a>Booleans,integers and floats</h3><p>不用事先声明数据类型，指向什么就是什么类型。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">switch = False</div><div class="line"><span class="built_in">print</span>(switch)</div></pre></td></tr></table></figure>
-<p>integers</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">x = 123</div><div class="line">y = 1.35462</div><div class="line"><span class="built_in">print</span>(x, y)</div></pre></td></tr></table></figure>
-<p>print输出多个值，用逗号隔开</p>
-<p>Python提供了强大的math库</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">import math</div><div class="line">x = math.sqrt(3)</div><div class="line"><span class="built_in">print</span>(x)</div></pre></td></tr></table></figure>
-<p>impotr 引进类库</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list">
-			 
-        <li class="article-tag-list-item">
-        	<a href="javascript:void(0)" class="article-tag-list-link color2">Python</a>
-        </li>
-      
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<i class="icon-book icon"></i>
-	<a class="article-category-link" href="/categories/互联网/">互联网</a>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/03/11/python2Variables/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-python1Introduction&amp;Installa" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/03/10/python1Introduction&Installa/">python1Introduction&amp;Install</a>
-    </h1>
-  
-
-        <a href="/2016/03/10/python1Introduction&Installa/" class="archive-article-date">
-  	<time datetime="2016-03-10T11:18:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-03-10</time>
-</a>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="Python-简介"><a href="#Python-简介" class="headerlink" title="Python 简介"></a>Python 简介</h3><p>Python 是一个有条理的和强大的面向对象的程序设计语言，类似于Perl, Ruby, Scheme, 或 Java.</p>
-<p>Python的一些显著特点：</p>
-<p>使用优美的语法，使你编写的程序更加易读。<br>一种易用的程序语言，使用她可以容易地编写出你的程序。这使得Python目标为原型开发和其他特别编程任务，同时不损害其可维护性。<br>一个大型的标准库支持许多常见编程任务,诸如连接到Web服务器、 正则表达式全文检索、阅读及修改文件。<br>Python的互交模式使她容易测试小片断的代码。也有一个叫做IDLE的捆绑式开发环境。<br>易于将新的模块扩展到如C或者C++的汇编语言中。<br>能过嵌入到一个应用程序，为应用程序提供可编程接口。<br>可以运行许多不同的计算机和操作系统：Windows, MacOS, 各种Unix发行版, OS/2, …<br>在以下两层意义中是免费的软件。不需要花费任何费用就可以下载、使用或者开发程序。虽然这个语言受著作权保护，但是遵循开发式源代码协议，因此Python也可以被自由修改和重新发布。<br>Python的编程语言特点：</p>
-<p>可以使用多种基本数据类型： 数字(浮动小数点，复数和无限长度的长整数)，字符串(ASCII和Unicode)，列表和字典。<br>Python支持类的面向对象的编程技术和多重继承性<br>代码可以被加载到模块和包中。<br>支持错误捕捉（原文The language supports raising and catching exceptions, resulting in cleaner error handling.）<br>数据类型strongly and dynamically typed。 混合的不相容的类型(e。g. 试图增加串和数字)将造成一个异常，如此错误被捕捉。<br>Python包含先进的编程特点如生成程序和列表。<br>Python的自动内存管理，把你从必须手工分配和释放内存的代码中解救出来。</p>
-<h3 id="Python-安装"><a href="#Python-安装" class="headerlink" title="Python 安装"></a>Python 安装</h3><p>Python提供了多个平台的版本，Windows, Linux/UNIX, Mac OS X, Other 你可以在 <a href="https://www.python.org/downloads/," title="Python Downloads" target="_blank" rel="external">Python Downloads</a>中找到</p>
-<h3 id="愉快的玩耍吧"><a href="#愉快的玩耍吧" class="headerlink" title="愉快的玩耍吧"></a>愉快的玩耍吧</h3><p>安装完后，打开控制台键入python你可以看到Python的版本信息等。和Python <strong>命令提示符&gt;&gt;&gt;</strong><br>一般学习新的一门语言都是从“Hello World！”开始的。直接键入<br><code>print(&#39;hello python!&#39;）</code><br>回车，你可以看到屏幕输出：<br><code>hello python！</code><br>你可以在上面随便输入<br><code>1+2</code><br>3<br><code>x = 2</code><br><code>y = 3</code><br><code>x + y</code><br>5</p>
-<h3 id="Python-IDE"><a href="#Python-IDE" class="headerlink" title="Python IDE"></a>Python IDE</h3><p>什么？场地不够大不能愉快的玩耍。恩，你需要一个集成开发环境,在下面地址中挑选一款喜欢的<br><a href="https://wiki.python.org/moin/IntegratedDevelopmentEnvironments," title="IDE" target="_blank" rel="external">IDE</a></p>
-<p>Python文件是以 .py 结尾的，新建文件如hello.py </p>
-<p><code>print(&#39;hello python!&#39;)</code></p>
-<p>然后bulid，控制台输出</p>
-<p><code>hello python!</code></p>
-<h3 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h3><p>单行注释用 <strong>#</strong><br>多行注释用 ‘’’注释内容’’’</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#print("comments")</span></div><div class="line"><span class="string">''</span><span class="string">'</span></div><div class="line">print("comments")</div><div class="line">print("other comments")</div><div class="line">'<span class="string">''</span></div></pre></td></tr></table></figure>
-<h3 id="脚本"><a href="#脚本" class="headerlink" title="脚本"></a>脚本</h3><p>可以把python当做一个可执行的脚本，</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/bin/env python3</span></div><div class="line"><span class="built_in">print</span>(<span class="string">'hello python!'</span>)</div></pre></td></tr></table></figure>
-<p>指定python3来解释执行,也可以用默认的python来执行。</p>
-<p>需要修改上面程序的权限为可执行：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">chmod 755 hello.py</div></pre></td></tr></table></figure>
-<p>然后再命令行中，输入</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./hello.py</div></pre></td></tr></table></figure>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list">
-			 
-        <li class="article-tag-list-item">
-        	<a href="javascript:void(0)" class="article-tag-list-link color2">Python</a>
-        </li>
-      
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<i class="icon-book icon"></i>
-	<a class="article-category-link" href="/categories/互联网/">互联网</a>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/03/10/python1Introduction&Installa/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-给糖or给棒" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/10/15/给糖or给棒/">给糖or给棒</a>
-    </h1>
-  
-
-        <a href="/2015/10/15/给糖or给棒/" class="archive-article-date">
-  	<time datetime="2015-10-15T11:18:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2015-10-15</time>
-</a>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>  在团队中，团队的成员大部分都是由自诩程序猿（并以此为豪）组成的。个别的测试人员不懂程序，<br>但他们也经常和程序猿混在一起。（一起吃饭，一起打野，一起撸串…）“按照他们喜欢的被管理的方式去管理”<br>这样的黄金法则对他们是很适用的。</p>
-<p>  程序猿向往自由，不喜欢太多（一点也不）的约束。有时候和公司的制度很难走到一起。他们不喜欢条条框框<br>的东西，也不擅长这些东西。相反，他们更愿意把时间花在研究技术上面。他们工作起来还是很专注的，兢兢<br>业业的！在最近还是学到了不少好的管理方法，值得记录下来。</p>
-<p>  在开周会上，A君汇报了这周的工作，得到了肯定，获得了表杨。B君和A君是相同的职务，这周表现平平<br>。到了下周，A君自信满满，以为还能获得表扬。这时，即使A君工作的再好也不当在表扬了。在表扬会使A君<br>过度膨胀，B君更加消沉，并非好事。此时应该多鼓励B君，适当忽略A君，并对A提更高的要求。</p>
-<p>  之前看过一个故事，大体的意思是这样的。一个工厂里有甲乙两个生产队，管理者因为生产效率上不去而犯愁。<br>于是有人出点子，当甲生产队工作时，在里面立牌子赞扬乙生产队效率高。结果甲的生产效率上去了。相反，当乙生产队工作时，在里面立牌子赞扬<br>甲生产队效率高。结果乙的生产效率也提高了。这个故事恰恰反映了国人的心理，输人不输阵！</p>
-<p>  管理好他们能带来很好的效果。合适的“给糖”，能提高效率。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list">
-			 
-        <li class="article-tag-list-item">
-        	<a href="javascript:void(0)" class="article-tag-list-link color4">项目管理，软技能</a>
-        </li>
-      
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<i class="icon-book icon"></i>
-	<a class="article-category-link" href="/categories/互联网/">互联网</a>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2015/10/15/给糖or给棒/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-行之有效的站会" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/09/10/行之有效的站会/">行之有效的站会</a>
-    </h1>
-  
-
-        <a href="/2015/09/10/行之有效的站会/" class="archive-article-date">
-  	<time datetime="2015-09-10T11:19:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2015-09-10</time>
-</a>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>  最近项目很赶，需要有效的让每个人点后知晓最新项目状态、遇到的困难和发现潜在的障碍。<br>于是我就提出来，每天早上九点半(吃好早餐，做充分的准备)开始站会，时间控制在15分钟左右。<br>每个人依次阐述三个预定的问题：</p>
-<ol>
-<li>昨天我完成了什么？</li>
-<li>今天要去做什么？</li>
-<li><p>团队遇到了什么阻力？</p>
-<p>这样可以快速的了解昨天的进度，今天的计划是否按原定计划走，团队遇到的困难需要及时协助<br>解决的。以防在上面花费了过多的时间。当项目赶时，时间就决定了项目能否按时交付。</p>
-<p>在实施过程中，偶尔出现了昨天的任务有个别落下的，今天优先处理落下的任务，再提高效率把今天<br>的完成。今天要去做什么，主要是明确今天的任务，以防有落掉的。在忙起来的时候，工程师还真会把<br>任务落掉！团队遇到了什么阻力？主要还是出现了衔接的问题。流水线工作，上游的工作进度直接影响<br>了下游的工作进度。这就需要在统筹优先级。还有就是一些第三方的要提前申请，以免外界不可控的因素<br>影响了整个项目的进度。</p>
-</li>
-</ol>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list">
-			 
-        <li class="article-tag-list-item">
-        	<a href="javascript:void(0)" class="article-tag-list-link color4">项目管理，软技能</a>
-        </li>
-      
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<i class="icon-book icon"></i>
-	<a class="article-category-link" href="/categories/互联网/">互联网</a>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2015/09/10/行之有效的站会/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-App-store转让App" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/08/22/App-store转让App/">App-store转让App</a>
-    </h1>
-  
-
-        <a href="/2015/08/22/App-store转让App/" class="archive-article-date">
-  	<time datetime="2015-08-22T07:44:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2015-08-22</time>
-</a>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>有时候需要转让App到别的账号下，需要注意的是只有符合条件的App才能转让。<br>由于App store里面应用名字的唯一性，当你新建了应用还没来得急上传，想把它过度到另外账号下只能等第一个版本审核<br>通过后才能操作。<br><img src="/2015/08/22/App-store转让App/1.png" alt="1.png" title=""></p>
-<h3 id="符合条件的才行"><a href="#符合条件的才行" class="headerlink" title="符合条件的才行"></a>符合条件的才行</h3><img src="/2015/08/22/App-store转让App/2.png" alt="2.png" title="">
-<h3 id="填写账号"><a href="#填写账号" class="headerlink" title="填写账号"></a>填写账号</h3><img src="/2015/08/22/App-store转让App/3.png" alt="3.png" title="">
-<h3 id="Team-ID在这"><a href="#Team-ID在这" class="headerlink" title="Team ID在这"></a>Team ID在这</h3><img src="/2015/08/22/App-store转让App/4.png" alt="4.png" title="">
-<h3 id="同意就行"><a href="#同意就行" class="headerlink" title="同意就行"></a>同意就行</h3><img src="/2015/08/22/App-store转让App/5.png" alt="5.png" title="">
-<h3 id="登录另一个账号"><a href="#登录另一个账号" class="headerlink" title="登录另一个账号"></a>登录另一个账号</h3><img src="/2015/08/22/App-store转让App/6.png" alt="6.png" title="">
-<p>填写信息，接收就可以了。应用马上就过来了，但App store上的信息还要等apple 服务器同步才行。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list">
-			 
-        <li class="article-tag-list-item">
-        	<a href="javascript:void(0)" class="article-tag-list-link color5">iTunesconnect,</a>
-        </li>
-      
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<i class="icon-book icon"></i>
-	<a class="article-category-link" href="/categories/app-store/">App store</a>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2015/08/22/App-store转让App/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-Best Practices for IT Project Managers" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/06/02/Best Practices for IT Project Managers/">Best Practices for IT Project Managers</a>
-    </h1>
-  
-
-        <a href="/2015/06/02/Best Practices for IT Project Managers/" class="archive-article-date">
-  	<time datetime="2015-06-02T11:43:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2015-06-02</time>
-</a>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>–Posted by:  Jenna Puckett</p>
-<p>Depending on which “shocking project management statistics” article you read, you’ll find failure rates for large IT projects range anywhere from 31 and 96 percent. Like a game of telephone, you never know what abysmal results consultants will reveal when surveying technology project budgets, schedules and objectives.</p>
-<p>Regardless of the exact percentage though, the message is clear: Too many IT projects fail.</p>
-<p>Project management vs project management for IT teams<br>IT project management is a nuanced and complex branch of project management. Traditional project management endeavors often result in tangible results—a space station is built, damage from a natural disaster is recovered, the Olympic Games are played.</p>
-<p>But IT project managers must bring an organization’s information technology goals to fruition through detailed tasks such as:</p>
-<p>Upgrading networks<br>Merging multiple databases<br>Removing outdated servers<br>Installing new hardware<br>Deploying virtualization<br>Creating new desktop images<br>Developing custom websites or software<br>Implementing business analytics or cloud computing services<br>Successfully merging multiple databases in order to improve customer service is not nearly as grandiose to the non-technical as a new product launch. But that doesn’t mean it’s any less important. Although IT projects require the five process groups universal to all projects—initiation, planning, execution, monitoring and controlling—they are further complicated by unique business and industry challenges.</p>
-<p>Why IT projects fail<br>When 36 – 91 percent of IT projects fail, such a wide percentage gap begs the question: Do a large number of IT projects fail, or do we only hear about the bad news?</p>
-<p>Unfortunately, even if it’s exaggerated, IT project failure is far from occasional.</p>
-<p>This is because in addition to usual project challenges, IT project managers are further plagued by shifting business needs and constantly evolving technology. They must address:</p>
-<p>Technology advances during the project’s execution<br>Infrastructure changes that impact security and data management<br>Interoperability issues, vendor configuration changes, and unknown dependencies between hardware, software, networks or data<br>The first-time, first-use penalty which is the learning curve you must overcome when you do something new for the first time. There is almost always a first-time first-use scenario somewhere in an IT project, yet it’s often dismissed as a non-issue.<br>IT project managers should follow the best practices outlined below to overcome the complexity and variability of IT systems and reduce the risk of costly rework.</p>
-<p>Develop a standard process<br>Establishing a repeatable method may seem like Project Management 101, and that’s because it is. Yet failure to follow a streamlined process is a common mistake that increases the risk associated with IT projects. If you have no baseline standards or defined phases to move the project forward, then you lack the ability to measure—and even define—project success.</p>
-<p>A standard project methodology eliminates many issues that can snowball out of control later, such as failure to define project scope, necessary roles and associated responsibilities. Clearly defined project objectives and requirements lay the foundation for a realistic plan with effective handoffs between teams and work phases—which leads to a successful project. If your problem isn’t defined, then you can’t create a project that project solves it.</p>
-<p>Reinforce your process<br>Once you have a streamlined workflow, invest in technology and IT software that bolsters it. Project management tools help centralize all project-related information, which increases visibility across the project, and provides valuable historical data.</p>
-<p>These systems help IT project managers and team leaders see what everyone is working on, so they know if a project is moving forward, or if additional tasks can be assigned. This visibility also increases communication and keeps everyone focused on a common goal. Analytics and simple data visualizations help show important project information as it happens, so teams can immediately take corrective action if a project veers off course.</p>
-<p>When project details are spread across multiple spreadsheets, apps, and inboxes, it leads to conflicting data, inaccurate information, and status reports that are outdated as soon as they’re pulled. Project management software provides a single source for information, which not only helps monitor current initiatives, but can be used to accurately document progress and lessons learned, which improves resource planning for future projects.</p>
-<p>Hire the right people<br>You need a team capable of executing your project plan; no amount of planning or technology will overcome a shortage of necessary skills. Again, the right project management platform can help provide visibility into the skills and workloads of your team, and also help evaluate performance and assess skills for future work. If you don’t have the necessary skills available, considering outsourcing or hiring a consultant to contribute to the project. Another option is to reallocate resources to a different initiative, while you search for IT staff to add to your in-house team.</p>
-<p>Communicate openly<br>Companies often rely on technology to gain a competitive edge. But pressure to cut costs or meet strict deadlines can lead to unrealistic project expectations, and ultimately failure. A rushed software implementation can result in lack of user adoption, loss of business if rolled out during a busy season, and inadequate system testing. It’s an IT project manager’s job to push back on unreasonable deadlines or scope and clearly communicate the associated risks to project stakeholders.</p>
-<p>Maintain core competencies<br>Above all else, it’s critical that IT project managers stay up to date on the essential project management knowledge areas: scope, schedule, costs, quality, HR, communications, risk, procurement, stakeholder, and integration management. Aside from procurement, these are present in all IT projects, so managers should be prepared to shift to the competency that is analogous to the project’s current needs.</p>
-<p>Don’t contribute to the latest shocking project failure rates. Follow these best practices to successfully handle the complexity and variety of IT initiatives.</p>
-<p>Here’s another important skill to master when you’re managing technical projects: being able to make accurate project estimates. It’s an art, a science; it takes practice and trial-and-error. If you can get it right, you’ll be the star of your organization. To learn more, download our eBook, “5 Best Practices for Accurate Project Estimates.”</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list">
-			 
-        <li class="article-tag-list-item">
-        	<a href="javascript:void(0)" class="article-tag-list-link color4">项目管理，软技能</a>
-        </li>
-      
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<i class="icon-book icon"></i>
-	<a class="article-category-link" href="/categories/互联网/">互联网</a>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2015/06/02/Best Practices for IT Project Managers/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-5 Best Practices for Managing Large IT Projects" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/04/15/5 Best Practices for Managing Large IT Projects/">5 Best Practices for Managing Large IT Projects</a>
-    </h1>
-  
-
-        <a href="/2015/04/15/5 Best Practices for Managing Large IT Projects/" class="archive-article-date">
-  	<time datetime="2015-04-15T11:18:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2015-04-15</time>
-</a>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>–Posted by: Susanne Madsen</p>
-<p>If you’re embarking on a large technology project, there’s a lot at stake. IT projects are technically challenging and can easily go on for more than 10 or 12 months. Team members are highly specialized and are often spread between different locations and across time zones.</p>
-<p>According to a McKinsey &amp; Company article, “Delivering large-scale IT projects on time, on budget, and on value” by Michael Bloch, Sven Blumberg, and Jürgen Laartz, the average large IT projects run 45 percent over budget and 7 percent over time, while delivering 56 percent less value than predicted.  Some of these mismanaged projects can put the whole organization in jeopardy.</p>
-<p>You don’t want to be part of that losing statistic. In order to get a head start and be successful in managing a large-scale IT venture, here are five important considerations to put into action when leading a technical project that has a lot at stake for a lot of people.</p>
-<p>Have a strong technical lead<br>Large technology projects are complex and often require that multiple technologies and components are designed and integrated into a tailored solution. Such projects contain a lot of uncertainty and rarely go according to plan as new information emerges throughout the project’s lifecycle. In order for the project to be successful, you must have access to a strong technical lead who you can rely on to manage this complexity. Without a strong technical, lead the project’s foundation will be weak; and you, as the project manager will be forced to make decisions and plan the project based on poor information.</p>
-<p>Consider the following questions when choosing a strong technical lead:</p>
-<p>How strong is the technical lead on your current project?<br>Does the person have a track record of successfully managing challenging technical solutions?<br>If not, what can you do to mitigate this risk?<br>To what extent are you able to influence who gets selected as technical lead?<br>Have a solid project management process in place<br>Because large IT projects are risky, complex and carry a significant budget, they require a more structured project management process than smaller projects. I coach many project managers who improvise when it comes to project management processes. As a result, they end up firefighting and dealing with the fallout of poor planning. On a large project you’ll lose control very quickly if you’re not sufficiently structured.</p>
-<p>To succeed at managing your IT project, have an agreed method for defining requirements, estimating and planning work, identifying and managing risks, escalating issues, managing changes and reporting progress. Better yet, have project management software that works for your organization and the needs of your clients. You can’t rely on chance or goodwill to get through a complex project.</p>
-<p>Questions to consider:</p>
-<p>Are your project management processes sufficiently defined?<br>Does your project management platform or process help your team manage all the complexities of a large IT project?<br>Have you validated the project management processes with your colleagues?<br>Have you learned from similar projects in the past?<br>Be iterative<br>Agile has been a buzzword for several years and has even spread to industries outside of technology circles where Agile was first invented. Many managers are keen to jump onto the Agile bandwagon and to switch from a Waterfall to an Agile delivery method. But the question isn’t whether your project should be Agile or not. That’s like asking if you should live in a skyscraper in the city or a farmhouse in the countryside without considering all the options in between!</p>
-<p>Whereas some IT projects will benefit from making use of Agile practices, many are simply too large to be fully Agile. It’s more useful to ask how flexible your approach should be. The traditional Waterfall methodology can be risky, as the customer only gets to see and interact with the product at the end of the project. With Agile’s iterative development, you split the project into discrete phases that each conclude with a tangible deliverable. It’s a great way to manage complexity for large IT projects that aren’t suited to a fully Agile structure.</p>
-<p>Questions to consider:</p>
-<p>In which ways are you moving away from a Waterfall methodology and allowing for a flexible approach?<br>How many phases will your project consist of and in which ways will you deliver your product incrementally?<br>Which method works best for your organization and your customers’/clients’ needs?<br>To help you decide between Agile and Waterfall read this article  or check out this infographic.</p>
-<p>Be impeccable with system integration testing<br>Multiple components need to be designed and integrated on large technology projects, which means testing is always imperative. Some teams rely on their developers for testing the solution, but in reality no one is great at QA’ing their own work. The best option will always be a dedicated test team. Allocate time in the schedule for this essential activity.</p>
-<p>On some projects testing is left for the users to carry out, but the result can be detrimental as the users reject the product based on too many errors. User testing should be a high-level validation of the product rather than a system test.</p>
-<p>Questions to consider:</p>
-<p>Have you allocated enough time in the schedule for integration and system testing of the product before it’s passed over to the users for validation?<br>Does your test team consist of experienced testers rather than developers or users?<br>How will you know when the QA is complete and can move on?<br>Have an approved decision-making structure<br>On large IT projects, the landscape can quickly change as unexpected technical problems occur. Decisions need to be made in a timely and effective manner; there’s really no room for hold-ups and for teams to wait for direction. You need effective decision-making at every level, especially since large IT projects means you’re probably working with multiple teams in multiple locations.</p>
-<p>You can keep the decision-making process active by organizing weekly working group meeting(s) for team leads, in addition to monthly steering committee meetings for executives. The purpose of the working group meetings is for team leads and business leads to make decisions about detailed requirements and imminent issues. The purpose of the more infrequent steering committee meetings is to inform the committee about progress and for the executive sponsor to make decisions escalated by the working group. Many projects fail due to lack of buy-in and access to decision-makers. A locked down decision-making structure is one of the best ways to mitigate that.</p>
-<p>Questions to consider:</p>
-<p>What is the decision-making structure on your project?<br>Is it effective?<br>Are the representatives empowered to make decisions at their level on behalf of their respective teams and business areas?<br>Large IT projects are too big, risky and complex to simply rely on the team to roll up their sleeves and get on with the work. These types of projects have to be particularly well staffed, planned, executed and quality controlled in order to be successful. Make sure you know all the considerations you need to think through before launching your project and during the life of it.</p>
-<p>Managing resources effectively is another important skill when it comes to successfully leading large IT projects. To learn more, download our eBook, “5 Best Practices to Manage Project Resources Effectively.”</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list">
-			 
-        <li class="article-tag-list-item">
-        	<a href="javascript:void(0)" class="article-tag-list-link color4">项目管理，软技能</a>
-        </li>
-      
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<i class="icon-book icon"></i>
-	<a class="article-category-link" href="/categories/互联网/">互联网</a>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2015/04/15/5 Best Practices for Managing Large IT Projects/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
     </nav>
   
 
