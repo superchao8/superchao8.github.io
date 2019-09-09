@@ -131,6 +131,89 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-python5 Functions" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/03/15/python5 Functions/">python5 Functions</a>
+    </h1>
+  
+
+        <a href="/2016/03/15/python5 Functions/" class="archive-article-date">
+  	<time datetime="2016-03-15T11:19:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-03-15</time>
+</a>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Python中的函数在分离代码方面是非常有用的，但它们并不会停止。你认为任何其他地方都会使用的代码，你应该放在一个函数中。您还可以为函数添加参数以具有更多灵活的功能，但是我们将在此稍加讨论。您可以在函数名称之前使用关键字def来定义函数。我们使用我们的第一个Python函数。</p>
+<p>例</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">def sayHi():</div><div class="line">	<span class="built_in">print</span>(<span class="string">"Hi Janes"</span>)</div><div class="line">sayHi()</div></pre></td></tr></table></figure>
+<p>结果<br>Hi Janes</p>
+<p>在调用它们之前需要定义函数。即使我们必须在读取时跳过该函数来查看第一个语句sayHi()。这会把我们备份到def sayHi（）:,再次跟随一个冒号。然后在我们确认该函数被调用后，我们为简单的print语句创建一个新行，其中有四个空格。</p>
+<p>具有参数的函数</p>
+<p>上面简单的功能很棒，可以很常用。然而，通常会出现一个时间，我们希望将该功能作用于用户输入的数据。我们可以用（）中的参数来做这个，跟随函数名。</p>
+<p>例</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">def sayHi(name):</div><div class="line">	<span class="built_in">print</span>(<span class="string">"Hi "</span> + name)</div><div class="line">sayHi(<span class="string">"Janes"</span>)</div></pre></td></tr></table></figure>
+<p>结果</p>
+<p>Hi Janes<br>使用语句sayHi(“Janes”)我们传递”Janes”，这成为我们的函数。然后，我们只需要一些打印语句，添加它们并打印出来。</p>
+<p>函数作用域</p>
+<p>Python不支持全局变量，而不必明确表示它们是全局变量。显示而不是解释要容易得多：</p>
+<p>例</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">def someFunction():</div><div class="line">    z = 10</div><div class="line"></div><div class="line">someFunction()</div><div class="line"></div><div class="line"><span class="built_in">print</span> (z)</div></pre></td></tr></table></figure>
+<p>打印<br>这将导致错误，因为我们的变量z位于someFunction的本地范围。所以，当我们尝试打印一个，Python会报错，说一个变量没有定义。从技术上讲，它是定义的，但并不在全局范围内。现在，我们来看一个有用的例子。</p>
+<p>例</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">s = 10 </div><div class="line"></div><div class="line">def someFunction():</div><div class="line"></div><div class="line">    <span class="built_in">print</span> (s)</div><div class="line"></div><div class="line">someFunction()</div></pre></td></tr></table></figure>
+<p>在这个例子中，我们在全局范围内定义了一个。这意味着我们可以调用它或从任何地方编辑它，包括内部函数。但是，您无法在函数范围内声明一个变量，这个变量在全局范围内被外部使用。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list">
+			 
+        <li class="article-tag-list-item">
+        	<a href="javascript:void(0)" class="article-tag-list-link color2">Python</a>
+        </li>
+      
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<i class="icon-book icon"></i>
+	<a class="article-category-link" href="/categories/互联网/">互联网</a>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2016/03/15/python5 Functions/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
     <article id="post-python4 Operators" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -823,98 +906,6 @@
 
 
   
-    <article id="post-10 Steps to Manage Your Budget When the Scope Changes" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/01/16/10 Steps to Manage Your Budget When the Scope Changes/">10 Steps to Manage Your Budget When the Scope Changes</a>
-    </h1>
-  
-
-        <a href="/2015/01/16/10 Steps to Manage Your Budget When the Scope Changes/" class="archive-article-date">
-  	<time datetime="2015-01-16T11:18:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2015-01-16</time>
-</a>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>–Posted by:  Tim Clark</p>
-<p>If your budget is the roadmap to completing the project, what happens when the destination changes? You assess where you are, and how you got there, then redo the budget to complete the journey. Managing resources is filled with surprises.</p>
-<p>Change orders in projects are the norm, not the exception, so the seasoned project manager won’t be stumped by recasting the budget to account for altered objectives. How well you can adjust your budget to a scope change depends on how well you budgeted the project in the first place.</p>
-<p>Here are 10 steps to updating your project budget when the project scope changes.</p>
-<ol>
-<li>Start with the work completed.<br>See how the project plan looks when you add the new objectives. How many more resources do you need? Then see what can be tweaked to keep you on or close to budget with the new objectives, e.g., removing nice-to-have features from a software project.</li>
-</ol>
-<p>If some completed work can’t be used, don’t jettison it too quickly. Put that work on hold—you never know when objectives may change again, and your management may be able to collect for work completed from the customer.</p>
-<ol>
-<li><p>Compare your budget to actual spending.<br>Identify how much of the original budget has been spent, and how much remains. If you’re using a good project management tool you should be able to figure this out pretty quickly.  This information gives you a reality check of where you stand versus budget.  And don’t forget: Focus on the big variances from budget; don’t sweat the small stuff.</p>
-</li>
-<li><p>Scrutinize scope.<br>Assess whether the change order affects your deliverables, and if it consequently affects the resources to produce those deliverables.</p>
-</li>
-<li><p>Determine how the change order will affect costs.<br>Project change orders often come with an updated budget—so you could be facing more money allocated, or less. Either way, the project manager’s approach doesn’t differ greatly here (except maybe in the stress department). Bottom line: Determine how much funding is needed to achieve the new objectives.</p>
-</li>
-<li><p>Negotiate with your client.<br>Once you know how much your project will cost to complete with the change order, it’s time to let the client know. This probably means some negotiation is going to take place. Whoever is asking for the changes might start from a weakened position, especially when the unsaid part of the conversation is, Why didn’t you ask for this in the first place? At this point you can negotiate on the budget or the scope—or both. If you’ve done your homework, bring up any specific elements of the deliverables that would be difficult or costly. Give the client the full picture and try to make the conversation show that you’re in this together, and not working against each other.</p>
-</li>
-<li><p>Renegotiate with outside contractors if needed.<br>If the change increases project scope, you might need to hire outside resources. If the budget is slashed, you face the delicate task of reducing the amount of work for your contractors, and even laying some off, while keeping the team motivated and focused on meeting the new deliverables.</p>
-</li>
-<li><p>Be transparent.<br>Keep your team informed of all change orders and budget updates. Team members want to know how the changes will affect them. Let them know so they can focus on their work, rather than worrying about what’s going to become of the project (and their contribution to it). Furthermore, when you’re open about scope changes, team members can contribute ideas and solutions.</p>
-</li>
-<li><p>Design a new work plan.<br>Keep your team focused on the new deliverables. Use a project planning software to outline the plan so individuals can recalibrate what they must do and when they need to finish their work by.</p>
-</li>
-<li><p>Continue to manage project scope.<br>The change order gives the project a new scope, but that doesn’t mean you’re immune from any future scope creep that can wreak havoc on your budget. Try to put yourself in a proactive position, rather than a reactive one.</p>
-</li>
-<li><p>Manage client expectations.<br>A change order process can make your client more anxious than usual to see how you deliver. Keep your client updated and communicate clearly about how the project is progressing—and how any possible glitches might affect the timeline. The first few status meetings or reports after a change order take on greater importance for the project manager, team, client and your organization. The more you stay in touch with your client, the fewer unpleasant surprises you have to deliver. Which is good for everyone.</p>
-</li>
-</ol>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list">
-			 
-        <li class="article-tag-list-item">
-        	<a href="javascript:void(0)" class="article-tag-list-link color4">项目管理，软技能</a>
-        </li>
-      
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<i class="icon-book icon"></i>
-	<a class="article-category-link" href="/categories/互联网/">互联网</a>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2015/01/16/10 Steps to Manage Your Budget When the Scope Changes/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/3/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/5/">Next &raquo;</a>
@@ -1058,23 +1049,7 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="color5">tag1</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="color4">管理, 生涯规划</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="color3">管理</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="color4">项目管理，软技能</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="color5">设计模式</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1094,23 +1069,11 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="color5">设计模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="color3">生信</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="color4">Lua</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="color2">教程, Java,引道</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="color4">教程, Python，引道</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="color3">架构</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1118,7 +1081,15 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="color5">SQL, 性能优化</a>
+                <a href="javascript:void(0)" class="color4">Lua</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="color3">架构</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="color4">教程, Python，引道</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1130,7 +1101,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="color4">App</a>
+                <a href="javascript:void(0)" class="color5">SQL, 性能优化</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="color2">教程, Java,引道</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1138,11 +1113,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="color3">迭代</a>
+                <a href="javascript:void(0)" class="color4">App</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="color4">新鲜事</a>
+                <a href="javascript:void(0)" class="color3">迭代</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1150,11 +1125,27 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="color2">英语，软技能</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="color5">权限设计</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="color2">英语，软技能</a>
+                <a href="javascript:void(0)" class="color3">管理</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="color4">新鲜事</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="color5">tag1</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="color4">管理, 生涯规划</a>
               </li>
             
             <div class="clearfix"></div>

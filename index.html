@@ -131,6 +131,71 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-IPA" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/09/09/IPA/">IPA</a>
+    </h1>
+  
+
+        <a href="/2019/09/09/IPA/" class="archive-article-date">
+  	<time datetime="2019-09-09T02:19:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-09</time>
+</a>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a onclick="window.location.href='itms-services:///?action=download-manifest&url=https://xxx/.../myapp.plist'">下载IPA</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list">
+			 
+        <li class="article-tag-list-item">
+        	<a href="javascript:void(0)" class="article-tag-list-link color3">管理</a>
+        </li>
+      
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<i class="icon-book icon"></i>
+	<a class="article-category-link" href="/categories/移动互联网/">移动互联网</a>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/09/09/IPA/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
     <article id="post-Entrez Direct--Appendices" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1367,449 +1432,6 @@
 
 
   
-    <article id="post-Entrez Direct入门" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/11/Entrez Direct入门/">Entrez Direct入门</a>
-    </h1>
-  
-
-        <a href="/2019/04/11/Entrez Direct入门/" class="archive-article-date">
-  	<time datetime="2019-04-11T07:44:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-11</time>
-</a>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Entrez Direct（EDirect）提供从UNIX终端窗口访问NCBI的互连数据库套件（发布，序列，结构，基因，变异，表达等）。函数从命令行参数中获取搜索项。将各个操作组合在一起以构建多步查询。记录检索和格式化通常会完成整个过程。</p>
-<p>EDirect还包括一个参数驱动函数，它简化了从文档摘要或结构化XML格式返回的其他结果中提取数据的过程。这可以消除编写自定义软件以回答临时问题的需要。查询可以在EDirect命令和UNIX实用程序或脚本之间无缝移动，以执行无法在Entrez中完全完成的操作。</p>
-<p><a href="https://www.ncbi.nlm.nih.gov/books/NBK179288/#_chapter6_Getting_Started_," title="EDirect 官网" target="_blank" rel="external">EDirect 官网</a></p>
-<h4 id="测试平台"><a href="#测试平台" class="headerlink" title="测试平台"></a>测试平台</h4><p>  MacMini 2.6 GHz Intel Core i5，macOS Mojave 10.14.2</p>
-<h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><p>进入工作文件夹<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> work</div></pre></td></tr></table></figure></p>
-<p>创建src文件夹<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mkdir src</div></pre></td></tr></table></figure></p>
-<p>进入src文件夹<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> src</div></pre></td></tr></table></figure></p>
-<p>下载edirect<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">curl ftp://ftp.ncbi.nlm.nih.gov/entrez/entrezdirect/edirect.zip -O</div></pre></td></tr></table></figure></p>
-<p>解压缩<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">unzip edirect.zip</div></pre></td></tr></table></figure></p>
-<p>进入edirect文件夹并查看<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> edirect</div><div class="line">ls</div></pre></td></tr></table></figure></p>
-<p>你可能已经发现setup，没错，这个就是安装文件<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./setup.sh</div></pre></td></tr></table></figure></p>
-<p>稍（喝）等（杯）片（茶）刻（吧），当看到输出 </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">Trying to establish <span class="built_in">local</span> installations of any missing Perl modules</div><div class="line">(as logged <span class="keyword">in</span> /Users/adu/work/src/edirect/setup-deps.log).</div><div class="line">Please be patient, as this step may take a little while.</div><div class="line"></div><div class="line">Entrez Direct has been successfully downloaded and installed.</div><div class="line"></div><div class="line">In order to complete the configuration process, please execute the following:</div><div class="line"></div><div class="line">  <span class="built_in">echo</span> <span class="string">"source ~/.bash_profile"</span> &gt;&gt; <span class="variable">$HOME</span>/.bashrc</div><div class="line">  <span class="built_in">echo</span> <span class="string">"export PATH=\$&#123;PATH&#125;:/Users/adu/work/src/edirect"</span> &gt;&gt; <span class="variable">$HOME</span>/.bash_profile</div><div class="line"></div><div class="line">or manually edit the PATH variable assignment <span class="keyword">in</span> your .bash_profile file.</div></pre></td></tr></table></figure>
-<p>恭喜安装成功！</p>
-<p><strong>配置环境变量</strong></p>
-<p>把上面打印出来的 echo “export PATH=\${PATH}:/Users/adu/work/src/edirect” &gt;&gt; $HOME/.bash_profile 放到终端中，并回车已告诉系统EDirect的安装位置。<strong>注意</strong>每个人的安装路径都不一样，不要复制这里的应该复制你终端打印出来的。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">echo</span> <span class="string">"export PATH=\$&#123;PATH&#125;:/Users/adu/work/src/edirect"</span> &gt;&gt; <span class="variable">$HOME</span>/.bash_profile</div></pre></td></tr></table></figure></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">esearch -help</div></pre></td></tr></table></figure>
-<p>如果出现 -bash: esearch: command not found 说明环境变量没有配置正确。<br>看到 esearch 11.1，说明可以愉快的使用 eDirect了</p>
-<h4 id="Entrez-Direct-函数"><a href="#Entrez-Direct-函数" class="headerlink" title="Entrez Direct 函数"></a>Entrez Direct 函数</h4><p>导航功能支持Entrez数据库中的探索：</p>
-<ul>
-<li>esearch使用索引字段中的术语执行新的Entrez搜索。</li>
-<li>elink查找邻居（在数据库中）或链接（在数据库之间）。</li>
-<li>efilter过滤或限制先前查询的结果。</li>
-</ul>
-<p>可以指定格式或文档摘要检索记录：</p>
-<ul>
-<li>efetch以指定格式下载记录或报告。</li>
-</ul>
-<p>无需编写程序即可提取XML结果中的所需字段：</p>
-<ul>
-<li>xtract将EDirect XML输出转换为数据值表。</li>
-</ul>
-<p>还提供了几个附加功能：</p>
-<ul>
-<li>einfo获取Entrez数据库中索引字段的信息。</li>
-<li>epost上传唯一标识符（UID）或序列登录号。</li>
-<li>nquire向网页或CGI服务发送URL请求。</li>
-</ul>
-<h5 id="esearch语法"><a href="#esearch语法" class="headerlink" title="esearch语法"></a>esearch语法</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">esearch -db databaseName -query queryString</div></pre></td></tr></table></figure>
-<p><em>databaseName</em>(required)<br>数据库名字。指定数据库里查询<br><em>queryString</em>(required)<br>查询关键字。在所在的数据库里查询的关键字</p>
-<h6 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h6><p>在pubmed数据库中查询 “opsin gene conversion”<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">esearch -db pubmed -query <span class="string">"opsin gene conversion"</span></div></pre></td></tr></table></figure></p>
-<p>#######构建多步查询<br>edirect允许单独执行各个操作，通过使用竖线（“|”）Unix管道符号将它们组合成一个多步骤查询。从esearch到elink：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">esearch -db pubmed -query <span class="string">"opsin gene conversion"</span> | elink -related</div></pre></td></tr></table></figure></p>
-<p>将查找初始结果的相关文章（预先计算的PubMed邻居）。</p>
-<p>#######在多行上写入命令<br>通过在按回车键之前立即键入反斜杠（“\”）unix转义符，可以在下一行继续查询。继续查询链接到相关文章中发布的所有蛋白质序列：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">esearch -db pubmed -query <span class="string">"opsin gene conversion"</span> | \</div><div class="line">  elink -related | \</div><div class="line">  elink -target protein</div></pre></td></tr></table></figure></p>
-<p>垂直条管道符号还允许在下一行继续查询。</p>
-<p>#######检索PubMed报告<br>通过管道将pubmed查询结果传送到efetch并指定“abstract”格式：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">esearch -db pubmed -query <span class="string">"lycopene cyclase"</span> |</div><div class="line">  efetch -format abstract</div></pre></td></tr></table></figure></p>
-<p>使用efetch格式的“medline”可生成一份报告，该报告可输入通用书目管理软件包中：</p>
-<p>#######检索序列报告<br>核苷酸和蛋白质记录可以用fasta格式下载：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">esearch -db protein -query <span class="string">"lycopene cyclase"</span> |</div><div class="line">  efetch -format fasta</div></pre></td></tr></table></figure></p>
-<p>其他FASTA格式的变体是fasta-cds-na、fasta-cds-aa和gene-fasta<br>序列记录也可以以genbank（-format gb）或genpept（-format gp）格式文件获得，这些文件具有注释序列特定区域的功能：</p>
-<h4 id="搜索和筛选"><a href="#搜索和筛选" class="headerlink" title="搜索和筛选"></a>搜索和筛选</h4><p>####### 限制查询结果<br>目前的结果可以通过Entrez中的进一步术语搜索来改进（在蛋白质数据库中用于将BLAST邻居限制为分类子集）：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">esearch -db pubmed -query <span class="string">"opsin gene conversion"</span> |</div><div class="line">  elink -related |</div><div class="line">  efilter -query <span class="string">"tetrachromacy"</span></div></pre></td></tr></table></figure></p>
-<p>结果也可以按时间过滤。例如，以下语句：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">efilter -days 60 -datetype PDAT</div><div class="line">  efilter -mindate 1990 -maxdate 1999 -datetype PDAT</div></pre></td></tr></table></figure>
-<p>将结果分别限制在前两个月或1990年代发表的文章中。</p>
-<p>####### 索引字段的合格查询</p>
-<p>可以通过在括号中输入索引字段缩写来限定esearch或efilter中的查询字词。布尔运算符和括号也可以在查询表达式中用于更复杂的搜索。</p>
-<p>PubMed查询的常用字段包括：</p>
-<table>
-<thead>
-<tr>
-<th>Item</th>
-<th>Value</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>  [AFFL]</td>
-<td>Affiliation</td>
-</tr>
-<tr>
-<td>  [ALL]</td>
-<td>All Fields</td>
-</tr>
-<tr>
-<td>  [AUTH]</td>
-<td>Author</td>
-</tr>
-<tr>
-<td>  [FAUT]</td>
-<td>Author - First</td>
-</tr>
-<tr>
-<td>  [LAUT]</td>
-<td>Author - Last</td>
-</tr>
-<tr>
-<td>  [PDAT]</td>
-<td>Date - Publication</td>
-</tr>
-<tr>
-<td>  [FILT]</td>
-<td>Filter</td>
-</tr>
-<tr>
-<td>  [JOUR]</td>
-<td>Journal</td>
-</tr>
-<tr>
-<td>  [LANG]</td>
-<td>Language</td>
-</tr>
-<tr>
-<td>  [MAJR]</td>
-<td>MeSH Major Topic</td>
-</tr>
-<tr>
-<td>  [SUBH]</td>
-<td>MeSH Subheading</td>
-</tr>
-<tr>
-<td>  [MESH]</td>
-<td>MeSH Terms</td>
-</tr>
-<tr>
-<td>  [PTYP]</td>
-<td>Publication Type</td>
-</tr>
-<tr>
-<td>  [WORD]</td>
-<td>Text Word</td>
-</tr>
-<tr>
-<td>  [TITL]</td>
-<td>Title</td>
-</tr>
-<tr>
-<td>  [TIAB]</td>
-<td>Title/Abstract</td>
-</tr>
-<tr>
-<td>  [UID]</td>
-<td>UID</td>
-</tr>
-</tbody>
-</table>
-<p>一个合格的查询看起来像：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="string">"Tager HS [AUTH] AND glucagon [TIAB]"</span></div></pre></td></tr></table></figure></p>
-<p>结果如下<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">Mac-mini:work adu$ esearch -db pubmed -query <span class="string">"Tager HS [AUTH] AND glucagon [TIAB]"</span></div><div class="line">&lt;ENTREZ_DIRECT&gt;</div><div class="line">  &lt;Db&gt;pubmed&lt;/Db&gt;</div><div class="line">  &lt;WebEnv&gt;NCID_1_123525658_130.14.22.76_9001_1555050683_279099027_0MetA0_S_MegaStore&lt;/WebEnv&gt;</div><div class="line">  &lt;QueryKey&gt;1&lt;/QueryKey&gt;</div><div class="line">  &lt;Count&gt;24&lt;/Count&gt;</div><div class="line">  &lt;Step&gt;1&lt;/Step&gt;</div><div class="line">&lt;/ENTREZ_DIRECT&gt;</div></pre></td></tr></table></figure></p>
-<p>将搜索结果限制为PubMed子集的过滤器包括：</p>
-<table>
-<thead>
-<tr>
-<th>Item</th>
-<th>Value</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>  humans</td>
-<td>[MESH]</td>
-</tr>
-<tr>
-<td>  pharmacokinetics</td>
-<td>[MESH]</td>
-</tr>
-<tr>
-<td>  chemically induced</td>
-<td>[SUBH]</td>
-</tr>
-<tr>
-<td>  all child</td>
-<td>[FILT]</td>
-</tr>
-<tr>
-<td>  english</td>
-<td>[FILT]</td>
-</tr>
-<tr>
-<td>  freetext</td>
-<td>[FILT]</td>
-</tr>
-<tr>
-<td>  has abstract</td>
-<td>[FILT]</td>
-</tr>
-<tr>
-<td>  historical article</td>
-<td>[FILT]</td>
-</tr>
-<tr>
-<td>  randomized controlled trial</td>
-<td>[FILT]</td>
-</tr>
-<tr>
-<td>  clinical trial, phase ii</td>
-<td>[PTYP]</td>
-</tr>
-<tr>
-<td>  review</td>
-<td>[PTYP]</td>
-</tr>
-</tbody>
-</table>
-<p>序列数据库使用一组不同的搜索字段编制索引，包括：</p>
-<table>
-<thead>
-<tr>
-<th>Item</th>
-<th>Value</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>  [ACCN]</td>
-<td>Accession</td>
-</tr>
-<tr>
-<td>  [ALL]</td>
-<td>All Fields</td>
-</tr>
-<tr>
-<td>  [AUTH]</td>
-<td>Author</td>
-</tr>
-<tr>
-<td>  [GPRJ]</td>
-<td>BioProject</td>
-</tr>
-<tr>
-<td>  [ECNO]</td>
-<td>EC/RN Number</td>
-</tr>
-<tr>
-<td>  [FKEY]</td>
-<td>Feature key</td>
-</tr>
-<tr>
-<td>  [FILT]</td>
-<td>Filter</td>
-</tr>
-<tr>
-<td>  [GENE]</td>
-<td>Gene Name</td>
-</tr>
-<tr>
-<td>  [JOUR]</td>
-<td>Journal</td>
-</tr>
-<tr>
-<td>  [KYWD]</td>
-<td>Keyword</td>
-</tr>
-<tr>
-<td>  [MLWT]</td>
-<td>Molecular Weight</td>
-</tr>
-<tr>
-<td>  [ORGN]</td>
-<td>Organism</td>
-</tr>
-<tr>
-<td>  [PACC]</td>
-<td>Primary Accession</td>
-</tr>
-<tr>
-<td>  [PROP]</td>
-<td>Properties</td>
-</tr>
-<tr>
-<td>  [PROT]</td>
-<td>Protein Name</td>
-</tr>
-<tr>
-<td>  [SQID]</td>
-<td>SeqID String</td>
-</tr>
-<tr>
-<td>  [SLEN]</td>
-<td>Sequence Length</td>
-</tr>
-<tr>
-<td>  [SUBS]</td>
-<td>Substance Name</td>
-</tr>
-<tr>
-<td>  [WORD]</td>
-<td>Text Word</td>
-</tr>
-<tr>
-<td>  [TITL]</td>
-<td>Title</td>
-</tr>
-<tr>
-<td>  [UID]</td>
-<td>UID</td>
-</tr>
-</tbody>
-</table>
-<p>并且蛋白质数据库中的样本查询是：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="string">"alcohol dehydrogenase [PROT] NOT (bacteria [ORGN] OR fungi [ORGN])"</span></div></pre></td></tr></table></figure></p>
-<p>结果如下<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">Mac-mini:work adu$ esearch -db protein -query <span class="string">"alcohol dehydrogenase [PROT] NOT (bacteria [ORGN] OR fungi [ORGN])"</span></div><div class="line">&lt;ENTREZ_DIRECT&gt;</div><div class="line">  &lt;Db&gt;protein&lt;/Db&gt;</div><div class="line">  &lt;WebEnv&gt;NCID_1_123764783_130.14.18.97_9001_1555052879_1098401792_0MetA0_S_MegaStore&lt;/WebEnv&gt;</div><div class="line">  &lt;QueryKey&gt;1&lt;/QueryKey&gt;</div><div class="line">  &lt;Count&gt;8402&lt;/Count&gt;</div><div class="line">  &lt;Step&gt;1&lt;/Step&gt;</div><div class="line">&lt;/ENTREZ_DIRECT&gt;</div></pre></td></tr></table></figure></p>
-<p>序列数据库中子集过滤器的其他示例如下：</p>
-<table>
-<thead>
-<tr>
-<th>Item</th>
-<th>Value</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>  mammalia</td>
-<td>[ORGN]</td>
-</tr>
-<tr>
-<td>  mammalia</td>
-<td>[ORGN:noexp]</td>
-</tr>
-<tr>
-<td>  cds</td>
-<td>[FKEY]</td>
-</tr>
-<tr>
-<td>  lacz</td>
-<td>[GENE]</td>
-</tr>
-<tr>
-<td>  beta galactosidase</td>
-<td>[PROT]</td>
-</tr>
-<tr>
-<td>  protein snp</td>
-<td>[FILT]</td>
-</tr>
-<tr>
-<td>  reviewed</td>
-<td>[FILT]</td>
-</tr>
-<tr>
-<td>  country united kingdom glasgow</td>
-<td>[TEXT]</td>
-</tr>
-<tr>
-<td>  biomol genomic</td>
-<td>[PROP]</td>
-</tr>
-<tr>
-<td>  dbxref flybase</td>
-<td>[PROP]</td>
-</tr>
-<tr>
-<td>  gbdiv phg</td>
-<td>[PROP]</td>
-</tr>
-<tr>
-<td>  phylogenetic study</td>
-<td>[PROP]</td>
-</tr>
-<tr>
-<td>  sequence from mitochondrion</td>
-<td>[PROP]</td>
-</tr>
-<tr>
-<td>  src cultivar</td>
-<td>[PROP]</td>
-</tr>
-<tr>
-<td>  srcdb refseq validated</td>
-<td>[PROP]</td>
-</tr>
-<tr>
-<td>  150:200</td>
-<td>[SLEN]</td>
-</tr>
-</tbody>
-</table>
-<p>（计算的分子量（MLWT）字段仅针对蛋白质（和结构）而非核苷酸编制索引。）</p>
-<p>####### 检查中间结果</p>
-<p>EDirect将中间结果存储在Entrez历史服务器上。 EDirect导航功能生成一个自定义XML消息，其中包含相关字段（数据库，Web环境，查询键和记录计数），可以读取管道中的下一个命令。</p>
-<p>在添加下一步骤之前，可以检查查询中每个步骤的结果以确认预期的行为。 ENTREZ_DIRECT对象中的Count字段包含上一步返回的记录数。查询成功的一个很好的衡量标准是合理的（非零）计数值。例如：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">esearch -db protein -query <span class="string">"NP_567004 [ACCN]"</span> |</div><div class="line">  elink -related |</div><div class="line">  efilter -query <span class="string">"28000:30000 [MLWT]"</span> |</div><div class="line">  elink -target structure |</div><div class="line">  efilter -query <span class="string">"0:2 [RESO]"</span></div></pre></td></tr></table></figure></p>
-<p>结果如下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line">Mac-mini:work adu$ esearch -db protein -query <span class="string">"NP_567004 [ACCN]"</span> |   elink -related |   efilter -query <span class="string">"28000:30000 [MLWT]"</span> |   elink -target structure |   efilter -query <span class="string">"0:2 [RESO]"</span></div><div class="line">Retrying elink, step 2: callMLink: Timeout waiting <span class="keyword">for</span> response from MegaLink server (3)</div><div class="line">Retrying elink, step 2: callMLink: Timeout waiting <span class="keyword">for</span> response from MegaLink server (3)</div><div class="line">Retrying elink, step 2: callMLink: Timeout waiting <span class="keyword">for</span> response from MegaLink server (3)</div><div class="line">ERROR <span class="keyword">in</span> link output: callMLink: Timeout waiting <span class="keyword">for</span> response from MegaLink server (3)</div><div class="line">WebEnv: NCID_1_123813944_130.14.22.76_9001_1555053764_1622274016_0MetA0_S_MegaStore</div><div class="line">URL: dbfrom=protein&amp;db=protein&amp;query_key=1&amp;WebEnv=NCID_1_123813944_130.14.22.76_9001_1555053764_1622274016_0MetA0_S_MegaStore&amp;cmd=neighbor_history&amp;linkname=protein_protein</div><div class="line">Result: &lt;?xml version=<span class="string">"1.0"</span> encoding=<span class="string">"UTF-8"</span> ?&gt;</div><div class="line">&lt;!DOCTYPE eLinkResult PUBLIC <span class="string">"-//NLM//DTD elink 20101123//EN"</span> <span class="string">"https://eutils.ncbi.nlm.nih.gov/eutils/dtd/20101123/elink.dtd"</span>&gt;</div><div class="line">&lt;eLinkResult&gt;</div><div class="line">&lt;LinkSet&gt;</div><div class="line">  &lt;DbFrom&gt;protein&lt;/DbFrom&gt;</div><div class="line">  &lt;IdList&gt;</div><div class="line">    &lt;Id&gt;18410104&lt;/Id&gt;</div><div class="line">  &lt;/IdList&gt;</div><div class="line">  &lt;LinkSetDbHistory&gt;</div><div class="line">    &lt;DbTo&gt;protein&lt;/DbTo&gt;</div><div class="line">    &lt;LinkName&gt;protein_protein&lt;/LinkName&gt;</div><div class="line">  &lt;ERROR&gt;callMLink: Timeout waiting <span class="keyword">for</span> response from MegaLink server (3)&lt;/ERROR&gt;</div><div class="line">  &lt;/LinkSetDbHistory&gt;</div><div class="line">  &lt;WebEnv&gt;NCID_1_123813944_130.14.22.76_9001_1555053764_1622274016_0MetA0_S_MegaStore&lt;/WebEnv&gt;</div><div class="line">&lt;/LinkSet&gt;</div><div class="line">&lt;/eLinkResult&gt;</div><div class="line"></div><div class="line"></div><div class="line">ERROR <span class="keyword">in</span> filt input: callMLink: Timeout waiting <span class="keyword">for</span> response from MegaLink server (3)</div><div class="line"></div><div class="line">ERROR <span class="keyword">in</span> link input: callMLink: Timeout waiting <span class="keyword">for</span> response from MegaLink server (3)</div><div class="line"></div><div class="line">&lt;ENTREZ_DIRECT&gt;</div><div class="line">  &lt;Error&gt;callMLink: Timeout waiting <span class="keyword">for</span> response from MegaLink server (3)&lt;/Error&gt;</div><div class="line">&lt;/ENTREZ_DIRECT&gt;</div><div class="line">ERROR <span class="keyword">in</span> filt input: callMLink: Timeout waiting <span class="keyword">for</span> response from MegaLink server (3)</div></pre></td></tr></table></figure></p>
-<p>在指定的分子量范围内具有39个蛋白质结构并具有所需的（X射线晶体学）原子位置分辨率。</p>
-<p>（QueryKey值为7而不是5，因为每个elink命令通过在ELink操作之后立即运行单独的ESearch查询来获取记录计数。）</p>
-<p>####### 结合独立查询</p>
-<p>可以执行独立的esearch，elink和efilter操作，然后使用历史服务器的“＃”约定来表示查询键号。 （要组合的步骤必须位于同一个数据库中。）后续的esearch命令可以使用-db参数覆盖上一步中传送的数据库。 （将查询连接在一起对于共享相同的历史记录线程是必要的。）例如，查询：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">esearch -db protein -query <span class="string">"amyloid* [PROT]"</span> |</div><div class="line">  elink -target pubmed |</div><div class="line">  esearch -db gene -query <span class="string">"apo* [GENE]"</span> |</div><div class="line">  elink -target pubmed |</div><div class="line">  esearch -query <span class="string">"(#3) AND (#6)"</span> |</div><div class="line">  efetch -format docsum |</div><div class="line">  xtract -pattern DocumentSummary -element Id Title</div></pre></td></tr></table></figure>
-<p>使用截断搜索（输入单词的开头后跟星号）返回与淀粉样蛋白序列和载脂蛋白基因记录相关的论文标题：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div></pre></td><td class="code"><pre><div class="line">Mac-mini:work adu$ esearch -db protein -query <span class="string">"amyloid* [PROT]"</span> |</div><div class="line">&gt;   elink -target pubmed |</div><div class="line">&gt;   esearch -db gene -query <span class="string">"apo* [GENE]"</span> |</div><div class="line">&gt;   elink -target pubmed |</div><div class="line">&gt;   esearch -query <span class="string">"(#3) AND (#6)"</span> |</div><div class="line">&gt;   efetch -format docsum |</div><div class="line">&gt;   xtract -pattern DocumentSummary -element Id Title</div><div class="line">20301340  Alzheimer Disease Overview</div><div class="line">28987665  Altered spontaneous brain activity pattern <span class="keyword">in</span> cognitively normal young adults carrying mutations of APP, presenilin-1/2 and APOE ε4.</div><div class="line">28252024  Evolution of complexity <span class="keyword">in</span> the zebrafish synapse proteome.</div><div class="line">28071753  De novo assembly, annotation, and characterization of the whole brain transcriptome of male and female Syrian hamsters.</div><div class="line">27626380  High-throughput discovery of novel developmental phenotypes.</div><div class="line">27535807  Sex-specific characterization and evaluation of the Alzheimer<span class="string">'s disease genetic risk factor sorl1 in zebrafish during aging and in the adult brain following a 100 ppb embryonic lead exposure.</span></div><div class="line">27234028  Alzheimer's disease risk genes <span class="keyword">in</span> wild-type adult zebrafish exhibit gender-specific expression changes during aging.</div><div class="line">27189481  Gene evolution and gene expression after whole genome duplication <span class="keyword">in</span> fish: the PhyloFish database.</div><div class="line">26871637  Widespread Expansion of Protein Interaction Capabilities by Alternative Splicing.</div><div class="line">26614614  Multi-tissue transcriptome profiles <span class="keyword">for</span> coho salmon (Oncorhynchus kisutch), a species undergoing rediploidization following whole-genome duplication.</div><div class="line">26469318  RFX transcription factors are essential <span class="keyword">for</span> hearing <span class="keyword">in</span> mice.</div><div class="line">26319212  Transcriptome sequencing and development of an expression microarray platform <span class="keyword">for</span> liver infection <span class="keyword">in</span> adenovirus <span class="built_in">type</span> 5-infected Syrian golden hamsters.</div><div class="line">26107351  Annotation of the Protein Coding Regions of the Equine Genome.</div><div class="line">25852190  Integrative analysis of kinase networks <span class="keyword">in</span> TRAIL-induced apoptosis provides a <span class="built_in">source</span> of potential targets <span class="keyword">for</span> combination therapy.</div><div class="line">25765076  Tissue-specific transcriptome assemblies of the marine medaka Oryzias melastigma and comparative analysis with the freshwater medaka Oryzias latipes.</div><div class="line">25319552  A new rhesus macaque assembly and annotation <span class="keyword">for</span> next-generation sequencing analyses.</div><div class="line">24952961  A high-resolution spatiotemporal atlas of gene expression of the developing mouse brain.</div><div class="line">24709693  Genome-wide data reveal novel genes <span class="keyword">for</span> methotrexate response <span class="keyword">in</span> a large cohort of juvenile idiopathic arthritis cases.</div><div class="line">24705354  The palmitoyl acyltransferase HIP14 shares a high proportion of interactors with huntingtin: implications <span class="keyword">for</span> a role <span class="keyword">in</span> the pathogenesis of Huntington<span class="string">'s disease.</span></div><div class="line">24658140  The mammalian-membrane two-hybrid assay (MaMTH) for probing membrane-protein interactions in human cells.</div><div class="line">24402279  Elephant shark genome provides unique insights into gnathostome evolution.</div><div class="line">23962925  Genome analysis reveals insights into physiology and longevity of the Brandt's bat Myotis brandtii.</div><div class="line">23258410  Comparative analysis of bat genomes provides insight into the evolution of flight and immunity.</div><div class="line">23236062  Sequencing, annotation, and characterization of the influenza ferret infectome.</div><div class="line">23149746  Genome sequences of wild and domestic bactrian camels.</div><div class="line">23127152  Efficient assembly and annotation of the transcriptome of catfish by RNA-Seq analysis of a doubled haploid homozygote.</div><div class="line">20301414  Early-Onset Familial Alzheimer Disease</div><div class="line">22751099  The yak genome and adaptation to life at high altitude.</div><div class="line">22134011  A preliminary sketch of horn cancer transcriptome <span class="keyword">in</span> Indian zebu cattle.</div><div class="line">22002653  Genome sequencing and comparison of two nonhuman primate animal models, the cynomolgus and Chinese rhesus macaques.</div><div class="line">21993625  Genome sequencing reveals insights into physiology and longevity of the naked mole rat.</div><div class="line">21857902  Transcriptome sequencing of the blind subterranean mole rat, Spalax galili: utility and potential <span class="keyword">for</span> the discovery of novel evolutionary patterns.</div><div class="line">21484476  Major chimpanzee-specific structural changes <span class="keyword">in</span> sperm development-associated genes.</div><div class="line">21048031  Single nucleotide polymorphisms of matrix metalloproteinase 9 (MMP9) and tumor protein 73 (TP73) interact with Epstein-Barr virus <span class="keyword">in</span> chronic lymphocytic leukemia: results from the European <span class="keyword">case</span>-control study EpiLymph.</div><div class="line">20875843  Cloning, sequencing and expression <span class="keyword">in</span> the dog of the main amyloid precursor protein isoforms and some of the enzymes related with their processing.</div><div class="line">20433749  Salmo salar and Esox lucius full-length cDNA sequences reveal changes <span class="keyword">in</span> evolutionary pressures on a post-tetraploidization genome.</div><div class="line">20403183  Transcriptome sequencing and development of an expression microarray platform <span class="keyword">for</span> the domestic ferret.</div><div class="line">20237496  New genetic associations detected <span class="keyword">in</span> a host response study to hepatitis B vaccine.</div><div class="line">19946888  Defining the membrane proteome of NK cells.</div><div class="line">19820115  BeetleBase <span class="keyword">in</span> 2010: revisions to provide comprehensive genomic information <span class="keyword">for</span> Tribolium castaneum.</div><div class="line">19393038  A whole-genome assembly of the domestic cow, Bos taurus.</div><div class="line">19199708  Proteomic analysis of human parotid gland exosomes by multidimensional protein identification technology (MudPIT).</div><div class="line">18362917  The genome of the model beetle and pest Tribolium castaneum.</div><div class="line">17145712  PEDE (Pig EST Data Explorer) has been expanded into Pig Expression Data Explorer, including 10 147 porcine full-length cDNA sequences.</div><div class="line">16710414  The DNA sequence and biological annotation of human chromosome 1.</div><div class="line">16335952  Human plasma N-glycoproteome analysis by immunoaffinity subtraction, hydrazide chemistry, and mass spectrometry.</div><div class="line">16141072  The transcriptional landscape of the mammalian genome.</div><div class="line">16136131  Initial sequence of the chimpanzee genome and comparison with the human genome.</div><div class="line">16109975  The zebrafish gene map defines ancestral vertebrate chromosomes.</div><div class="line">15642098  Full-length cDNAs from chicken bursal lymphocytes to facilitate gene <span class="keyword">function</span> analysis.</div><div class="line">15489334  The status, quality, and expansion of the NIH full-length cDNA project: the Mammalian Gene Collection (MGC).</div><div class="line">15202933  Insertion of the amyloid precursor protein into lipid monolayers: effects of cholesterol and apolipoprotein E.</div><div class="line">15169875  Identification and verification of novel rodent postsynaptic density proteins.</div><div class="line">15164054  The DNA sequence and comparative analysis of human chromosome 10.</div><div class="line">15164053  DNA sequence and analysis of human chromosome 9.</div><div class="line">15057824  The DNA sequence and biology of human chromosome 19.</div><div class="line">14702039  Complete sequencing and characterization of 21,243 full-length human cDNAs.</div><div class="line">14681463  PEDE (Pig EST Data Explorer): construction of a database <span class="keyword">for</span> ESTs derived from porcine full-length cDNA libraries.</div><div class="line">12665801  Exploring proteomes and analyzing protein processing by mass spectrometric identification of sorted N-terminal peptides.</div><div class="line">12537572  Annotation of the Drosophila melanogaster euchromatic genome: a systematic review.</div><div class="line">12520002  BayGenomics: a resource of insertional mutations <span class="keyword">in</span> mouse embryonic stem cells.</div><div class="line">12477932  Generation and initial analysis of more than 15,000 full-length human and mouse cDNA sequences.</div><div class="line">12454917  Genetic and genomic tools <span class="keyword">for</span> Xenopus research: The NIH Xenopus initiative.</div><div class="line">12040188  A comparison of whole-genome shotgun-derived mouse chromosome 16 and the human genome.</div><div class="line">11247302  Disabled-2 colocalizes with the LDLR <span class="keyword">in</span> clathrin-coated pits and interacts with AP-2.</div><div class="line">11230166  Toward a catalog of human genes and proteins: sequencing and analysis of 500 novel complete protein coding human cDNAs.</div><div class="line">11181995  The sequence of the human genome.</div><div class="line">10731132  The genome sequence of Drosophila melanogaster.</div><div class="line">8858135 Regulation of tumor necrosis factor-and Fas-mediated apoptotic cell death by a novel cDNA TR2L.</div><div class="line">7542371 Expression <span class="keyword">in</span> mouse embryos and <span class="keyword">in</span> adult mouse brain of three members of the amyloid precursor protein family, of the alpha-2-macroglobulin receptor/low density lipoprotein receptor-related protein and of its ligands apolipoprotein E, lipoprotein lipase, alpha-2-macroglobulin and the 40,000 molecular weight receptor-associated protein.</div></pre></td></tr></table></figure>
-<p>使用（＃3）AND（＃6）代替上面的（＃2）AND（＃4）反映了每个elink命令执行单独的ESearch查询的需要，该查询增加QueryKey，以获得记录计数。 -label参数可用于绕过此工件。标签值以“＃”符号为前缀，并放在最终搜索的括号中。从而：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">esearch -db structure -query <span class="string">"insulin [TITL]"</span> |</div><div class="line">  elink -target pubmed -label struc_cit |</div><div class="line">  esearch -db protein -query <span class="string">"insulin [PROT]"</span> |</div><div class="line">  elink -target pubmed -label prot_cit |</div><div class="line">  esearch -query <span class="string">"(#struc_cit) AND (#prot_cit)"</span> |</div><div class="line">  efetch -format uid</div></pre></td></tr></table></figure>
-<p>将返回：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">Mac-mini:work adu$ esearch -db structure -query <span class="string">"insulin [TITL]"</span> |</div><div class="line">&gt;   elink -target pubmed -label struc_cit |</div><div class="line">&gt;   esearch -db protein -query <span class="string">"insulin [PROT]"</span> |</div><div class="line">&gt;   elink -target pubmed -label prot_cit |</div><div class="line">&gt;   esearch -query <span class="string">"(#struc_cit) AND (#prot_cit)"</span> |</div><div class="line">&gt;   efetch -format uid</div><div class="line">25423173</div><div class="line">15299880</div><div class="line">9235985</div><div class="line">9141131</div><div class="line">8421693</div><div class="line">1433291</div><div class="line">1772633</div><div class="line">2025410</div><div class="line">2905485</div></pre></td></tr></table></figure></p>
-<p>无需跟踪内部QueryKey值。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list">
-			 
-        <li class="article-tag-list-item">
-        	<a href="javascript:void(0)" class="article-tag-list-link color3">生信</a>
-        </li>
-      
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<i class="icon-book icon"></i>
-	<a class="article-category-link" href="/categories/技术/">技术</a>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/04/11/Entrez Direct入门/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1953,23 +1575,7 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="color5">tag1</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="color4">管理, 生涯规划</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="color3">管理</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="color4">项目管理，软技能</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="color5">设计模式</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1989,23 +1595,11 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="color5">设计模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="color3">生信</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="color4">Lua</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="color2">教程, Java,引道</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="color4">教程, Python，引道</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="color3">架构</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2013,7 +1607,15 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="color5">SQL, 性能优化</a>
+                <a href="javascript:void(0)" class="color4">Lua</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="color3">架构</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="color4">教程, Python，引道</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2025,7 +1627,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="color4">App</a>
+                <a href="javascript:void(0)" class="color5">SQL, 性能优化</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="color2">教程, Java,引道</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2033,11 +1639,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="color3">迭代</a>
+                <a href="javascript:void(0)" class="color4">App</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="color4">新鲜事</a>
+                <a href="javascript:void(0)" class="color3">迭代</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2045,11 +1651,27 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="color2">英语，软技能</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="color5">权限设计</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="color2">英语，软技能</a>
+                <a href="javascript:void(0)" class="color3">管理</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="color4">新鲜事</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="color5">tag1</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="color4">管理, 生涯规划</a>
               </li>
             
             <div class="clearfix"></div>
